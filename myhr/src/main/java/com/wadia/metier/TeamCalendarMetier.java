@@ -44,7 +44,7 @@ public class TeamCalendarMetier {
     Calendar rightNow = Calendar.getInstance();
 
    public List<ELData> myTeamLeaves(String username){
-	List<ELData> eLdatas = new ArrayList<>();
+	List<ELData> eLdatas = new ArrayList<ELData>();
 	eLdatas = MyReports(affectationRepos.MyReportsList(affectationMetier.findMyManager(username).getUsername()));
 	return eLdatas;
     }

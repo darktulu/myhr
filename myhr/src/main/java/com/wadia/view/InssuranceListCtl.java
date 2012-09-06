@@ -28,6 +28,7 @@ public class InssuranceListCtl {
     private List<EInsurranceData> listInssurance = new ArrayList<EInsurranceData>();
     private Integer number;
     private String search;
+    private EInsurranceData inssurance = new EInsurranceData();
 
     @ManagedProperty(value = "#{eInsurranceDataRepos}")
     private EInsurranceDataRepos eInsurranceDataRepos;
@@ -49,6 +50,9 @@ public class InssuranceListCtl {
 	eInsurranceDataRepos.delete(insssurece);
 
     }
+    public void delete() {
+	eInsurranceDataRepos.delete(inssurance);
+    }
 
     public void update() {
 	listInssurance = inssuranceMetier.findByUsername(user.getUsername());
@@ -57,6 +61,7 @@ public class InssuranceListCtl {
     }
 
     public List<EInsurranceData> getListInssurance() {
+	listInssurance = inssuranceMetier.findByUsername(user.getUsername());
 	return listInssurance;
     }
 
@@ -125,4 +130,13 @@ public class InssuranceListCtl {
     public void setInssuranceMetier(InssuranceMetier inssuranceMetier) {
         this.inssuranceMetier = inssuranceMetier;
     }
+
+    public EInsurranceData getInssurance() {
+        return inssurance;
+    }
+
+    public void setInssurance(EInsurranceData insurance) {
+        this.inssurance = insurance;
+    }
+    
 }

@@ -130,7 +130,7 @@ and open the template in the editor.
                                     </h:panelGroup>
 
                                     <rich:dataTable value="#{InssuranceListCtl.listInssurance}" var="inssurance"
-                                                    id="tables" rows="15" rowClasses="odd-row, even-row"
+                                                    id="tables" rows="15" rowClasses="odd-row, even-row" 
                                                     styleClass="stable"  style="margin: auto; width: 100%; margin-top:15px;">
 
                                         <rich:column>
@@ -190,42 +190,43 @@ and open the template in the editor.
                                                 <h:outputText value="Action" />
                                             </f:facet>
                                             <div id="delete" style="margin-left: 8px; float: left;">
-                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
-                                                                   action="#{InssuranceListCtl.delete(inssurance.inssuranceId)}" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
+                                                <a4j:commandLink style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
+                                                                   action="#{InssuranceListCtl.delete}" render="tables" >                      
                                                     <img src="images/delete-icodf.png" style="margin-left: 10px;"/>
+                                                    <f:setPropertyActionListener target="#{InssuranceListCtl.inssurance}" value="#{inssurance}" />
                                                 </a4j:commandLink>
                                             </div>
                                             
                                             <div id="edits" style="margin-left: 8px; float: left;">
-                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
-                                                                   action="inssuranceEdit?faces-redirect=true">                      
+                                                <a4j:commandLink style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
+                                                                   action="inssuranceEdit">                      
                                                     <img src="images/edit-icon.png" style="margin-left: 10px;" title="Edit"/>
                                                     <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuanceEditCtl.idToEdit}"/>
                                                 </a4j:commandLink>
                                             </div>
                                             <div id="send" style="margin-left: 8px; float: left;">
-                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
+                                                <a4j:commandLink style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
                                                                    onclick="#{rich:component('sendRequest')}.show()" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
                                                     <img src="images/1336487630_stock_folder-move.png" style="margin-left: 10px;" title="send to HR"/>
                                                     <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuranceStatusCtl.idToEdit}"/>
                                                 </a4j:commandLink>
                                             </div>
                                             <div id="sendpr" style="margin-left: 8px; float: left;">
-                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Accepted by insurrance'}"
+                                                <a4j:commandLink style="color: lightseagreen;"  rendered="#{ inssurance.status=='Accepted by insurrance'}"
                                                                    onclick="#{rich:component('pr')}.show()" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
                                                     <img src="images/checkmark.png" style="margin-left: 10px;" title="Payement received"/>
                                                     <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuranceStatusCtl.idToEdit}"/>
                                                 </a4j:commandLink>
                                             </div>
                                             <div id="reEdit" style="margin-left: 8px; float: left;">
-                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Rejected by insurrance'}"
+                                                <a4j:commandLink style="color: lightseagreen;"  rendered="#{ inssurance.status=='Rejected by insurrance'}"
                                                                    onclick="#{rich:component('reEdit')}.show()" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
                                                     <img src="images/1336143107_arrow_refresh.png" style="margin-left: 10px;" title="re-edit"/>
                                                     <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuranceStatusCtl.idToEdit}"/>
                                                 </a4j:commandLink>
                                             </div>
                                             <div id="view" style="margin-left: 8px; float: left;">
-                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status != 'waiting'}"
+                                                <a4j:commandLink style="color: lightseagreen;"  rendered="#{ inssurance.status != 'waiting'}"
                                                                    action="view" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
                                                     <img src="images/view-icon.png" style="margin-left: 10px;" title="view"/>
                                                     <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{viewInssurance.idToEdit}"/>

@@ -163,4 +163,14 @@ public class InssuanceEditCtl {
     public void setStatusDescription(String statusDescription) {
 	this.statusDescription = statusDescription;
     }
+
+    public EInsurranceDataRepos geteInsurranceDataRepos() {
+        return eInsurranceDataRepos;
+    }
+
+    public void seteInsurranceDataRepos(EInsurranceDataRepos eInsurranceDataRepos) {
+        this.eInsurranceDataRepos = eInsurranceDataRepos;
+    }
+    
+    
 }
