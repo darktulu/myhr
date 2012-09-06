@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:form id="form"> 
+        <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+            <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"> 
+                <rich:panelMenuGroup label="HR Data"> 
+                    <a href="myTeamData.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data"/> </a>
+                     <a href="EmpOraganizational.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data"/> </a>
+                     <a href="FamilyList.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data"/> </a>
+                </rich:panelMenuGroup> 
+                <rich:panelMenuGroup label="Leave Data"> 
+                    <rich:panelMenuItem label="Item 2.1" name="Item_2_1" /> 
+                    <rich:panelMenuItem label="Item 2.2" name="Item_2_2" /> 
+                    <rich:panelMenuItem label="Item 2.3" name="Item_2_3" /> 
+                    <rich:panelMenuItem label="Item 2.5" name="Item_2_5" /> 
+                </rich:panelMenuGroup> 
+                <rich:panelMenuGroup label="Medical inssurance"> 
+                    <rich:panelMenuItem label="Item 3.1" name="Item_3_1" /> 
+                    <rich:panelMenuItem label="Item 3.2" name="Item_3_2" /> 
+                    <rich:panelMenuItem label="Item 3.3" name="Item_3_3" /> 
+                </rich:panelMenuGroup>
+                 <rich:panelMenuGroup label="Misconduct and Warning"> 
+                    <rich:panelMenuItem label="Item 3.1" name="Item_3_1" /> 
+                    <rich:panelMenuItem label="Item 3.2" name="Item_3_2" /> 
+                    <rich:panelMenuItem label="Item 3.3" name="Item_3_3" /> 
+                </rich:panelMenuGroup>
+            </rich:panelMenu> 
+        </h:panelGrid> 
+    </h:form> 
+</html>

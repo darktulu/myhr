@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form>
+
+		<ul class="nav nav-list">
+			<li
+				class="#{request.requestURI == url['page.ce.accueil']?'active':''}">
+
+				<a href="accueil.xhtml"><i class="icon-user"></i> My profile</a>
+			</li>
+			<li
+				class="#{request.requestURI == url['page.ce.session']?'active':''}">
+				<a href="HR/session.xhtml"><i class="icon-th-list"></i> Sessions</a>
+			</li>
+
+			<li class="nav-header">My PM</li>
+			<li><a href="#"> <i class=" icon-th-list"></i> Ongoing
+					Appraisals
+			</a></li>
+
+			<li><a href="#"> <i class="icon-stop"></i> Closed
+					Appraisals
+			</a></li>
+		</ul>
+	</h:form>
+
+</ui:composition>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #ffffff;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body style=""> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/MenuMyTeam.xhtml"/>
+        </div>
+
+        <h:form id="forms">
+            <table style="max-width: 200px; margin: auto;">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 200px; min-height: 1144px; background: #f1f1f1; border: activeborder 1px; font:  14px Helvetica, Arial, sans-serif; "> 
+
+                               <ui:include src="Menus/HRmenu.xhtml"/>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div style="width: 970px; background: #f5b050; height: 30px; color : #f5b050;"> 
+
+                                <div style="margin-top: 1px; margin-right: 1px; width: 968px; background: #ffffff; height: 28px; color : #f5b050; float: right;" >
+                                    <h:outputText value="Total Employes : #{EmployListCtl.total}" style="font: bold 11px Helvetica, Arial, sans-serif; margin-top: 4px;"></h:outputText>
+                                    <a4j:commandLink action="#{EmployListCtl.update()}" style="margin-right: 10px; margin-top:2px; float : right;" oncomplete="#{EmployListCtl.recherger()}" render="employsList"><img src="images/1336388256_db_comit.png"/></a4j:commandLink>
+                                    <h:outputText value="Update employs list" style="color : #f5b050; float : right; margin-right: 8px; margin-top : 6px;"/>
+                                    <a href="EducationHr.xhtml" style="float : right; margin-right: 10px; margin-left: 8px;"><img src="images/1336143861_Synchronize.png"/></a>
+                                    <h:outputText value="Refresh  " style="color : #f5b050; margin-top: 6px; float : right;"></h:outputText>
+                                </div>
+                            </div>
+                            <rich:panel header="3Gcom Employee Education Data" style="margin-top:10px; min-height: 1100px;">
+
+                                <h:panelGroup style="float: right; margin-bottom: 10px;" >
+                                    <h:outputText value="Search" style="margin-right: 8px;" />
+                                    <h:inputText  style="vertical-align: middle; " value="#{EmployListCtl.search}">
+                                        <a4j:ajax event="keyup" render="employsList"/>
+                                    </h:inputText>
+                                    <h:graphicImage style="vertical-align: middle; margin-left : 5px;" width="16px" value="images/Loupe-icon.png"/>
+                                </h:panelGroup>
+                                <rich:dataTable value="#{EducationHrCtl.educationHrMetiers}" var="education"
+                                                id="employsList" rows="30" rowClasses="odd-row, even-row"
+                                                styleClass="stable" style="width: 100%;">
+
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Name" />
+                                        </f:facet>
+                                        <h:outputText value="#{education.name}" />
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Surname " />
+                                        </f:facet>
+                                        <h:outputText value="#{education.surname}" />
+                                    </rich:column>
+                                    <rich:column style="width: 150px">
+                                        <f:facet name="header">
+                                            <h:outputText value="Employee ID" />
+                                        </f:facet>
+                                        <h:outputText value="#{education.username}" />
+                                    </rich:column>
+                                    <rich:column style="width: 150px">
+                                        <f:facet name="header">
+                                            <h:outputText value="Status" />
+                                        </f:facet>
+                                        <h:outputText value="#{education.employStatut}" rendered="#{education.employStatut=='Active'}"  style="color: blue;"/>
+                                        <h:outputText value="#{education.employStatut}" rendered="#{education.employStatut=='Desactived'}"  style="color: red;"/>
+                                    </rich:column>
+                                    <rich:column style="width: 150px">
+                                        <f:facet name="header">
+                                            <h:outputText value="Name Institut" />
+                                        </f:facet>
+                                        <h:outputText value="#{education.nameInstitut}" />
+                                    </rich:column>
+                                   
+
+
+                                    <rich:column style="text-align: center; width:50px">
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+
+                                        <div id="cancss" style="margin-right: 10px; float: left;">
+                                            <h:commandLink styleClass="btn"  action="view">
+                                                <f:setPropertyActionListener  value="#{education.username}" target="#{EducationDetailsCtl.idToView}"/>
+                                                <img src="images/1336143366_old-edit-find.png"/>
+                                            </h:commandLink>
+                                        </div>
+                                        
+                                    </rich:column>
+
+                                    <f:facet name="footer">
+                                        <rich:dataScroller/>
+                                    </f:facet>
+                                </rich:dataTable>
+                            </rich:panel>
+
+
+                        </td>
+                        <td>
+                            <div style="width: 190px; min-height: 1144px; border: solid 1px #f1f1f1; background: #f1f1f1;">
+                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
+                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <rich:jQuery selector=".stable tr" event="mouseover"
+                             query="jQuery(this).addClass('active-row')"/>
+                <rich:jQuery selector=".stable tr" event="mouseout"
+                             query="jQuery(this).removeClass('active-row')"/>
+            </table> 
+        </h:form>
+
+    </h:body>
+</html>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #ffffff;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/MenuMyTeam.xhtml"/>
+        </div>
+
+        <h:form id="forms">
+            <table style="float: left; max-width: 200px;">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 180px; min-height: 948px; background: #f1f1f1; border: activeborder 1px; font:  14px Helvetica, Arial, sans-serif; "> 
+
+                                <table style="margin-left: 5px;">
+                                    <tbody>
+
+                                        <!-- HR Data-->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;">
+                                                <a action="myTeamData.xhtml" style=" color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="HR Data" style="margin-left: 10px; color: f5b050; "/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="myTeamData.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Personal Data"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px; "/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="EmpOraganizational.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Organizational Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><div style="width: 10px; "/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="FamilyList.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Family Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px;  border: solid 1px #c9c9c9;"><a href="ContratHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Contract Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><h:commandLink action="family" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Salary Data"/>
+                                                </h:commandLink></td>
+                                        </tr>
+
+                                        <!-- Leave Data-->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Leave Data" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr style="">
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Leave Summary"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="AbsenceHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Absence"/>
+                                                </a></td>
+                                        </tr>
+
+
+                                        <!-- Medical Inssurance -->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="#" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Medical inssurance" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr  style=" background: #ffffff;">
+                                            <td   style="background: #f5b050;" ><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="inssuranceHr.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Medical inssurance follow"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <!-- Misconduct & Warning Register -->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Misconduct and Warning" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Warning"/>
+                                                </a></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div style="width: 1000px; background: #f5b050; height: 30px; color : #ffffff;"> 
+                                <div style="margin-top: 1px; margin-right: 1px; width: 998px; background: #ffffff; height: 28px; color : #f5b050; float: right;" >
+                                    <h:outputText value="Actions : " style="font: bold 11px Helvetica, Arial, sans-serif; width: 100%;"/>
+                                    <a href="inssuranceHrDetails.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336143861_Synchronize.png"/></a>
+                                    <h:outputText value="Refresh : " style="float : right; margin-left: 10px; margin-right: 6px; margin-top: 4px;"/>
+                                    <a href="inssuranceHr.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336143521_back.png"/></a>
+                                    <h:outputText value="Back : " style="float : right; margin-left: 10px; margin-right: 6px; margin-top: 4px;"/>
+                                </div></div>
+                            <rich:panel header="Summary Data" style=" width: 996px;  min-height:200px;">
+
+                                <table style="margin: auto; min-width: 800px;" id="datatablesG">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 150px;"><h:outputText value="Name"/></td>
+                                            <td style="background: #fff;"><h:outputText value="#{inssuranceViewCtl.name}"/></td>
+                                            <td style="width: 150px;"><h:outputText value="Surname:"/></td>
+                                            <td style="background: #fff;"><h:outputText value="#{inssuranceViewCtl.surname}"/></td>
+                                        </tr>
+                                        <tr> 
+                                            <td style="width: 150px;"><h:outputText value="Username"/></td>
+                                            <td style="background: #fff;"><h:outputText value="#{inssuranceViewCtl.username}"/></td>
+
+                                            <td style="width: 150px;"><h:outputText value="CIN"/></td>
+                                            <td style="background: #fff;"><h:outputText value="#{inssuranceViewCtl.CIN}"/></td>
+                                        </tr>
+                                        <tr>
+
+                                            <td style="width: 150px;"><h:outputText value="CNSS"/></td>
+                                            <td style="background: #fff;"><h:outputText value="#{inssuranceViewCtl.CNSS}"/></td>
+                                            <td style="width: 150px;"><h:outputText value="Nombre Personnes Pris en charge"/></td>
+                                            <td style="background: #fff;"><h:outputText value="#{inssuranceViewCtl.number}"/></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </rich:panel>
+                            <rich:panel header="Inssurance History" style="margin-top:15px; min-height: 696px;">
+
+                                <rich:dataTable value="#{inssuranceViewCtl.listInssurance}" var="inssurance"
+                                                id="tables" rows="15" rowClasses="odd-row, even-row"
+                                                styleClass="stable"  style="margin: auto; width: 100%; margin-top:15px;">
+
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="matricule" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.matricule}" />
+                                    </rich:column>
+                                    <rich:column style="height : 40px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Date" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.date}" />
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="type" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.type}" />
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Person name" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.personName}" />
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Total amount" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.totalAmount}" />
+                                    </rich:column>
+
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Date de soin" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.dateSoins}" />
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Type de dossier" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.dossier}" />
+                                    </rich:column>
+
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Status" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Edited'}" style="text-align: center; color : blue;"  />
+                                        <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Submited To HR'}" style="text-align: center; color : orange;"  />
+                                        <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Accepted by insurrance'}" style="text-align: center; color : green;"  />
+                                        <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Payement received'}" style="text-align: center; color : green;"  />
+                                    </rich:column>
+
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Status description" />
+                                        </f:facet>
+                                        <h:outputText value="#{inssurance.statusDescription}" />
+                                    </rich:column>
+                                    <f:facet name="footer">
+                                        <rich:dataScroller/>
+                                    </f:facet>
+                                </rich:dataTable>
+                            </rich:panel>
+
+                        </td>
+                        <td>
+                            <div style="width: 160px; min-height: 948px; border: solid 1px #f1f1f1; background: #f1f1f1;">
+                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
+                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <rich:jQuery selector=".stable tr" event="mouseover"
+                             query="jQuery(this).addClass('active-row')"/>
+                <rich:jQuery selector=".stable tr" event="mouseout"
+                             query="jQuery(this).removeClass('active-row')"/>
+            </table> 
+
+        </h:form>
+
+    </h:body>
+</html>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>MyHr</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #ffffff;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <h:form id="forms">
+            <table style=" max-width: 1700px; margin: auto;">
+                <tbody>
+                    <tr><td>
+                            <div id="left" style="width: 200px; min-height: 920px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="Main Profile" rendered="#{authByRoleCtl.RH}" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Back" name="Back" leftIcon="images/arrow_left.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team Data" expanded="true"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png" /> </a>
+                                            <a href="EmpOraganizational.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
+                                            <a href="FamilyList.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="ContratHr.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="SalaryHr.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Leave Data" expanded="true" > 
+                                            <a href="LeaveSummaryList.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/status_away.png" style="background: #fee6cd;" /> </a>
+                                            <a href="AbsenceHr.xhtml"><rich:panelMenuItem label="Absences" name="My Absences" leftIcon="images/status_busy.png"/> </a> 
+
+
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="inssuranceHr.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Misconduct and warning" expanded="true"> 
+                                            <a href="Warning.xhtml"><rich:panelMenuItem label="Warning" name="Warning" leftIcon="images/flag_red.png"/> </a> 
+                                        </rich:panelMenuGroup>
+
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
+
+                            </div>
+
+                        </td>
+
+                        <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="2" style="margin-top: 4px; margin-left: 4px;">
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="leaveControl.xhtml"><img src="images/1341096810_arrow_circle_left.png"/></a>
+                                            <h:outputText value="Refresh data  " style="margin-left: 4px;"> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="LeaveSummaryList.xhtml"><img src="images/1341936090_back.png"/></a>
+                                            <h:outputText value="Back " style="margin-left: 4px;"> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+
+                                </div>
+                                <rich:panel header="Summary Data" style=" width: 100%;  min-height:160px;">
+
+                                    <table style="margin: auto; min-width: 800px;" id="datatablesG">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 150px;"><h:outputText value="Name"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{LeaveControlCtl.name}"/></td>
+                                                <td style="width: 150px;"><h:outputText value="Surname"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{LeaveControlCtl.surname}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px;"><h:outputText value="Username"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{LeaveControlCtl.username}"/></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>                   
+                                </rich:panel>
+                                <rich:panel header="Leaves History" style="margin-top:30px; min-height: 630px;">
+
+                                    <rich:dataTable value="#{LeaveControlCtl.dataList}" var="leave"
+                                                    id="tab" rows="20" rowClasses="odd-row, even-row"
+                                                    styleClass="stable" style="width: 100%;">
+
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Start date" />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.leaveStartDate}" />
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="End date " />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.leaveEndDate}" />
+                                        </rich:column>
+                                        <rich:column style="width: 150px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Type" />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.leaveType}" />
+                                        </rich:column>
+                                        <rich:column style="width: 150px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Days" />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.totalDays}" />
+                                        </rich:column>
+                                        <rich:column style="width: 150px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Year" />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.date}" />
+                                        </rich:column>
+                                        <rich:column  style="width:120px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="status " />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.status}" rendered="#{leave.status=='Approved By PM'}" style="color: lightseagreen;"/>
+                                            <h:outputText value="#{leave.status}" rendered="#{leave.status=='Approved By HR'}" style="color: green;"/>
+                                            <h:outputText value="#{leave.status}" rendered="#{leave.status=='Disapproved By HR'}" style="color: red;"/>
+                                        </rich:column>
+                                        <rich:column style="width: 300px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Commantaire" />
+                                            </f:facet>
+                                            <h:outputText value="#{leave.satatusDescription}" />
+                                        </rich:column>
+                                        <rich:column style="text-align: center; width:60px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Actions"/>
+                                            </f:facet>
+
+                                            <a4j:commandLink onclick="#{rich:component('Approuve')}.show()" rendered="#{leave.status!='Approved By HR'}" >
+                                                <img src="images/accept.png"/>
+                                                <f:setPropertyActionListener value="#{leave.leaveId}" target="#{LeaveControlEditCtl.leveToApprove}"/>
+                                            </a4j:commandLink>
+
+                                            <a4j:commandLink onclick="#{rich:component('Disaprouve')}.show()" rendered="#{leave.status!='Disapproved By HR'}">
+                                                <img src="images/delete.png"/>
+                                                <f:setPropertyActionListener value="#{leave.leaveId}" target="#{LeaveControlEditCtl.leveToApprove}"/>
+                                            </a4j:commandLink>
+                                        </rich:column>
+
+                                        <f:facet name="footer">
+                                            <rich:dataScroller/>
+                                        </f:facet>
+                                    </rich:dataTable>
+                                </rich:panel>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <rich:jQuery selector=".stable tr" event="mouseover"
+                             query="jQuery(this).addClass('active-row')"/>
+                <rich:jQuery selector=".stable tr" event="mouseout"
+                             query="jQuery(this).removeClass('active-row')"/>
+            </table> 
+            <rich:popupPanel id="Approuve" width="350" height="120">
+                <f:facet name="header">
+                    Approuve Leave
+                </f:facet>
+                <b></b>
+                <br/>
+                Are you sure you want to approve this Leave for <h:outputText value="#{LeaveControlEditCtl.data.resurceId}"/> ?
+                <br/><br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('Approuve')}.hide()"/>
+                    <a4j:commandButton value="Approve"
+                                       action="#{LeaveControlEditCtl.approuve()}"
+                                       onclick="#{rich:component('Approuve')}.hide()" oncomplete="#{LeaveControlCtl.update()}" render="tab">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+            </rich:popupPanel>
+            <rich:popupPanel id="Disaprouve" width="350" height="200">
+                <f:facet name="header">
+                    Approuve Leave
+                </f:facet>
+                <b></b>
+                <br/>
+                Are you sure you want to disapprouve this Leave for <h:outputText value="#{LeaveControlEditCtl.data.resurceId}"/> ?
+                <br/><br/>
+                <h:outputText value="Please add a description for this status" style="color : red;" ></h:outputText>
+                <br/><br/>
+                <h:inputTextarea value="#{LeaveControlEditCtl.description}" style="width:100%;"/>
+                <h:panelGrid columns="2" width="50%" style="float: right;">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('Disaprouve')}.hide()"/>
+                    <a4j:commandButton value="Disapprove"
+                                       action="#{LeaveControlEditCtl.disapprouve()}"
+                                       onclick="#{rich:component('Disaprouve')}.hide()" oncomplete="#{LeaveControlCtl.update()}" render="tab">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+            </rich:popupPanel>
+        </h:form>
+
+    </h:body>
+</html>

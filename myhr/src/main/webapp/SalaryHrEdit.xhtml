@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <script src="default.js"/>
+        <script>
+         function calculateTotals(){
+             var sum = 0.0;
+             var id = '#{rich:clientId('tab_podetail')}';
+             var x;
+             for(x=0; x&lt;40; x++){
+                 var UP = document.getElementById(id + ':' + x + 'montant');
+                 if( UP != null 
+                     &amp;&amp; UP.value.length!=0 ){
+                         var mul = (parseFloat(UP.value));
+                         T.value = mul;
+                         sum = parseFloat(sum) + parseFloat(mul); 
+                         }
+             }
+            #{rich:element('totals')}.innerHTML = sum;
+         }
+        </script>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #ffffff;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/MenuMyTeam.xhtml"/>
+        </div>
+
+        <h:form id="forms">
+            <table style="float: left; max-width: 200px;">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 180px; min-height: 878px; background: #f1f1f1; border: activeborder 1px; font:  14px Helvetica, Arial, sans-serif; "> 
+
+                                <table style="margin-left: 5px;">
+                                    <tbody>
+
+                                        <!-- HR Data-->
+
+                                        <tr style=" background: #ffffff;">
+                                            <td style="background: #f1f1f1;"><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;">
+                                                <a action="myTeamData.xhtml" style=" color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="HR Data" style="margin-left: 10px; color: f5b050; "/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="myTeamData.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Personal Data"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px; "/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="EmpOraganizational.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Organizational Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><div style="width: 10px; "/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="FamilyList.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Family Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px;  border: solid 1px #c9c9c9;"><a href="ContratHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Contract Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr  style="background: #ffffff;">
+                                            <td   style="background: #f5b050;" ><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="SalaryHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Salary Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <!-- Leave Data-->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Leave Data" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr style="">
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Leave Summary"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="AbsenceHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Absence"/>
+                                                </a></td>
+                                        </tr>
+
+
+                                        <!-- Medical Inssurance -->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="#" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Medical inssurance" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="inssuranceHr.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Medical inssurance follow"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <!-- Misconduct & Warning Register -->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Misconduct and Warning" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Warning"/>
+                                                </a></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </td>
+
+                        <td>                   
+                               <div style="width: 1000px; background: #f5b050; height: 30px; color : #ffffff;"> 
+                                    <div style="margin-top: 1px; margin-right: 1px; width: 998px; background: #ffffff; height: 28px; color : #f5b050; float: right;" >
+                                        <h:outputText value="Actions : " style="font: bold 11px Helvetica, Arial, sans-serif; width: 100%;"/>
+                                        <a4j:commandLink action="#{EsalaeyDataCtl.saveSalary()}" style=" float : right;"><img src="images/1336142816_cog_edit.png"/></a4j:commandLink>
+                                        <h:outputText value="Save : " style=" color :  #f5b050; float : right; margin-right: 8px; margin-left: 8px; margin-top: 2px;"/>
+                                        <a href="SalaryHr.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336143521_back.png"/></a>
+                                        <h:outputText value="Back : " style=" color :  #f5b050; float : right; margin-right: 8px; margin-left: 8px; margin-top: 2px;"/>
+                                    </div>
+                                </div>
+                            
+                            <!-- Formulaire de Saisie -->
+
+                            <br/><br/>
+                            <!-- PO Details -->
+                            <rich:panel header="Add Salary" style="height: 200px; width: 996px; margin-bottom: 4px;">
+
+                                <table style="margin: auto; min-width: 800px; min-height:200px;" id="datatablesG">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 250px; height : 30px;"> <h:outputText value="Base Salary"/></td>
+                                            <td style="background: #fff; width: 220px; height : 30px; "><h:inputText value="#{EsalaeyDataCtl.baseSalary}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td> 
+                                        </tr>
+                                        <tr>  
+                                            <td style="width: 250px; height : 30px;"> <h:outputText value="mois"/></td>
+                                            <td style="background: #fff; width: 220px; height : 30px; "><rich:select value="#{EsalaeyDataCtl.mois}">                
+                                                        <f:selectItem itemValue="1" itemLabel="Janvier" />                
+                                                        <f:selectItem itemValue="2" itemLabel="Février" />
+                                                        <f:selectItem itemValue="3" itemLabel="Mars" /> 
+                                                        <f:selectItem itemValue="4" itemLabel="Avril" /> 
+                                                        <f:selectItem itemValue="5" itemLabel="Mai" /> 
+                                                        <f:selectItem itemValue="6" itemLabel="Juin" /> 
+                                                        <f:selectItem itemValue="7" itemLabel="Juillet" />
+                                                        <f:selectItem itemValue="8" itemLabel="Août" />
+                                                        <f:selectItem itemValue="9" itemLabel="Septembre" />
+                                                        <f:selectItem itemValue="10" itemLabel="Octobre" />
+                                                        <f:selectItem itemValue="11" itemLabel="Novembre" />
+                                                        <f:selectItem itemValue="12" itemLabel="Decembre" />
+                                                    </rich:select></td>
+                                             <td style="width: 250px; height : 30px;"> <h:outputText value="ans"/></td>
+                                            <td style="background: #fff; width: 220px; height : 30px; "><h:inputText value="#{EsalaeyDataCtl.ans}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </rich:panel>
+
+
+                            <rich:panel  header="Indemnité" style="height: 200px; width:996px;  " >
+
+                                <rich:dataTable  keepSaved="true" rowKeyVar="row" id="tab_podetail" var="indem" value="#{EsalaeyDataCtl.geteIndemnites()}" style="width:100%; text-align: center">
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="nom"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{indem.nom}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText  value="year"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{indem.ans}" />
+                                    </rich:column> 
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="mois"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{indem.mois}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="montant"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{indem.montant}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="type"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{indem.type}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="comment"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{indem.commentaire}" />
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+                                        <a4j:commandLink immediate="true" status="false" value="X" title="Delete" style="text-align:center;" render="tab_podetail" action="#{EsalaeyDataCtl.removeRowIndem()}">
+                                            <f:setPropertyActionListener value="#{row}" target="#{EsalaeyDataCtl.rowId}"/>
+                                        </a4j:commandLink>
+                                    </rich:column>
+
+                                    <f:facet name="footer">
+                                        <a4j:commandLink style="float: right; color:#000;" value="Add new" 
+                                                         action="#{EsalaeyDataCtl.addIndeminte()}" render="tab_podetail"
+                                                         immediate="true" status="false" oncomplete="calculateTotals()"/>
+                                        <div style="float:left">
+                                            <h:outputText value="Total: "/>
+                                            <h:outputText id="totals" value="0">
+                                                <f:convertNumber  maxFractionDigits="2" minFractionDigits="2" />
+
+                                            </h:outputText>
+                                        </div>
+                                    </f:facet>
+
+
+                                </rich:dataTable>
+
+
+                            </rich:panel>
+                            
+                            <rich:panel  header="Primes" style="height: 200px; width:996px;" >
+
+                                <rich:dataTable  keepSaved="true" rowKeyVar="row" id="tab_prime" var="prime" value="#{EsalaeyDataCtl.getePrimes()}" style="width:100%; text-align: center">
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="nom"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{prime.nom}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText  value="year"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{prime.ans}" />
+                                    </rich:column> 
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="mois"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{prime.mois}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="montant"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{prime.montant}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="type"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{prime.type}" />
+                                    </rich:column>
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="comment"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{prime.commentaire}" />
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+                                        <a4j:commandLink immediate="true" status="false" value="X" title="Delete" style="text-align:center;" render="tab_prime" action="#{EsalaeyDataCtl.removeRowPrime()}">
+                                            <f:setPropertyActionListener value="#{row}" target="#{EsalaeyDataCtl.rowId}"/>
+                                        </a4j:commandLink>
+                                    </rich:column>
+
+                                    <f:facet name="footer">
+                                        <a4j:commandLink style="float: right; color:#000;" value="Add new" 
+                                                         action="#{EsalaeyDataCtl.addPrime()}" render="tab_prime"
+                                                         immediate="true" status="false" oncomplete="calculateTotals()"/>
+                                        <div style="float:left">
+                                            <h:outputText value="Total: "/>
+                                            <h:outputText id="totals" value="0">
+                                                <f:convertNumber  maxFractionDigits="2" minFractionDigits="2" />
+
+                                            </h:outputText>
+                                        </div>
+                                    </f:facet>
+
+
+                                </rich:dataTable>
+
+
+                            </rich:panel>
+                            
+                            <rich:panel  header="Charges" style="height: 200px; width:996px;  " >
+
+                                <rich:dataTable  keepSaved="true" rowKeyVar="row" id="tab_charge" var="charge" value="#{EsalaeyDataCtl.getEcharges()}" style="width:100%; text-align: center">
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="nom"/>
+                                        </f:facet>
+                                        <rich:select value="#{charge.nom}" >
+                                                    <f:selectItem itemValue="CNSS" itemLabel="CNSS"/>
+                                                    <f:selectItem itemValue="AMO" itemLabel="AMO"/>
+                                                </rich:select>
+                                    </rich:column>
+                                    
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText  value="year"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{charge.ans}" />
+                                    </rich:column> 
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="required" value="mois"/>
+                                        </f:facet>
+                                        <h:inputText  value="#{charge.mois}" />
+                                    </rich:column>
+
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+                                        <a4j:commandLink immediate="true" status="false" value="X" title="Delete" style="text-align:center;" render="tab_charge" action="#{EsalaeyDataCtl.removeRowCharge()}">
+                                            <f:setPropertyActionListener value="#{row}" target="#{EsalaeyDataCtl.rowId}"/>
+                                        </a4j:commandLink>
+                                    </rich:column>
+
+                                    <f:facet name="footer">
+                                        <a4j:commandLink style="float: right; color:#000;" value="Add new" 
+                                                         action="#{EsalaeyDataCtl.addcharge()}" render="tab_charge"
+                                                         immediate="true" status="false" oncomplete="calculateTotals()"/>
+                                        <div style="float:left">
+                                            <h:outputText value="Total: "/>
+                                            <h:outputText id="totals" value="0">
+                                                <f:convertNumber  maxFractionDigits="2" minFractionDigits="2" />
+
+                                            </h:outputText>
+                                        </div>
+                                    </f:facet>
+                                </rich:dataTable>
+                            </rich:panel>
+                        </td>
+                        <td>
+                            <div style="width: 160px; min-height: 878px; border: solid 1px #f1f1f1; background: #f1f1f1;">
+                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
+                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+        </h:form>
+
+    </h:body>
+</html>

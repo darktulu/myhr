@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>MyHR</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <!--div id="Menu">
+            <ui:include src="Menus/MenuLeavs.xhtml"/>
+        </div-->
+
+        <h:form id="forms">
+            <table style=" max-width: 1700px; margin: auto;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="left" style="width: 200px; min-height: 870px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="My Team Data" rendered="#{authByRoleCtl.RH}"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="HR Management" name="HR Management" leftIcon="images/group.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team" rendered="#{authByRoleCtl.PM}"> 
+                                            <a href="myTeam.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/group_go.png"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Calendar" name="Team Calendar" leftIcon="images/calendar_view_day.png"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Data" name="Team Data" leftIcon="images/group_gear.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Data" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png"  /> </a>
+                                            <a href="OrganizationalData.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
+                                            <a href="familyData.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="contratData.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="salary.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                            <a href="EducationData.xhtml"><rich:panelMenuItem label="My Education" name="My Education" leftIcon="images/medal_gold_1.png" /> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="My Leaves" expanded="true" > 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="My Leaves" name="My Leaves" leftIcon="images/status_away.png" /> </a>
+                                            <a href="absenceList.xhtml"><rich:panelMenuItem label="My Absences" name="My Absences" leftIcon="images/status_busy.png"/> </a> 
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="My Team Calendar" name="My Team Calendar" leftIcon="images/calendar.png"/> </a>
+
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="inssurance.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"  style="background: #fee6cd;"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Self Service" expanded="true"> 
+                                            <a href="selfService.xhtml"><rich:panelMenuItem label="Employment Certificate" name="Certificate of Employment" leftIcon="images/timeline_marker.png"/> </a>  
+                                            <a href="SalaryCertificate"><rich:panelMenuItem label="Salary Certificate" name="Salary Certificate" leftIcon="images/coins.png"/> </a> 
+                                            <a href="#"><rich:panelMenuItem label="Payslip" name="Payslip" leftIcon="images/page_key.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Directory" expanded="true"> 
+                                            <a href="directory.xhtml"><rich:panelMenuItem label="Employees data" name="Employees data" leftIcon="images/database_table.png"/> </a>
+                                        </rich:panelMenuGroup>
+
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
+
+                            </div>
+
+                        </td>
+
+                        <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+                                
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="2" style="margin-top: 4px; margin-left: 4px;">
+
+                                        <h:panelGrid columns="2" >
+                                            <a href="inssuranceform.xhtml"><img src="images/1343227992_list2-add.png"/></a>
+                                            <h:outputText value="Add New"  style="margin-left: 8px;"></h:outputText>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </div>
+
+                                <rich:panel header="Summary Data" style=" width: 100%;  min-height:200px; margin-top: 1px;">
+
+                                    <table style="margin: auto; min-width: 800px;" id="datatablesG">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 150px; height : 30px;"><h:outputText value="Name"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{EmployCtl.name}"/></td>
+                                                <td style="width: 150px; height : 30px;"><h:outputText value="Surname:"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{EmployCtl.surname}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height : 30px;"><h:outputText value="CNSS"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().cnss}"/></td>
+                                                <td style="width: 150px; height : 30px;"><h:outputText value="CIN"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().cin}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height : 30px"><h:outputText value="Matricule inssurance"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.matriculeInssurance}"/></td>
+                                                <td style="width: 150px; height : 30px"><h:outputText value="Nombre Personnes Pris en charge"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{InssuranceListCtl.number}"/></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </rich:panel>
+                                <rich:panel header="Inssurance History" style="margin-top:15px; min-height: 560px;">
+                                    <h:panelGroup style="float: right; margin-bottom: 10px; margin-right: 40px;">
+                                        <h:outputText value="General Search " style="margin-right: 5px;" />
+                                        <h:inputText  style="vertical-align: middle; " value="#{InssuranceListCtl.search}">
+                                            <a4j:ajax event="keyup" render="tables"/>
+                                        </h:inputText>
+                                        <h:graphicImage style="vertical-align: middle; margin-left : 5px;" width="16px" value="images/Loupe-icon.png"/>
+                                    </h:panelGroup>
+
+                                    <rich:dataTable value="#{InssuranceListCtl.listInssurance}" var="inssurance"
+                                                    id="tables" rows="15" rowClasses="odd-row, even-row"
+                                                    styleClass="stable"  style="margin: auto; width: 100%; margin-top:15px;">
+
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="matricule" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.matricule}" />
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Date" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.date}" />
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="type" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.type}" />
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Person name" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.personName}" />
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Total amount" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.totalAmount}" />
+                                        </rich:column>
+
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Type de dossier" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.dossier}" />
+                                        </rich:column>
+
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Status" />
+                                            </f:facet>
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Edited'}" style="text-align: center; color : blue;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Submited To HR'}" style="text-align: center; color : orange;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Accepted by insurrance'}" style="text-align: center; color : green;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Payement received'}" style="text-align: center; color : green;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='HR Acknoledge receiving'}" style="text-align: center; color : violet;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Submited to Insurance'}" style="text-align: center; color : #3366cc;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='In progess with Insurance'}" style="text-align: center; color : #ff6600;"  />
+                                            <h:outputText value="#{inssurance.status}" rendered="#{inssurance.status=='Rejected by insurrance'}" style="text-align: center; color : red;"  />
+                                        </rich:column>
+
+                                        <rich:column style="width: 50px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Action" />
+                                            </f:facet>
+                                            <div id="delete" style="margin-left: 8px; float: left;">
+                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
+                                                                   action="#{InssuranceListCtl.delete(inssurance.inssuranceId)}" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
+                                                    <img src="images/delete-icodf.png" style="margin-left: 10px;"/>
+                                                </a4j:commandLink>
+                                            </div>
+                                            
+                                            <div id="edits" style="margin-left: 8px; float: left;">
+                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
+                                                                   action="inssuranceEdit?faces-redirect=true">                      
+                                                    <img src="images/edit-icon.png" style="margin-left: 10px;" title="Edit"/>
+                                                    <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuanceEditCtl.idToEdit}"/>
+                                                </a4j:commandLink>
+                                            </div>
+                                            <div id="send" style="margin-left: 8px; float: left;">
+                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Edited'}"
+                                                                   onclick="#{rich:component('sendRequest')}.show()" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
+                                                    <img src="images/1336487630_stock_folder-move.png" style="margin-left: 10px;" title="send to HR"/>
+                                                    <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuranceStatusCtl.idToEdit}"/>
+                                                </a4j:commandLink>
+                                            </div>
+                                            <div id="sendpr" style="margin-left: 8px; float: left;">
+                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Accepted by insurrance'}"
+                                                                   onclick="#{rich:component('pr')}.show()" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
+                                                    <img src="images/checkmark.png" style="margin-left: 10px;" title="Payement received"/>
+                                                    <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuranceStatusCtl.idToEdit}"/>
+                                                </a4j:commandLink>
+                                            </div>
+                                            <div id="reEdit" style="margin-left: 8px; float: left;">
+                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status=='Rejected by insurrance'}"
+                                                                   onclick="#{rich:component('reEdit')}.show()" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
+                                                    <img src="images/1336143107_arrow_refresh.png" style="margin-left: 10px;" title="re-edit"/>
+                                                    <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{InssuranceStatusCtl.idToEdit}"/>
+                                                </a4j:commandLink>
+                                            </div>
+                                            <div id="view" style="margin-left: 8px; float: left;">
+                                                <a4j:commandLink   style="color: lightseagreen;"  rendered="#{ inssurance.status != 'waiting'}"
+                                                                   action="view" render="tables" oncomplete="#{InssuranceListCtl.update()}">                      
+                                                    <img src="images/view-icon.png" style="margin-left: 10px;" title="view"/>
+                                                    <f:setPropertyActionListener  value="#{inssurance.inssuranceId}" target="#{viewInssurance.idToEdit}"/>
+                                                </a4j:commandLink>
+                                            </div>
+                                        </rich:column>
+
+                                        <f:facet name="footer">
+                                            <rich:dataScroller/>
+                                        </f:facet>
+                                    </rich:dataTable>
+                                </rich:panel>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+            <rich:popupPanel id="sendRequest" width="350" height="120">
+                <f:facet name="header">
+                    Send Inssurance Request
+                </f:facet>
+                <b></b>
+                <br/>
+                Are you sure you want to send this inssurance file to HR ?<br/><br/>
+                <p style ="color : #red;"> After sending you can't edit or delete the request !</p>
+                <br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('sendRequest')}.hide()"/>
+                    <a4j:commandButton value="Approve"
+                                       action="#{InssuranceStatusCtl.sendToHr()}"
+                                       onclick="#{rich:component('sendRequest')}.hide()" oncomplete="#{InssuranceListCtl.update()}" render="tables">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+            </rich:popupPanel>
+            <rich:popupPanel id="pr" width="350" height="120">
+                <f:facet name="header">
+                    Payement received
+                </f:facet>
+                <b></b>
+                <br/>
+                Payement received
+                <br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('pr')}.hide()"/>
+                    <a4j:commandButton value="Approve"
+                                       action="#{InssuranceStatusCtl.pr()}"
+                                       onclick="#{rich:component('pr')}.hide()" oncomplete="#{InssuranceListCtl.update()}" render="tables">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+            </rich:popupPanel>
+            <rich:popupPanel id="reEdit" width="350" height="120">
+                <f:facet name="header">
+                    Re-Edit
+                </f:facet>
+                <b></b>
+                <br/>
+                do you want to re-eidt your request ?
+                <br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('reEdit')}.hide()"/>
+                    <a4j:commandButton value="Approve"
+                                       action="#{InssuranceStatusCtl.reedit()}"
+                                       onclick="#{rich:component('reEdit')}.hide()" oncomplete="#{InssuranceListCtl.update()}" render="tables">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+            </rich:popupPanel>
+        </h:form>
+
+    </h:body>
+</html>

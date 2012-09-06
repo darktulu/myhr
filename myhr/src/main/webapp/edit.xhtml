@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>MyHR</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layouts-css'  href='./css/menu.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layouts-csss'  href='../css/menu.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+
+    </h:head>
+    <h:body style="background: #f1f1f1; "> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <!--div id="Menu">
+            <ui:include src="Menus/Menu.xhtml"/>
+        </div-->
+        <h:outputStylesheet>
+
+            .mySelectStyle input{
+
+            width: 210px;
+            height : 100%;
+
+            }
+            
+           
+        </h:outputStylesheet>
+
+        <h:form id="forms">
+            <table style=" max-width: 1700px; margin: auto;">
+                <tbody>
+                    <tr><td>
+                            <div id="left" style="width: 200px; min-height: 1040px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="My Team Data" rendered="#{authByRoleCtl.RH}"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="HR Management" name="HR Management" leftIcon="images/group.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team" rendered="#{authByRoleCtl.PM}"> 
+                                            <a href="myTeam.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/group_go.png"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Calendar" name="Team Calendar" leftIcon="images/calendar_view_day.png"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Data" name="Team Data" leftIcon="images/group_gear.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Data" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png" style="background: #fee6cd;" /> </a>
+                                            <a href="OrganizationalData.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
+                                            <a href="familyData.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="contratData.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="salary.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="My Leaves" expanded="true" > 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="My Leaves" name="My Leaves" leftIcon="images/status_away.png"/> </a>
+                                            <a href="absenceList.xhtml"><rich:panelMenuItem label="My Absences" name="My Absences" leftIcon="images/status_busy.png"/> </a> 
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="My Team Calendar" name="My Team Calendar" leftIcon="images/calendar.png"/> </a>
+
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Self Service" expanded="true"> 
+                                            <a href="selfService.xhtml"><rich:panelMenuItem label="Employment Certificate" name="Certificate of Employment" leftIcon="images/timeline_marker.png"/> </a>  
+                                            <a href="SalaryCertificate.xhtml"><rich:panelMenuItem label="Salary Certificate" name="Salary Certificate" leftIcon="images/coins.png"/> </a> 
+                                            <a href="#"><rich:panelMenuItem label="Payslip" name="Payslip" leftIcon="images/page_key.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Directory" expanded="true"> 
+                                            <a href="directory.xhtml"><rich:panelMenuItem label="Employees data" name="Employees data" leftIcon="images/database_table.png"/> </a>
+                                        </rich:panelMenuGroup>
+
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
+
+                            </div>
+
+                        </td>
+
+                        <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="4" style="margin-top: 4px; margin-left: 4px;">
+
+                                        <h:panelGrid columns="2" >
+                                            <a4j:commandLink action="#{EmployCtl.save()}"><img src="images/1336142816_cog_edit.png"/></a4j:commandLink>
+                                            <h:outputText value="Save Changes  " style="float :left;"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="acceuil.xhtml"><img src="images/1341936090_back.png"/></a>
+                                            <h:outputText value="Back  "> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </div>
+
+                                <rich:panel style="margin: auto; width: 100%; height: 156px; font: 11px Helvetica, Arial, sans-serif; border: solid 1px #ffffff; background: #ffffff;" id="passtess">            
+                                    <f:facet name="header">                
+                                        <h:outputText value="Status"></h:outputText>            
+                                    </f:facet>
+                                    <img src="#{EmployCtl.geteGeneralData().idPhoto}" style="float: left; width: 150px; height: 120px; "/>
+                                    <table style="float: left; min-width: 300px; min-height:300px; margin-left: 80px; margin-top: 40px;" id="datatables">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Status :"/></td>
+                                                <td style="background: #ffffff; width: 225px; height: 30px;">
+                                                    <h:outputText value="#{EmployCtl.geteGeneralData().status}" rendered="#{EmployCtl.geteGeneralData().status=='ACTIVE'}" style="color: green;"/>
+                                                    <h:outputText value="#{EmployCtl.geteGeneralData().status}" rendered="#{EmployCtl.geteGeneralData().status=='ENDED'}" style="color: red;"/>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </rich:panel>
+                                <rich:panel style="margin: auto; width: 100%; height: 320px; font: 11px Helvetica, Arial, sans-serif; border: solid 1px #ffffff; background: #ffffff;">            
+                                    <f:facet name="header">                
+                                        <h:outputText value="General Data"></h:outputText>            
+                                    </f:facet>
+                                    <table style="margin: auto; min-width: 800px; min-height:300px;" id="datatablesG">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Firstname"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{EmployCtl.geteGeneralData().name}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Lastname:"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{EmployCtl.geteGeneralData().surname}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Username :"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().resurceId}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Matricule "/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().matricule}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="E-mail :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.email}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Secondary Mail Address :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.secondaryMailAdresse}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Birthday :"/></td>
+                                                <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" inputStyle="width:200px; height : 30px;"  value="#{EmployCtl.birthday}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="CIMR :"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().cimr}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Marital Status :"/></td>
+                                                <td style="background: #fff;"><rich:select value="#{EmployCtl.martialStatus}" style="width : 220px;" styleClass="mySelectStyle">                
+                                                        <f:selectItem itemValue="single" itemLabel="Single" />                
+                                                        <f:selectItem itemValue="maried" itemLabel="Maried" />
+                                                        <f:selectItem itemValue="divorced" itemLabel="Divorced" /> 
+                                                        <f:selectItem itemValue="widowed" itemLabel="widowed" /> 
+                                                    </rich:select></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Gender :" /></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().gender}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="CIN :"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().cin}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="CNSS :"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().cnss}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Passport ID :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.passportid}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Passport Epire Date :"/></td>
+                                                <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{EmployCtl.passportEpireDate}" style="background: #ffffff;" inputStyle="width:200px; height : 30px;"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Drive licence  ID :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.driveLiecenceId}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Drive licence  type :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.driveLicencetype}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </rich:panel>
+
+
+                                <rich:panel style="margin: auto; width: 100%; height: 260px; font: 11px Helvetica, Arial, sans-serif; border: solid 1px #ffffff; background: #ffffff;">            
+                                    <f:facet name="header">                
+                                        <h:outputText value="Contact Data"></h:outputText>            
+                                    </f:facet>
+                                    <table style="margin: auto; min-width: 800px; min-height:300px;" id="datatablesC">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Primary Mobile number:"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.PMobile}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Secondary Mobile number:"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.SMobile}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Buisness phone number :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.businessPhoneNumber}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Buisness fax number  :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.businessFax}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Home Adress :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.homeAdress}" style="width: 99%; height: 30px; background: #fedd97;  " /></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Home phone number :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.hmePhoneNumber}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Primary emergency contact name :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.pecName}" style="height: 120%; width:100%; background: #fedd97;"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Primary emergency contact number :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.pecNumber}" style="height: 120%; width:100%; background: #fedd97;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Secondary emergency contact name :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.secName}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Secondary emergency contact number :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.secNumber}" style="width: 99%; height: 30px; background: #fedd97; "/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Skype  ID :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.skypeId}"  style="width: 99%; height: 28px; background: #fedd97; "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="IM ID :"/></td>
+                                                <td style="background: #fff;"><h:inputText value="#{EmployCtl.imId}"  style="width: 99%; height: 28px; background: #fedd97; "/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </rich:panel>
+
+
+                                <rich:panel style="margin: auto; width: 100%; height: 200px; font: 11px Helvetica, Arial, sans-serif; border: solid 1px #ffffff; background: #ffffff;">            
+                                    <f:facet name="header">                
+                                        <h:outputText value="Bank informations"></h:outputText>            
+                                    </f:facet>
+                                    <table style="margin: auto; min-width: 800px; min-height:300px;" id="datatablesB">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Bank name :"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().bankName}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Bank account :"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{EmployCtl.geteGeneralData().bankAccount}"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </rich:panel>
+
+                            </div></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </h:form>
+    </h:body>
+</html>

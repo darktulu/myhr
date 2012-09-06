@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/Menu.xhtml"/>
+        </div>
+
+        <h:form>
+            <table style="margin: auto; max-width: 200px;">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 200px; min-height: 500px; background: #f1f1f1; border: activeborder 1px #000; "> 
+
+
+
+                                <table style="margin-left: 5px;">
+                                    <tbody>
+                                        <tr>
+                                            <td><div id="person"/></td>
+                                            <td><h:commandLink action="person" style="color: #000;" >
+                                                    <h:outputText value="My personal data"/>
+                                                </h:commandLink></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div id="family"/></td>
+                                            <td><h:commandLink action="family" style="color: #000;">
+                                                    <h:outputText value="My family data"/>
+                                                </h:commandLink></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div id="contrat"/></td>
+                                            <td><h:commandLink>
+                                                    <h:outputText value="My contrat data" style="color: #000;"/>
+                                                </h:commandLink></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div id="salary"/></td>
+                                            <td><h:commandLink>
+                                                    <h:outputText value="My salary data" style="color: #000;"/>
+                                                </h:commandLink></td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div style="width: 803px; background: #f5b050; height: 20px; color : #ffffff;"> 
+                                <h:commandButton style=" float:right; width:50px; height: 20px; background: #ffffff; " value="Save"
+                                                 action="#{ChargeCtl.save()}">
+                                </h:commandButton>
+                                <h:commandButton style=" float:right; width:50px; height: 20px; background: #ffffff; " value="Back"
+                                                 action="ok">
+                                </h:commandButton>
+                                <h:outputText value="Today :  19/05/2012" style="font: bold 11px Helvetica, Arial, sans-serif;"></h:outputText>
+                            </div>
+                            <rich:panel header="Add Child" style="height: 100%; width: 800px;">
+
+                                <h:panelGrid id="addcharge" style="width:100%" columns="2">
+                                    <h:outputText value="Name Charge"/>
+                                    <h:inputText value="#{ChargeCtl.nomCharge}" required="true"/>
+                                    
+                                    <h:outputText value="Type"/>
+                                    <rich:select value="#{ChargeCtl.type}" style="width: 100%" required="true">
+                                        <f:selectItem itemValue="Patronale" itemLabel="Patronale"/>
+                                        <f:selectItem itemValue="Salariale" itemLabel="Salariale"/>
+                                    </rich:select>
+                                
+
+                                    <h:outputText value="Tax"/>
+                                    <h:inputText value="#{ChargeCtl.tax}" required="true"/>
+                                    
+                                    <h:outputText value="Plafond"/>
+                                    <h:inputText value="#{ChargeCtl.plafond}" required="true"/>
+
+                                   
+                                </h:panelGrid>
+
+                            </rich:panel>
+                            <div style="height:360px" />
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </h:form>
+
+        <div id="footer">
+            <p>Copy right 3gcom </p>
+        </div>
+
+    </h:body>
+</html>

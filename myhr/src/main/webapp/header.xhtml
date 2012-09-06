@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<div id="swap">
+	<div id="header_box">
+		<div
+			style="padding-right: 5px; padding-left: 3px; padding-top: 3px; float: right;">
+			<h:form>
+				<h:commandLink action="#{loginBean.doLogout}">
+					<img src="#{EmployCtl.geteGeneralData().idPhoto}"
+						style="float: right; width: 50px; height: 40px;" />
+				</h:commandLink>
+			</h:form>
+		</div>
+
+		<div
+			style="padding-top: 3px; float: right; display: block; padding-right: 3px; font: 12px Helvetica, Arial, sans-serif; color: #666666;">
+			<h:panelGrid rows="2">
+				<h:outputText
+					value="Welcome, #{userController.fullname}" />
+				<h:outputText value="#{userController.logDate()}"
+					style="margin-top: 4px;" />
+			</h:panelGrid>
+		</div>
+
+
+		<div
+			style="width: 140px; height: 24px; float: right; margin-top: 2px;">
+
+			<table style="margin: auto;">
+				<tbody>
+					<tr>
+						<td width="4px" />
+						<td><a><div id="help" /></a></td>
+						<td width="4px" />
+						<td><a><div id="mail" /></a></td>
+						<td width="4px" />
+						<td><a href="acceuil.xhtml"><div id="home" /></a></td>
+						<td width="4px" />
+						<td><a href="#"><div id="look" /></a></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+
+
+		<div id="header">
+			<img src="./images/logo-login.png"
+				style="width: 75px; float: left; margin-left: 60px;" />
+		</div>
+
+	</div>
+</div>
+<!--div id="myHR">
+
+        
+    </div-->
+</html>

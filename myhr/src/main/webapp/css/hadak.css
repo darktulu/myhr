@@ -1,0 +1,24 @@
+/* 
+    Document   : hadak
+    Created on : 12 juil. 2012, 12:50:16
+    Author     : toshiba
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+input.rf-sel-inp {
+
+          width: 100px;
+
+} 
+
+ 
+.rf-sel-btn-arrow {
+
+          width: 15px;
+
+}

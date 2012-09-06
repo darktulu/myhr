@@ -1,0 +1,147 @@
+/* 
+    Document   : toolbar-ui
+    Created on : 30 mars 2012, 14:55:50
+    Author     : toshiba
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#tool-bar {background: #ffffff; 
+           padding:0 5px;
+           font-size:13px;
+           overflow:hidden; 
+
+           border: 1px solid #cccccc;
+           -webkit-border-radius: 3px;
+           -moz-border-radius: 3px;
+           border-radius: 3px;
+           -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+           -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+           -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+           -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+           -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+           -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+           transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+
+#tool-bar-ui-employ{ float: none;
+                     padding:0px 0px;
+                     /*border-top:solid 2px #bad3ea; */
+                     width: 100px;
+
+
+}
+
+#tool-bar-ui-employ:hover{ float: none;
+                           padding:0px 0px;
+                           /*border-top:solid 2px #bad3ea; */
+                           width: 100px;
+                           color:#f08520;
+
+}
+
+#tool-bar-ui-employ:active{ float: none;
+                            padding:0px 0px;
+                            /*border-top:solid 2px #bad3ea; */
+                            width: 100px;
+                            color:#f08520;
+
+}
+
+#tool-bar-ui-inssurance{ float: none;
+                         padding:0px 0px;
+                         /*border-top:solid 2px #bad3ea; */
+                         width: 100px;
+
+
+}
+
+#tool-bar-ui-inssurance:hover{ float: none;
+                               padding:0px 0px;
+                               /*border-top:solid 2px #bad3ea; */
+                               width: 100px;
+                               color:#f08520;
+
+}
+
+#tool-bar-ui-inssurance:active{ float: none;
+                                padding:0px 0px;
+                                /*border-top:solid 2px #bad3ea; */
+                                width: 100px;
+                                color:#4babf5;
+
+}
+
+#tool-bar-ui-warnings{ float: none;
+                       padding:0px 0px;
+                       /*border-top:solid 2px #bad3ea; */
+                       width: 100px;
+
+
+}
+
+#tool-bar-ui-warnings:hover{ float: none;
+                             padding:0px 0px;
+                             /*border-top:solid 2px #bad3ea; */
+                             width: 100px;
+                             color:#f08520;
+
+}
+
+#tool-bar-ui-warnings:active{ float: none;
+                              padding:0px 0px;
+                              /*border-top:solid 2px #bad3ea; */
+                              width: 100px;
+                              color:#4babf5;
+
+}
+
+#tool-bar-ui-leavs{ float: none;
+                    padding:0px 0px;
+                    /*border-top:solid 2px #bad3ea; */
+                    width: 100px;
+
+
+}
+
+#tool-bar-ui-leavs:hover{ float: none;
+                          padding:0px 0px;
+                          /*border-top:solid 2px #bad3ea; */
+                          width: 100px;
+                          color:#f08520;
+
+}
+
+#tool-bar-ui-leavs:active{ float: none;
+                           padding:0px 0px;
+                           /*border-top:solid 2px #bad3ea; */
+                           width: 100px;
+                           color:#4babf5;
+
+}
+
+#tool-bar-ui-account{ float: none;
+                      padding:0px 0px;
+                      /*border-top:solid 2px #bad3ea; */
+                      width: 100px;
+
+
+}
+
+#tool-bar-ui-account:hover{ float: none;
+                            padding:0px 0px;
+                            /*border-top:solid 2px #bad3ea; */
+                            width: 100px;
+                            color:#f08520;
+
+}
+
+#tool-bar-ui-account:active{ float: none;
+                             padding:0px 0px;
+                             /*border-top:solid 2px #bad3ea; */
+                             width: 100px;
+                             color:#4babf5;
+
+}

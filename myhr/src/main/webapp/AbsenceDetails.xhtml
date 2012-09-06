@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>MyRH</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #efefef;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/MenuMyTeam.xhtml"/>
+        </div>
+
+        <h:form id="forms">
+            <table style="float: left; max-width: 200px; margin: auto;">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 180px; min-height: 800px; background: #f1f1f1; border: activeborder 1px; font:  14px Helvetica, Arial, sans-serif; "> 
+
+                                <table style="margin-left: 5px;">
+                                    <tbody>
+
+                                        <!-- HR Data-->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;">
+                                                <a action="myTeamData.xhtml" style=" color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="HR Data" style="margin-left: 10px; color: f5b050; "/>
+                                                </a></td>
+                                        </tr>
+                                        <tr >
+                                            <td ><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="myTeamData.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Personal Data"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr >
+                                            <td   ><div style="width: 10px; "/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="EmpOraganizational.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Organizational Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr >
+                                            <td ><div style="width: 10px; "/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="FamilyList.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Family Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr >
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px;  border: solid 1px #c9c9c9;"><a href="ContratHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Contract Data"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><h:commandLink action="family" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Salary Data"/>
+                                                </h:commandLink></td>
+                                        </tr>
+
+                                        <!-- Leave Data-->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Leave Data" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr style="">
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Leave Summary"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr style=" background: #ffffff;">
+                                            <td  style="background: #f5b050;"><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="AbsenceHr.xhtml" style="color: #000;  margin-left: 15px;">
+                                                    <h:outputText value="Absence"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <!-- Medical Inssurance -->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="#" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Medical inssurance" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="htmlinssuranceHr.xhtml" style="color: #000; margin-left: 15px;" >
+                                                    <h:outputText value="Medical inssurance follow"/>
+                                                </a></td>
+                                        </tr>
+
+                                        <!-- Misconduct & Warning Register -->
+
+                                        <tr style="background: #ffffff;">
+                                            <td style="background: #f1f1f1;"></td>
+                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
+                                                    <h:outputText value="Misconduct and Warning" style="margin-left: 10px;"/>
+                                                </a></td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div style="width: 970px; background: #f5b050; height: 30px; color : #f5b050;"> 
+                                <div style="margin-top: 1px; margin-right: 1px; width: 968px; background: #ffffff; height: 28px; color : #f5b050; float: right;" >
+                                     <a href="AbsenceHr.xhtml" style="float : right; margin-right: 12px; margin-left: 8px; margin-top: 2px;"><img src="images/1336143521_back.png"/></a>
+                                    <h:outputText value="Back : " style="color : #f5b050; margin-top: 8px; float : right;"></h:outputText>
+                                </div> </div>
+
+
+                            <rich:panel style=" height: 762px; width: 966px;" header="Absence History">
+                                <rich:dataTable  id="tab_contract" value="#{AbsenceDetailsCtl.abscence}" var="contract" styleClass="stable" style="width:100%;" rows="15" rowClasses="odd-row, even-row">
+                                    <f:facet name="header">
+                                        <rich:columnGroup>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Absence Id"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Username"/>
+                                            </rich:column>
+                                            <rich:column rowspan="1" sortBy="#{contract.nbDays}" sortOrder="#{trierCtl.sortOrder}"  >
+                                                <h:outputText value="Nb Days"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Start Date"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="end Date"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Type"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Payed"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Justified"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Actions"/>
+                                            </rich:column>
+                                        </rich:columnGroup>
+                                    </f:facet>
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.id}"/>
+                                    </rich:column>
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.ressourceId}"/>
+                                    </rich:column>
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.nbDays}"/>
+                                    </rich:column>
+
+                                    <rich:column>
+                                        <h:outputText value="#{contract.startDay}"/>
+                                    </rich:column>
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.endDay}"/>
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.type}" />
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.payed}" />
+                                    </rich:column>
+                                    
+                                    <rich:column  >
+                                        <h:outputText value="#{contract.justified}" />
+                                    </rich:column>
+
+
+                                    <rich:column style="text-align: center; width:40px">
+                                        <div id="canc" style="margin-right: 4px; float: left;">
+                                            <h:commandLink styleClass="btn"  action="editAbs" style="color: blue;">
+                                                <f:setPropertyActionListener  value="#{contract.id}" target="#{AbsenceEditCtl.idToEdit}"/>
+                                                <img src="images/edit-icon.png" style="float : right; margin-right: 10px;"/>
+                                            </h:commandLink>
+                                        </div>
+                                        <div id="cancss" style="margin-right: 4px; float: left;">
+                                            <a4j:commandLink  onclick="#{rich:component('delete')}.show()" style="float : right; margin-left: 10px;">
+                                                <f:setPropertyActionListener  value="#{contract.id}" target="#{AbsenceEditCtl.idToDelete}"/>
+                                                <img src="images/delete-icon.gif"/>
+                                            </a4j:commandLink>
+                                        </div>
+                                    </rich:column> 
+                                    <f:facet name="footer">
+                                        <rich:dataScroller/>
+                                    </f:facet>
+                                </rich:dataTable>
+                            </rich:panel>
+
+                        </td>
+                        <td>
+                            <div style="width: 190px; min-height: 800px; border: solid 1px #f1f1f1; background: #f1f1f1;">
+                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
+                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <rich:jQuery selector=".stable tr" event="mouseover"
+                             query="jQuery(this).addClass('active-row')"/>
+                <rich:jQuery selector=".stable tr" event="mouseout"
+                             query="jQuery(this).removeClass('active-row')"/>
+            </table>
+             <rich:popupPanel id="delete" autosized="true">
+                <f:facet name="header">
+                    Delete Absence
+                </f:facet>
+                Are you sure you want to delete this absence?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('delete')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_contract" action="#{AbsenceEditCtl.deleteAbs()}"  onclick="#{rich:component('delete')}.hide()" oncomplete="#{AbsenceDetailsCtl.update()}" value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+        </h:form>
+
+    </h:body>
+</html>

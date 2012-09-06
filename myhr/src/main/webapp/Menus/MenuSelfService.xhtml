@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <rich:toolbar height="25" itemSeparator="grid" id="tool-bar" style="font: bold 11px Helvetica, Arial, sans-serif;">
+
+        <rich:toolbarGroup itemClass="panelGroup selected  ">
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/-->
+            <h:outputText  value=""  style="color:#f08520;"/> 
+            <div style="width: 120px;"></div>
+
+        </rich:toolbarGroup>
+
+        <rich:toolbarGroup>
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form> 
+                <a href="acceuil.xhtml">
+                    <h:outputText  value="My Data" style="color : #666666;"/> 
+                </a>
+            </h:form>
+        </rich:toolbarGroup>
+
+        <rich:toolbarGroup>
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form> 
+                <a href="leaves.xhtml">
+                    <h:outputText  value="My Leaves" style="color : #666666;"></h:outputText> 
+                </a>
+            </h:form>
+        </rich:toolbarGroup>
+
+        <rich:toolbarGroup>
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form> 
+                <a href="inssurance.xhtml">
+                    <h:outputText  value="Medical Insurance" style="color : #666666;" ></h:outputText> 
+                </a>
+            </h:form>
+        </rich:toolbarGroup>
+
+        <rich:toolbarGroup>
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form>
+                <a href="selfService.xhtml"   style="color:#f08520;">
+                    <h:outputText  value="Self Service"></h:outputText> 
+                </a>
+            </h:form>
+        </rich:toolbarGroup>
+
+        <rich:toolbarGroup rendered="#{authByRoleCtl.RH}">
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form>  
+                <a href="myTeamData.xhtml">
+                    <h:outputText  value="My team Data" style="color : #666666;"></h:outputText> 
+                </a> 
+            </h:form>
+        </rich:toolbarGroup>
+        
+         <rich:toolbarGroup rendered="#{authByRoleCtl.PM}">
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form>  
+                <a href="myTeam.xhtml">
+                    <h:outputText  value="My team" style="color : #666666;"></h:outputText> 
+                </a> 
+            </h:form>
+        </rich:toolbarGroup>
+         <rich:toolbarGroup>
+            <!--h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/--> 
+            <h:form>  
+                <a href="directory.xhtml">
+                    <h:outputText  value="Directory" style="color : #666666;"></h:outputText> 
+                </a> 
+            </h:form>
+        </rich:toolbarGroup>
+
+    </rich:toolbar>
+
+</html>

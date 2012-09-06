@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>MyHR</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #ffffff;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body style="background: #f1f1f1; "> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <!--div id="Menu">
+            <ui:include src="Menus/Menu.xhtml"/>
+        </div-->
+
+        <h:form id="forms">
+            <table style=" max-width: 1700px; margin: auto;">
+                <tbody>
+                    <tr><td>
+                            <div id="left" style="width: 200px; min-height: 1210px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="My Team Data" rendered="#{authByRoleCtl.RH}"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="HR Management" name="HR Management" leftIcon="images/group.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team" rendered="#{authByRoleCtl.PM}" expanded="true"> 
+                                            <a href="myTeam.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/group_go.png" /> </a>  
+                                            <a href="temData.xhtml"><rich:panelMenuItem label="Team Data" name="Team Data" leftIcon="images/group_gear.png" style="background: #fee6cd;"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Calendar" name="Team Calendar" leftIcon="images/calendar_view_day.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Data" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png"  /> </a>
+                                            <a href="OrganizationalData.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
+                                            <a href="familyData.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="contratData.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="salary.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                            <a href="EducationData.xhtml"><rich:panelMenuItem label="Education Data" name="My Education" leftIcon="images/medal_gold_1.png"/> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="My Leaves" expanded="true" > 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="My Leaves" name="My Leaves" leftIcon="images/status_away.png"/> </a>
+                                            <a href="absenceList.xhtml"><rich:panelMenuItem label="My Absences" name="My Absences" leftIcon="images/status_busy.png"/> </a> 
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="My Team Calendar" name="My Team Calendar" leftIcon="images/calendar.png"/> </a>
+
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Self Service" expanded="true"> 
+                                            <a href="selfService.xhtml"><rich:panelMenuItem label="Employment Certificate" name="Certificate of Employment" leftIcon="images/timeline_marker.png"/> </a>  
+                                            <a href="SalaryCertificate.xhtml"><rich:panelMenuItem label="Salary Certificate" name="Salary Certificate" leftIcon="images/coins.png"/> </a> 
+                                            <a href="#"><rich:panelMenuItem label="Payslip" name="Payslip" leftIcon="images/page_key.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Directory" expanded="true"> 
+                                            <a href="directory.xhtml"><rich:panelMenuItem label="Employees data" name="Employees data" leftIcon="images/database_table.png"/> </a>
+                                        </rich:panelMenuGroup>
+
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
+
+                            </div>
+
+                        </td>
+
+                        <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="2" style="margin-top: 4px; margin-left: 4px;">
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="temSalary.xhtml"><img src="images/1341096810_arrow_circle_left.png"/></a>
+                                            <h:outputText value="Refresh data  "> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="temData.xhtml"><img src="images/1341936090_back.png"/></a>
+                                            <h:outputText value="Back  "> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </div>
+                                <rich:panel header="Summary Data" style="height: 100%; width: 100%;">
+
+                                    <table style="margin: auto; min-width: 800px; min-height:300px;" id="datatables">
+                                        <tbody>
+                                            <tr>
+
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Name "/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.name} "/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Surname"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.surname}"/></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;" ><h:outputText value="Contrat type "/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.contractType}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Contrat status "/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.contractStatus}"/></td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Job title"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.jobeTitle}"/></td>
+
+                                            </tr>
+                                            <tr>
+
+
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Salaire de Base"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.monthlyBaeSalary} DH" style="color : blue;"><f:convertNumber   pattern="####.00"  /></h:outputText></td>
+
+
+
+                                            </tr>
+
+
+                                            <tr>
+
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Total Allowance"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.totalAllowance} DH"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Seniority "/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.seniority}%"/></td>
+
+
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Salaire Imposable "/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.salaireImposable} DH"><f:convertNumber   pattern="####.00"  /></h:outputText></td>    
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="IR Net"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.getiR()} DH "><f:convertNumber   pattern="####.00"  /></h:outputText></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Total Deductions"/></td>
+                                                <td style="background: #fff; width: 225px;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.totalDeduction} DH "><f:convertNumber   pattern="####.00"  /></h:outputText></td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 150px; height: 30px;">  
+                                                    <h:outputText value="Salaire Net"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{SalaryDetailsCtl.salarySimpleMetier.monthlyNetSalary} DH" style="color : green;"><f:convertNumber   pattern="####.00"  /></h:outputText></td>    
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </rich:panel>
+
+                                <rich:tabPanel style="height: 100%; margin-top: 6px; color : f5b050;" id="tab"> 
+                                    <rich:tab header="Charges" style="width : 100%; height: 100%; color : #f5b050;"> 
+                                        <rich:panel style=" height: 762px; width: 100%;" header="Charges History">   
+                                            <rich:dataTable  id="tab_charge" value="#{SalaryDetailsCtl.histoSalaryMetierListcharge}" var="charge" styleClass="stable" style="width:100%;" rows="15" rowClasses="odd-row, even-row">
+                                                <f:facet name="header">
+                                                    <rich:columnGroup>
+                                                        <rich:column rowspan="1"  >
+                                                            <h:outputText value="Year"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="mois"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="name"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="amount"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="taxable/not taxable"/>
+                                                        </rich:column>
+
+
+                                                    </rich:columnGroup>
+                                                </f:facet>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{charge.ans}"/>
+                                                </rich:column>
+
+                                                <rich:column style="width: 220px;">
+                                                    <h:outputText value="#{charge.mois}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{charge.description}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{charge.totalCharge}"><f:convertNumber   pattern="####.00"  /></h:outputText>
+                                                </rich:column>
+                                                <rich:column  >
+                                                    <h:outputText value="taxable"/>
+                                                </rich:column>
+                                                <f:facet name="footer">
+                                                    <rich:dataScroller/>
+                                                </f:facet>
+
+                                            </rich:dataTable>
+                                        </rich:panel>
+                                    </rich:tab> 
+
+
+
+                                    <rich:tab header="Prime" style="width : 100%; height: 100%;">                   
+                                        <rich:panel style=" height: 762px; width: 100%;" header="Prime History">
+
+                                            <rich:dataTable  id="tab_Prime" value="#{SalaryDetailsCtl.histoSalaryMetierListPrime}" var="prime" styleClass="stable" style="width:100%;" rows="15" rowClasses="odd-row, even-row">
+                                                <f:facet name="header">
+                                                    <rich:columnGroup>
+                                                        <rich:column rowspan="1"  >
+                                                            <h:outputText value="Year"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="mois"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="name"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="amount"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="taxable/not taxable"/>
+                                                        </rich:column>
+                                                        
+
+                                                    </rich:columnGroup>
+                                                </f:facet>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{prime.ans}"/>
+                                                </rich:column>
+
+                                                <rich:column style="width: 220px;">
+                                                    <h:outputText value="#{prime.mois}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{prime.typeIndemPrem}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{prime.totalAmount}"/>
+                                                </rich:column>
+                                                <rich:column  >
+                                                    <h:outputText value="not taxable"/>
+                                                </rich:column>
+
+                                                 
+
+                                                <f:facet name="footer">
+                                                    <rich:dataScroller/>
+                                                </f:facet>
+
+                                            </rich:dataTable>
+                                        </rich:panel>
+                                    </rich:tab> 
+
+                                    <rich:tab header="Indemnite" style="width : 100%; height: 100%;"> 
+                                        <rich:panel style=" height: 762px; width: 100%;" header="Indemnite History">
+                                            <rich:dataTable  id="tab_Indem" value="#{SalaryDetailsCtl.histoSalaryMetierListIndem}" var="Indem" styleClass="stable" style="width:100%;" rows="15" rowClasses="odd-row, even-row">
+                                                <f:facet name="header">
+                                                    <rich:columnGroup>
+                                                        <rich:column rowspan="1"  >
+                                                            <h:outputText value="Year"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="mois"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="name"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="amount"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="taxable/not taxable"/>
+                                                        </rich:column>
+                                                        
+
+                                                    </rich:columnGroup>
+                                                </f:facet>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{Indem.ans}"/>
+                                                </rich:column>
+
+                                                <rich:column style="width: 220px;">
+                                                    <h:outputText value="#{Indem.mois}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{Indem.typeIndemPrem}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{Indem.totalAmount}"/>
+                                                </rich:column>
+                                                <rich:column  >
+                                                    <h:outputText value="not taxable"/>
+                                                </rich:column>
+
+
+                                                <f:facet name="footer">
+                                                    <rich:dataScroller/>
+                                                </f:facet>
+
+                                            </rich:dataTable>
+                                        </rich:panel>
+                                    </rich:tab> 
+
+                                    <rich:tab header="Salary" style="width : 100%; height: 100%;"> 
+
+                                        <rich:panel style=" height: 762px; width: 100%;" header="Salary History">
+
+                                            <rich:dataTable  id="tab_salair" value="#{SalaryDetailsCtl.esalaeyData}" var="salaire" styleClass="stable" style="width:100%;" rows="15" rowClasses="odd-row, even-row">
+                                                <f:facet name="header">
+                                                    <rich:columnGroup>
+                                                        <rich:column rowspan="1"  >
+                                                            <h:outputText value="Salary ID"/>
+                                                        </rich:column>
+                                                        <rich:column rowspan="1"  >
+                                                            <h:outputText value="Year"/>
+                                                        </rich:column>
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="mois"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="Base Salary"/>
+                                                        </rich:column>
+
+                                                        <rich:column  rowspan="1">
+                                                            <h:outputText value="description"/>
+                                                        </rich:column>
+
+                                                    </rich:columnGroup>
+                                                </f:facet>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{salaire.resurceId}"/>
+                                                </rich:column>
+
+                                                <rich:column style="width: 220px;">
+                                                    <h:outputText value="#{salaire.ans}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{salaire.mois}"/>
+                                                </rich:column>
+
+                                                <rich:column  >
+                                                    <h:outputText value="#{salaire.baseSalary}"/>
+                                                </rich:column>
+                                                <rich:column  >
+                                                    <h:outputText value="#{salaire.description}"/>
+                                                </rich:column>
+                                                <f:facet name="footer">
+                                                    <rich:dataScroller/>
+                                                </f:facet>
+
+                                            </rich:dataTable>
+                                        </rich:panel>
+                                    </rich:tab> 
+                                </rich:tabPanel>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+                <rich:jQuery selector=".stable tr" event="mouseover"
+                             query="jQuery(this).addClass('active-row')"/>
+                <rich:jQuery selector=".stable tr" event="mouseout"
+                             query="jQuery(this).removeClass('active-row')"/>
+            </table> 
+            <rich:popupPanel id="delete" autosized="true">
+                <f:facet name="header">
+                    Delete Charge
+                </f:facet>
+                Are you sure you want to delete this charge?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('delete')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_charge" action="#{ChargeEditCtl.delete()}"  onclick="#{rich:component('delete')}.hide()"  value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            <rich:popupPanel id="deletePrime" autosized="true">
+                <f:facet name="header">
+                    Delete Prime
+                </f:facet>
+                Are you sure you want to delete this Prime?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('deletePrime')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_Prime" action="#{SalaryDetailsEditCtl.deletePrime()}"  onclick="#{rich:component('deletePrime')}.hide()"  value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            <rich:popupPanel id="deleteIndem" autosized="true">
+                <f:facet name="header">
+                    Delete Indemnite
+                </f:facet>
+                Are you sure you want to delete this Indemnite?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('deleteIndem')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_Indem" action="#{SalaryDetailsEditCtl.deleteIndem()}"  onclick="#{rich:component('deleteIndem')}.hide()"  value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            <rich:popupPanel id="deleteSalary" autosized="true">
+                <f:facet name="header">
+                    Delete Salary
+                </f:facet>
+                Are you sure you want to delete this Salary?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('deleteSalary')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_Indem" action="#{SalaryDetailsEditCtl.deleteSalary()}"  onclick="#{rich:component('deleteSalary')}.hide()"  value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+        </h:form>
+
+    </h:body>
+</html>

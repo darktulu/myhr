@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/Menu.xhtml"/>
+        </div>
+
+        <h:form>
+            <table style="margin: auto; max-width: 200px;" id="tab">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 200px; min-height: 500px; background: #f1f1f1; border: activeborder 1px #000; "> 
+
+
+
+                                <table style="margin-left: 5px;">
+                                    <tbody>
+                                        <tr>
+                                            <td><div id="person"/></td>
+                                            <td><h:commandLink action="person" style="color: #000;" >
+                                                    <h:outputText value="My personal data"/>
+                                                </h:commandLink></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div id="family"/></td>
+                                            <td><h:commandLink action="family" style="color: #000;">
+                                                    <h:outputText value="My family data"/>
+                                                </h:commandLink></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div id="contrat"/></td>
+                                            <td><h:commandLink>
+                                                    <h:outputText value="My contrat data" style="color: #000;"/>
+                                                </h:commandLink></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div id="salary"/></td>
+                                            <td><h:commandLink>
+                                                    <h:outputText value="My salary data" style="color: #000;"/>
+                                                </h:commandLink></td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div style="width: 803px; background: #f5b050; height: 20px; color : #ffffff;"> 
+                                <h:commandButton style=" float:right; width:50px; height: 20px; background: #ffffff; " value="Add new Charge"
+                                                 action="new">
+                                </h:commandButton>
+                                <h:outputText value="Last modified :  19/05/2012" style="font: bold 11px Helvetica, Arial, sans-serif;"></h:outputText>
+                            </div>
+                            <rich:panel header="list des charges" id="core" style="height: 100%; width: 800px;">
+
+                                <rich:dataTable  id="tab_charges" value="#{ChargeListCtl.list}" var="charge" styleClass="stable" style="width:100%" rows="15" rowClasses="odd-row, even-row">
+                                    <f:facet name="header">
+                                        <rich:columnGroup>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Name Charge"/>
+                                            </rich:column>
+
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Type"/>
+                                            </rich:column>
+
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Tax"/>
+                                            </rich:column>
+                                            <rich:column  rowspan="1">
+                                                <h:outputText value="Plafond"/>
+                                            </rich:column><rich:column  rowspan="1">
+                                                <h:outputText value=""/>
+                                            </rich:column>
+                                        </rich:columnGroup>
+                                    </f:facet>
+
+                                    <rich:column  >
+                                        <h:outputText value="#{charge.nomCharge}"/>
+                                    </rich:column>
+
+                                    <rich:column style="width: 220px;">
+                                        <h:outputText value="#{charge.type}"/>
+                                    </rich:column>
+
+                                    <rich:column>
+                                        <h:outputText value="#{charge.tax}"/>
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <h:outputText value="#{charge.plafond}"/>
+                                    </rich:column>
+                                    <rich:column style="width: 70px;" >
+                                        <h:panelGrid columns="2">
+                                            <a4j:commandLink id="update" value="DELETE" onclick="#{rich:component('delete')}.show()">
+                                                <f:setPropertyActionListener target="#{ChargeCtl.chargeToEdit}" value="#{charge.nomCharge}"/>
+                                            </a4j:commandLink>
+                                        </h:panelGrid>
+                                    </rich:column>
+                                </rich:dataTable>
+
+                            </rich:panel>
+                            <div style="height:170px" />
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <rich:jQuery selector=".stable tr" event="mouseover"
+                         query="jQuery(this).addClass('active-row')"/>
+            <rich:jQuery selector=".stable tr" event="mouseout"
+                         query="jQuery(this).removeClass('active-row')"/>
+
+            <rich:popupPanel id="delete" autosized="true">
+                <f:facet name="header">
+                    Delete Charge
+                </f:facet>
+                Are you sure you want to delete this charge?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('delete')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="core" action="#{ChargeCtl.delete()}" oncomplete="#{rich:component('delete')}.hide()" value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+        </h:form>
+
+        <div id="footer">
+            <p>Copy right 3gcom </p>
+        </div>
+
+    </h:body>
+</html>

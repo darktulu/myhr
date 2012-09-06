@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template_index.xhtml">
+
+	<ui:define name="title">
+		MyHR
+    </ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/templates/headers/header_index.xhtml" />
+	</ui:define>
+
+	<ui:define name="body">
+		<div class="row">
+			<div class="span5">
+				<h:graphicImage value="/resources/images/welcome1.jpg"
+					styleClass="pull-left" />
+			</div>
+			<div class="span6">
+				<h:form styleClass="form-horizontal">
+					<div id="login-body">
+						<legend>Please enter your user name and password</legend>
+						<table border="0" width="99%" align="center" cellpadding="2"
+							cellspacing="2">
+							<tbody>
+								<tr>
+									<td colspan="2">&nbsp; <h:messages />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="control-group">
+
+                                                            <label class="control-label" for="inputEmail">Username</label>
+							<div class="controls">
+								<h:inputText id="j_username" value="#{loginBean.username}"
+									styleClass="inputBgLine modify_pw_input" />
+							</div>
+						</div>
+						<div class="control-group">
+
+							<label class="control-label" for="inputEmail">Password</label>
+							<div class="controls">
+								<h:inputSecret id="j_password" value="#{loginBean.password}"
+									styleClass="inputBgLine modify_pw_input" />
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<h:commandLink action="#{loginBean.doLogin}"
+									styleClass="btn btn-warning"
+									style="width : 60px; color : white;">
+                            Login
+                        </h:commandLink>
+
+
+							</div>
+						</div>
+					</div>
+				</h:form>
+
+			</div>
+
+
+		</div>
+
+	</ui:define>
+	<ui:define name="footer">
+		<ui:include src="/templates/footers/footer.xhtml" />
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+    </h:head>
+   <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="Menu">
+            <ui:include src="Menus/MenuLeavs.xhtml"/>
+        </div>
+
+        <h:form id="forms">
+            <table style="float: left; max-width: 200px;">
+                <tbody>
+                    <tr>
+                        <td><div id="left" style="width: 150px; min-height: 607px; background: #f1f1f1; border: activeborder 1px #000; font:  14px Helvetica, Arial, sans-serif; "> 
+
+                                <table style="margin-left: 5px;">
+                                    <tbody>
+                                        <tr  style="background: #ffffff;">
+                                            <td style="border: solid 1px #c9c9c9; background: #f5b050; "><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="leaves.xhtml">
+                                                    <h:outputText value="My Leaves" style="color: #000;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;"><a href="absenceList.xhtml">
+                                                    <h:outputText value="My Absences" style="color: #000;"/>
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div style="width: 10px;"/></td>
+                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;"><a href="teamcalendar.xhtml">
+                                                    <h:outputText value="My Team Calendar" style="color: #000;"/>
+                                                </a></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div style="width: 1000px; background: #f5b050; height: 30px; color : #ffffff;"> 
+                                   <div style="margin-top: 1px; margin-right: 1px; width: 998px; background: #ffffff; height: 28px; color : #f5b050; float: right;" > 
+                                <h:outputText value="Actions : " style="font: bold 11px Helvetica, Arial, sans-serif; width: 100%;"/>
+                                    <a4j:commandLink action="#{leveEditCtl.save()}" style="margin-left: 5px; float : right;"><img src="images/1336142816_cog_edit.png"/></a4j:commandLink>
+                                    <h:outputText value="Save request : " style="float : right; margin-left: 10px; margin-right: 2px; margin-top: 4px;"/>
+                                    <a href="leaves.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336143521_back.png"/></a>
+                                   <h:outputText value="Back : " style="float : right; margin-left: 10px; margin-right: 2px; margin-top: 4px;"/>
+                                </div></div>
+                            <rich:panel header="Edit leave request" style="height: 100%; width: 100%;">
+
+                                <table style="margin: auto; min-width: 800px; min-height:200px;" id="datatablesG">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 150px;"><h:outputText value="Start Date:"/></td>
+                                            <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{leveEditCtl.leaveStartDate}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                            <td style="width: 150px;"><h:outputText value="End Date :"/></td>
+                                            <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{leveEditCtl.leaveEndDate}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 150px;"><h:outputText value="Days"/></td>
+                                            <td style="background: #fff;"><h:inputText value="#{leveEditCtl.totalDays}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                            <td style="width: 250px;"> <h:outputText value="Year"/></td>
+                                            <td style="background: #fff; width: 220px; height: 99%px; "><h:inputText value="#{leveEditCtl.date}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                        </tr>
+                                        
+                                         <tr>
+                                            <td style="width: 250px;"> <h:outputText value="Motif"/></td>
+                                            <td style="background: #fff; width: 220px; height: 110px; "><h:inputTextarea value="#{leveEditCtl.satatusDescription}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+
+                            </rich:panel>
+                            <div style="height:360px" />
+                        </td>
+                        <td>
+                            <div style="width: 190px; min-height: 604px; border: solid 1px #f1f1f1; background: #f1f1f1;">
+                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
+                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </h:form>
+
+    </h:body>
+</html>

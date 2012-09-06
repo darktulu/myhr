@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>MyHR</title>
+        <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="../css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css"/>
+        <f:loadBundle basename="com.wadia.properties.labels" var="lbl"/>
+        <f:loadBundle basename="com.wadia.properties.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #ffffff;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #ffdca5;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <h:form id="forms">
+            <table style=" max-width: 1700px; margin: auto;">
+                <tbody>
+                    <tr><td>
+                            <div id="left" style="width: 200px; min-height: 700px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="Main Profile" rendered="#{authByRoleCtl.RH}" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Back" name="Back" leftIcon="images/arrow_left.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team Data" expanded="true"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png" /> </a>
+                                            <a href="EmpOraganizational.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png"  style="background: #fee6cd;" /> </a>
+                                            <a href="FamilyList.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="ContratHr.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="SalaryHr.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Leave Data" expanded="true" > 
+                                            <a href="LeaveSummaryList.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/status_away.png"  /> </a>
+                                            <a href="AbsenceHr.xhtml"><rich:panelMenuItem label="Absences" name="My Absences" leftIcon="images/status_busy.png"/> </a> 
+
+
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="inssuranceHr.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Misconduct and warning" expanded="true"> 
+                                            <a href="Warning.xhtml"><rich:panelMenuItem label="Warning" name="Warning" leftIcon="images/flag_red.png"/> </a> 
+                                        </rich:panelMenuGroup>
+
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
+
+                            </div>
+
+                        </td>
+
+                        <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="2" style="margin-top: 4px; margin-left: 4px;">
+                                        <h:panelGrid columns="2" >
+                                            <a4j:commandLink action="#{editOrganizational.save()}"  onclick="#{rich:component('wait')}.show()" oncomplete="#{rich:component('wait')}.hide()" style="margin-left: 5px;"><img src="images/1336142816_cog_edit.png"/></a4j:commandLink>
+                                            <h:outputText value="Save"  style="margin-left: 8px;"></h:outputText>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="2" >
+                                            <a href="EmpOraganizational.xhtml"><img src="images/1341936090_back.png"/></a>
+                                            <h:outputText value="Back"  style="margin-left: 8px;"></h:outputText>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </div>
+                                <rich:panel header="Organizational Data" style="height: 100%; width: 100%;">
+
+                                    <table style="margin: auto; min-width: 800px; min-height:500px;" id="datatablesG">
+                                        <tbody>
+
+                                            <tr>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Username" /></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:outputText value="#{editOrganizational.username}"/></td>
+                                                <td style="width: 150px; height: 30px;"><h:outputText value="Country" styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225;"><h:inputText value="#{editOrganizational.country}"  style="width: 100%; height: 99%; background: #f5b050;"/></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px;"><h:outputText value="Region"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:inputText value="#{editOrganizational.region}"  style="width: 100%; height: 99%; background: #f5b050;"/></td>
+                                                <td style="width: 150px;"><h:outputText value="LOB" styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:outputText value="#{editOrganizational.lob}"  style="width: 100%; height: 99%;"/></td>
+
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 150px;"> <h:outputText value="Ladder " styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:inputText value="#{editOrganizational.ladder}"  style="width: 100%; height: 99%; background: #f5b050;"/></td>
+                                                <td style="width: 150px;"> <h:outputText value="Grade " styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:inputText value="#{editOrganizational.grade}"  style="width: 100%; height: 99%; background: #f5b050;"/></td>                                        
+                                            </tr>
+
+                                            <tr>
+                                                <td style="width: 150px;"> <h:outputText value="Job Title " styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:inputText value="#{editOrganizational.job_Title}"  style="width: 100%; height: 99%; background: #f5b050;"/></td>
+                                                <td style="width: 150px;"> <h:outputText value="Status" styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><rich:select value="#{editOrganizational.status}">                
+                                                        <f:selectItem itemValue="Internal" itemLabel="Internal" />                
+                                                        <f:selectItem itemValue="External" itemLabel="External" />                   
+                                                    </rich:select></td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td style="width: 150px;"> <h:outputText value="Functional line manager " styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:outputText value="#{editOrganizational.flm}"  style="width: 100%; height: 99%;"/></td>
+                                                <td style="width: 150px;"> <h:outputText value="HR Line Manager " styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><h:outputText value="#{editOrganizational.hlineManager}"  style="width: 100%; height: 99%;"/></td>    
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px;"> <h:outputText value="Tercel " styleClass="required"/></td>
+                                                <td style="background: #fff; height: 30px; width: 225px;"><rich:select value="#{editOrganizational.terce}">                
+                                                        <f:selectItem itemValue="min" itemLabel="min" />                
+                                                        <f:selectItem itemValue="middle" itemLabel="middle" />  
+                                                        <f:selectItem itemValue="hight" itemLabel="hight" />
+                                                    </rich:select></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="height:360px" />
+                                </rich:panel>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </h:form>
+
+    </h:body>
+</html>
