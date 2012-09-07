@@ -26,10 +26,10 @@ import com.wadia.repos.SoldleaveRepos;
 
 /**
  * 
- * @author toshiba
+ * @author wadi3
  */
 
-@ManagedBean
+@ManagedBean (name="leaveCtl")
 @RequestScoped
 public class leaveCtl {
 
@@ -89,7 +89,9 @@ public class leaveCtl {
 	mailList.add(affectationMetier.findMyManager(user.getUsername()).getInfo());
 	mailList.add(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
 	mailList.add(user.getUser().getInfo());
-
+        System.out.println("manager "+affectationMetier.findMyManager(user.getUsername()).getInfo());
+        System.out.println("HR "+affectationMetier.findMyHrManager(user.getUsername()).getInfo());
+        System.out.println("Moi "+affectationMetier.findMe(user.getUsername()).getInfo());
 	// mailList.add("ouadia.g@gmail.com");
 	// mailList.add("o.GAMRANE@3gcom-int.com");
 
@@ -103,12 +105,12 @@ public class leaveCtl {
 	     * ()).getFullName(), user.getUser().getFullName(),yearC, start,
 	     * end, days, motif );
 	     */
-
+            System.out.println("Before");
 	    mailForm.RequestLeave(mailList, affectationMetier.findMyManager(user.getUsername()).getFullName(), user
 		    .getUser().getFullName(), year, start, end, days, motif);
-
+	    System.out.println("Done");
 	}
-	return "ok";
+	return "leaves?faces-redirect=true";
     }
 
     public void cancel() {

@@ -33,8 +33,10 @@ public class AbsenceDataHr {
     private String type;
     private String payed;
 
-    @ManagedProperty(value = "#{abscenceRepos")
+    @ManagedProperty(value = "#{abscenceRepos}")
     private AbscenceRepos abscenceRepos;
+    @ManagedProperty(value = "#{fabrique}")
+    fabrique fabrique;
 
 
     public boolean absenceKO(Abscence absence) {
@@ -68,9 +70,7 @@ public class AbsenceDataHr {
 
     public List<user> getusernames() {
 
-	fabrique fab = new fabrique();
-
-	return fab.getUsernameList();
+	return fabrique.getUsernameList();
 
     }
 
@@ -136,6 +136,14 @@ public class AbsenceDataHr {
 
     public void setAbscenceRepos(AbscenceRepos abscenceRepos) {
         this.abscenceRepos = abscenceRepos;
+    }
+
+    public fabrique getFabrique() {
+        return fabrique;
+    }
+
+    public void setFabrique(fabrique fabrique) {
+        this.fabrique = fabrique;
     }
 
 

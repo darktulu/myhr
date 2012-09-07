@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.wadia.metier.EEducationDataMetier;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 	"classpath:META-INF/spring/applicationContext-data.xml",
@@ -17,10 +19,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class UsersReposTest {
 
     @Inject
-    private EPrimeRepos repos;
+    private EEducationDataMetier eEducationDataMetier;
     @Test
     public void test() {
-	System.out.println(repos.findByAnsMax("m.bougri"));
+	System.out.println(eEducationDataMetier.findByUsername("m.bougri").size());
     }
 
 }

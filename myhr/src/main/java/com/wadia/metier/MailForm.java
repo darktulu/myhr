@@ -254,4 +254,12 @@ public class MailForm {
         sendMailTLS.sendMailHTML(toMail, "Vacation Request", mail);
 
     }
+
+    public SendMailTLS getSendMailTLS() {
+        return sendMailTLS;
+    }
+
+    public void setSendMailTLS(SendMailTLS sendMailTLS) {
+        this.sendMailTLS = sendMailTLS;
+    }
 }

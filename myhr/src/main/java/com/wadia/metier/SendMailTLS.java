@@ -15,7 +15,6 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMailTLS {
 
-    private Properties prop = System.getProperties();
 
     public void sendMail(String toMail, String title, String mail) {
 

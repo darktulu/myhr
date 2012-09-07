@@ -39,24 +39,12 @@ public class ContratDataHrCtl {
     @ManagedProperty(value = "#{eContractDataRepos}")
     private EContractDataRepos eContractDataRepos;
 
-    public EContractDataRepos geteContractDataRepos() {
-	return eContractDataRepos;
-    }
 
-    public void seteContractDataRepos(EContractDataRepos eContractDataRepos) {
-	this.eContractDataRepos = eContractDataRepos;
-    }
 
     @ManagedProperty(value = "#{eGeneralDataRepos}")
     private EGeneralDataRepos eGeneralDataRepos;
 
-    public EGeneralDataRepos geteGeneralDataRepos() {
-	return eGeneralDataRepos;
-    }
 
-    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
-	this.eGeneralDataRepos = eGeneralDataRepos;
-    }
 
     public String saveContrat() {
 	// eContractData = new EContractData(ContractID, username, ContractType,
@@ -248,5 +236,21 @@ public class ContratDataHrCtl {
      */
     public void setUsernames(List<String> usernames) {
 	this.usernames = usernames;
+    }
+    
+    public EContractDataRepos geteContractDataRepos() {
+	return eContractDataRepos;
+    }
+
+    public void seteContractDataRepos(EContractDataRepos eContractDataRepos) {
+	this.eContractDataRepos = eContractDataRepos;
+    }
+    
+    public EGeneralDataRepos geteGeneralDataRepos() {
+	return eGeneralDataRepos;
+    }
+
+    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
+	this.eGeneralDataRepos = eGeneralDataRepos;
     }
 }
