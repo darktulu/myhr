@@ -21,7 +21,7 @@ import com.wadia.repos.EGeneralDataRepos;
  *
  * @author toshiba
  */
-@Service
+@Service ("directoryMetier")
 @Transactional
 public class DirectoryMetier {
 
@@ -29,9 +29,6 @@ public class DirectoryMetier {
     private EGeneralDataRepos eGeneralDataRepos;
     @Inject
     private AffectationMetier affectationMetier;
-
-    public DirectoryMetier() {
-    }
 
     public List<Directory> findAll() {
 

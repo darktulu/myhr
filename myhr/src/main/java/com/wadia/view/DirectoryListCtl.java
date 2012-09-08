@@ -4,6 +4,7 @@
  */
 package com.wadia.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,28 +12,40 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+
+import org.springframework.util.StopWatch;
+
 
 import com.wadia.local.Directory;
 import com.wadia.metier.DirectoryMetier;
+import com.wadia.repos.ELDataRepos;
 
 /**
  *
  * @author toshiba
  */
 @ManagedBean(name="DirectoryListCtl")
-@RequestScoped
-public class DirectoryListCtl {
+@ViewScoped
+public class DirectoryListCtl implements Serializable {
 
     private List<Directory> listDirect = new ArrayList<Directory>();
-    @ManagedProperty(value="#{directoryMetier}")
-    private DirectoryMetier directoryMetier;
-    private Directory selectedEmploy;
+    private static Directory selectedEmploy;
     private String search;
+    
+    
+    private static DirectoryMetier directoryMetier() {
+        return SpringJSFUtil.getBean("directoryMetier");
+    }
+    
 
     @PostConstruct
     public void init(){
-
-        listDirect = directoryMetier.findAll();
+        StopWatch stopWatch= new StopWatch();
+        stopWatch.start();
+        listDirect = directoryMetier().findAll();
+        stopWatch.stop();
+        System.out.println("Exec in "+stopWatch.getTotalTimeMillis());
 
     }
 
@@ -52,7 +65,7 @@ public class DirectoryListCtl {
         this.search = search;
         if (search != null) {
 
-            listDirect = directoryMetier.findAll();
+            listDirect = directoryMetier().findAll();
             List<Directory> toreturn = new ArrayList<Directory>();
 
             for (Directory direct : listDirect) {
@@ -80,14 +93,6 @@ public class DirectoryListCtl {
 
     public void setSelectedEmploy(Directory selectedEmploy) {
         this.selectedEmploy = selectedEmploy;
-    }
-
-    public DirectoryMetier getDirectoryMetier() {
-        return directoryMetier;
-    }
-
-    public void setDirectoryMetier(DirectoryMetier directoryMetier) {
-        this.directoryMetier = directoryMetier;
     }
 
 }

@@ -4,11 +4,13 @@
  */
 package com.wadia.local;
 
+import java.io.Serializable;
+
 /**
  *
  * @author toshiba
  */
-public class Directory {
+public class Directory implements Serializable{
 
     private String ressourceId;
     private String idPhoto;
