@@ -72,7 +72,7 @@ public class InssuanceEditCtl {
 		totalAmount, status, statusDescription);
 	eid.setInssuranceId(inssuranceId);
 	eInsurranceDataRepos.save(eid);
-	return "ok";
+	return "inssurance?faces-redirect=true";
 
     }
 

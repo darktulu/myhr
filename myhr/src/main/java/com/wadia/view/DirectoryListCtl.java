@@ -29,14 +29,6 @@ public class DirectoryListCtl {
     private Directory selectedEmploy;
     private String search;
 
-    public DirectoryMetier getDirectoryMetier() {
-        return directoryMetier;
-    }
-
-    public void setDirectoryMetier(DirectoryMetier directoryMetier) {
-        this.directoryMetier = directoryMetier;
-    }
-
     @PostConstruct
     public void init(){
 
@@ -89,4 +81,13 @@ public class DirectoryListCtl {
     public void setSelectedEmploy(Directory selectedEmploy) {
         this.selectedEmploy = selectedEmploy;
     }
+
+    public DirectoryMetier getDirectoryMetier() {
+        return directoryMetier;
+    }
+
+    public void setDirectoryMetier(DirectoryMetier directoryMetier) {
+        this.directoryMetier = directoryMetier;
+    }
+
 }

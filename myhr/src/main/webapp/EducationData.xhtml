@@ -99,14 +99,11 @@ and open the template in the editor.
                                         <p style="font:  16px Helvetica, Arial, sans-serif; margin-left: 8px; margin-top: 12px; color: #ff9900;">Academic degrees</p>
                                     </div>
                                     <a4j:repeat value="#{EEducationCtl.academicDeg}" var="academic" rows="4" id="repeat">
-
-
-
                                         <table  style=" margin-top: 10px;  font:  bold 12px Helvetfontica, Arial, sans-serif; border-bottom: 1px dashed #666666;">
                                             <tbody>
                                                 <tr>
-                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value=" From : #{academic.dateFrom}"/></td>
-                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value="To : #{academic.dateTo}"/></td>
+                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value="#{academic.dateFrom}"/></td>
+                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value="#{academic.dateTo}"/></td>
                                                     <td style="width: 300px; height: 30px;"><h:outputText value="#{academic.courseStudy}"/></td>
                                                 </tr>
                                                 <tr>
@@ -159,8 +156,8 @@ and open the template in the editor.
                                         <table  style=" margin-top: 10px;  font:  bold 12px Helvetfontica, Arial, sans-serif; border-bottom: 1px dashed #666666;">
                                             <tbody>
                                                 <tr>
-                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value=" From : #{academic.dateFrom}"/></td>
-                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value="To : #{academic.dateTo}"/></td>
+                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value="#{academic.dateFrom}"/></td>
+                                                    <td style="width: 120px; height: 30px; color: green;"><h:outputText value="#{academic.dateTo}"/></td>
                                                     <td style="width: 300px; height: 30px;"><h:outputText value="#{academic.courseStudy}"/></td>
                                                 </tr>
                                                 <tr>

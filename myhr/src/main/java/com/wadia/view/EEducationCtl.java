@@ -22,9 +22,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class EEducationCtl {
 
-    private List<EEducationData> educationList = new ArrayList<EEducationData>();
-    private List<EEducationData> academicDeg = new ArrayList<EEducationData>();
-    private List<EEducationData> professinalTr = new ArrayList<EEducationData>();
+    private List<EEducationData> educationList, academicDeg, professinalTr = new ArrayList<EEducationData>();
 
     @ManagedProperty(value = "#{eEducationDataMetier}")
     private EEducationDataMetier eEducationDataMetier;
@@ -33,28 +31,14 @@ public class EEducationCtl {
 
     @PostConstruct
     public void init() {
-	educationList = eEducationDataMetier.findByUsername(user.getUsername());
-	if (educationList != null) {
-	    for (EEducationData educ : educationList) {
-		if (educ.getType().equals("Professional Training")) {
-		    professinalTr.add(educ);
-		} else {
-		    academicDeg.add(educ);
-		}
-	    }
-	}
+	professinalTr = eEducationDataMetier.findMyProfessionalTrain(user.getUsername());
+	academicDeg = eEducationDataMetier.findMyAcademincDeg(user.getUsername());
+	
     }
 
     public void update() {
-	educationList = eEducationDataMetier.findByUsername(user.getUsername());
-	for (EEducationData educ : educationList) {
-	    if (educ.getType().equals("Professional Training")) {
-		professinalTr.add(educ);
-	    } else {
-		academicDeg.add(educ);
-	    }
-	}
-
+	professinalTr = eEducationDataMetier.findMyProfessionalTrain(user.getUsername());
+	academicDeg = eEducationDataMetier.findMyAcademincDeg(user.getUsername());
     }
 
     /**
@@ -97,13 +81,11 @@ public class EEducationCtl {
     }
 
     public userController getUser() {
-        return user;
+	return user;
     }
 
     public void setUser(userController user) {
-        this.user = user;
+	this.user = user;
     }
-
-
 
 }

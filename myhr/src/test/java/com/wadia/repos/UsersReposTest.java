@@ -22,7 +22,7 @@ public class UsersReposTest {
     private EEducationDataMetier eEducationDataMetier;
     @Test
     public void test() {
-	System.out.println(eEducationDataMetier.findByUsername("m.bougri").size());
+	System.out.println(eEducationDataMetier.findByUsername("o.gamrane").size());
     }
 
 }

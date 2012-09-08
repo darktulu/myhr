@@ -33,22 +33,7 @@ public class InssuranceMetier {
     private SpouseListMetier spouseListMetier;
 
     public List<EInsurranceData> findByUsername(String username) {
-
-	List<EInsurranceData> list = new ArrayList<EInsurranceData>();
-	List<EInsurranceData> listToReturn = new ArrayList<EInsurranceData>();
-
-	list = eInsurranceDataRepos.findAll();
-
-	for (EInsurranceData eInsurranceData : list) {
-
-	    if (eInsurranceData.getResurceId().equals(username)) {
-		listToReturn.add(eInsurranceData);
-	    }
-
-	}
-
-	return listToReturn;
-
+	return eInsurranceDataRepos.findByResurceId(username);
     }
 
     public int personnePrisEnCharge(String username) {
@@ -81,7 +66,7 @@ public class InssuranceMetier {
     public List<String> ListPrisEnC(String username) {
 
 	List<String> list = new ArrayList<String>();
-	
+
 	List<Child> listchild = new ArrayList<Child>();
 	List<ESpouse> listspouse = new ArrayList<ESpouse>();
 	listchild = childMetier.countChilds(username);

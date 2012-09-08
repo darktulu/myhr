@@ -31,7 +31,7 @@ public class EEducationEditCtl {
     private static Date dateTo;
     private boolean certification;
     private Integer idToDelete;
-    private EEducationData eEducationData = new EEducationData();
+    private static EEducationData eEducationData = new EEducationData();
 
     @ManagedProperty(value = "#{eEducationDataRepos}")
     private EEducationDataRepos eEducationDataRepos;

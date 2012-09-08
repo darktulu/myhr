@@ -100,35 +100,35 @@ and open the template in the editor.
                                     <tbody>
                                         <tr>
                                             <td style="width: 150px; height: 30px;"><h:outputText value="Date from" styleClass="required"/></td>
-                                            <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{EEducationNewCtl.dateFrom}" style="width: 99%; height: 30px; background: #ffffff;"/></td>
+                                            <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{EEducationNewCtl.eEducationData.dateFrom}" style="width: 99%; height: 30px; background: #ffffff;"/></td>
                                             <td style="width: 150px; height: 30px;"><h:outputText value="Date To :" styleClass="required"/></td>
-                                            <td style="background: #fff; height : 30px;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{EEducationNewCtl.dateTo}" style="width: 99%; height: 30px; background: #ffffff;"/></td>
+                                            <td style="background: #fff; height : 30px;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{EEducationNewCtl.eEducationData.dateTo}" style="width: 99%; height: 30px; background: #ffffff;"/></td>
                                         </tr>
                                         <tr>
                                             <td style="width: 150px; height : 30px;"><h:outputText value="Type" styleClass="required"/></td>
-                                            <td style="background: #fff; width: 220px; height: 30px; "><rich:select value="#{EEducationNewCtl.type}">                
+                                            <td style="background: #fff; width: 220px; height: 30px; "><rich:select value="#{EEducationNewCtl.eEducationData.type}">                
                                                     <f:selectItem itemValue="Professional Training" itemLabel="Professional Training" />                
-                                                    <f:selectItem itemValue="academic degree" itemLabel="academic degree" />
+                                                    <f:selectItem itemValue="Academic Degree" itemLabel="Academic Degree" />
                                                 </rich:select></td>
 
 
                                             <td style="width: 150px; height: 30px;"> <h:outputText value="Name of institut" styleClass="required"/></td>
-                                            <td style="background: #fff; height : 30px;"><h:inputText value="#{EEducationNewCtl.nameInstitut}" style="width: 100%; height: 30px; background: #fedd97;"/></td>
+                                            <td style="background: #fff; height : 30px;"><h:inputText value="#{EEducationNewCtl.eEducationData.nameInstitut}" style="width: 100%; height: 30px; background: #fedd97;"/></td>
 
                                         </tr>
 
                                         <tr>
                                             <td style="width: 250px;"> <h:outputText value="Address of institut"/></td>
-                                            <td style="background: #fff; width: 220px; height: 110px; "><h:inputTextarea value="#{EEducationNewCtl.addressInstitut}" style="width: 100%; height: 99%; background: #fedd97;"/></td>
+                                            <td style="background: #fff; width: 220px; height: 110px; "><h:inputTextarea value="#{EEducationNewCtl.eEducationData.addressInstitut}" style="width: 100%; height: 99%; background: #fedd97;"/></td>
                                             <td style="width: 250px;"> <h:outputText value="Certification" styleClass="required"/></td>
-                                            <td style="background: #fff; width: 220px; height: 30px; "><rich:select value="#{EEducationNewCtl.certification}">                
+                                            <td style="background: #fff; width: 220px; height: 30px; "><rich:select value="#{EEducationNewCtl.eEducationData.certification}">                
                                                     <f:selectItem itemValue="true" itemLabel="YES" />                
                                                     <f:selectItem itemValue="false" itemLabel="NO" />
                                                 </rich:select></td>
                                         </tr>
                                         <tr>
                                             <td style="width: 250px; height: 30px;"> <h:outputText value="Cours of study" styleClass="required"/></td>
-                                            <td style="background: #fff; height: 30px;"><h:inputText value="#{EEducationNewCtl.courseStudy}" style="width: 100%; height: 30px; background: #fedd97;"/></td>
+                                            <td style="background: #fff; height: 30px;"><h:inputText value="#{EEducationNewCtl.eEducationData.courseStudy}" style="width: 100%; height: 30px; background: #fedd97;"/></td>
                                         </tr>
 
                                     </tbody>

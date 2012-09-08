@@ -19,23 +19,23 @@ import com.wadia.repos.EEducationDataRepos;
  * 
  * @author wadi3
  */
-@Service
+@Service("eEducationDataMetier")
 @Transactional
 public class EEducationDataMetier {
 
     @Inject
     private EEducationDataRepos eEducationDataRepos;
 
-    public List<EEducationData> findByUsername(String username) {
-	List<EEducationData> educationdatas  = new ArrayList<EEducationData>();
-	List<EEducationData> educToReturn = new ArrayList<EEducationData>();
-	educationdatas = eEducationDataRepos.findAll();
-	for (EEducationData educ : educationdatas) {
-	    if (educ.getResurceId().equals(username)) {
-		educToReturn.add(educ);
-	    }
-	}
-	return educToReturn;
+    public List<EEducationData> findByUsername(String username) {	
+	return eEducationDataRepos.findByResurceId(username);
     }
+    
+    public List<EEducationData> findMyProfessionalTrain(String username) {	
+	return eEducationDataRepos.findByResurceIdAndType(username,"Professional Training");
+    }
+    
+    public List<EEducationData> findMyAcademincDeg(String username) {	
+   	return eEducationDataRepos.findByResurceIdAndType(username,"Academic Degree");
+       }
 
 }

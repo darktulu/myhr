@@ -32,7 +32,6 @@ public class userController implements Serializable{
     
     @ManagedProperty(value="#{usersRepos}")
     private UsersRepos usersRepos;
-    
     private String fullname;
 
     
