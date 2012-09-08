@@ -46,7 +46,7 @@ public class DirectoryListCtl implements Serializable {
 
     }
 
-    @Cacheable("listDirect")
+    
     public List<Directory> getListDirect() {
         listDirect = directoryMetier().findAll();
         return listDirect;
