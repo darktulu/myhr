@@ -14,10 +14,12 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wadia.beans.EContractData;
 import com.wadia.beans.EIndemnite;
 import com.wadia.beans.EPrime;
 import com.wadia.beans.ESalaryData;
 import com.wadia.beans.Echarge;
+import com.wadia.repos.EContractDataRepos;
 import com.wadia.repos.EIndemniteRepos;
 import com.wadia.repos.EPrimeRepos;
 import com.wadia.repos.ESalaryDataRepos;
@@ -52,6 +54,8 @@ public class SalaryMetier {
     @Inject
     private ChildMetier childMetier;
     @Inject
+    private EContractDataRepos eContractDataRepos;
+    @Inject
     private SpouseListMetier spouseListMetier;
 
     public int personnesPrisEnCharge(String username) {
@@ -68,41 +72,42 @@ public class SalaryMetier {
 
     }
 
+    public int countPersonnesPrisEnCharge(String username) {
+	
+	int nbPersonnes = childMetier.countPersonnePrisEnCharge(username);
+	return (nbPersonnes <= 5) ? nbPersonnes : 5;
+    }
+
     public float anciente(String username) {
 
 	Date start;
 	int years;
 	float anciente = 0;
 	Calendar rightNow = Calendar.getInstance();
-	start = contratMetier.lastContract(username);
+	EContractData contrat = eContractDataRepos.findLastOngoingCDI(username);
+	if (contrat == null)
+	    return 0;
+	start = contrat.getContractStartDate();
 	if (start != null) {
 	    years = (int) (dateDifferencePerDay(start, rightNow) / 365);
 
 	    if (years < 2) {
 		anciente = 0;
-	    }
-	    if (years >= 2 && years < 5) {
+	    } else if (years >= 2 && years < 5) {
 		anciente = 5;
-	    }
-	    if (years >= 5 && years < 12) {
+	    } else if (years >= 5 && years < 12) {
 		anciente = 10;
-	    }
-	    if (years >= 12 && years < 20) {
+	    } else if (years >= 12 && years < 20) {
 		anciente = 15;
-	    }
-	    if (years >= 20 && years < 25) {
+	    } else if (years >= 20 && years < 25) {
 		anciente = 20;
-	    }
-	    if (years >= 25) {
+	    } else if (years >= 25) {
 		anciente = 25;
 	    }
 	} else {
 	    anciente = 0;
-
 	}
-
 	return anciente;
-
     }
 
     public long dateDifferencePerDay(Date start, Calendar end) {
@@ -136,7 +141,7 @@ public class SalaryMetier {
 	    if (eSalaryDataRepos.findByMoisMax(username) != null) {
 		mois = eSalaryDataRepos.findByMoisMax(username).intValue();
 	    }
-	    if (eSalaryDataRepos.findByAnsMax(username)!=null) {
+	    if (eSalaryDataRepos.findByAnsMax(username) != null) {
 		ans = eSalaryDataRepos.findByAnsMax(username).intValue();
 	    }
 
@@ -155,9 +160,9 @@ public class SalaryMetier {
 
 	List<EIndemnite> listIndem = new ArrayList<EIndemnite>();
 	List<EPrime> listPrime = new ArrayList<EPrime>();
-	listIndem = eindemMetier.getByDate(username);
+	listIndem = eIndemniteRepos.findLastEIndemnite(username);
 	totalIndem = eindemMetier.getTotalIndem(listIndem);
-	listPrime = ePrimeMetier.getByDate(username);
+	listPrime = ePrimeRepos.findLastEPrime(username);
 	totalPrim = ePrimeMetier.getTotalPrim(listPrime);
 	totalAllowance = totalPrim + totalIndem;
 	return totalAllowance;

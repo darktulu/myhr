@@ -75,7 +75,7 @@ public class EPrimeMetier {
 	float totalPrim = 0;
 	if (listPrim != null) {
 	    for (EPrime prim : listPrim) {
-		totalPrim = totalPrim + prim.getMontant();
+		totalPrim += prim.getMontant();
 	    }
 	}
 	return totalPrim;

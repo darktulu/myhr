@@ -81,28 +81,18 @@ public class ContrathrfillMetier {
     public EContractData getLastContract(String username) {
 
 	List<EContractData> listContract = new ArrayList<EContractData>();
-	List<EContractData> listTranscientContracts = new ArrayList<EContractData>();
 	List<EContractData> listTranscientContract = new ArrayList<EContractData>();
 	EContractData contractReutrn = new EContractData();
 
-	listContract = eContractDataRepos.findAll();
-
+	listContract = eContractDataRepos.findByResurceId(username);
 	boolean var = true;
-
 	for (EContractData contract : listContract) {
-
-	    if (contract.getContractStatus().equals("Ongoing") && contract.getResurceId().equals(username)) {
-
+	    if (contract.getContractStatus().equals("Ongoing")) {
 		contractReutrn = contract;
 		var = false;
-
-	    } else if ((contract.getContractStatus().equals("EXPIRED") || contract.getContractStatus().equals("ENDED"))
-		    && contract.getResurceId().equals(username)) {
-
+	    } else if (contract.getContractStatus().equals("EXPIRED") || contract.getContractStatus().equals("ENDED")) {
 		listTranscientContract.add(contract);
-
 	    }
-
 	}
 
 	if (listTranscientContract.size() != 0 && var) {
@@ -121,15 +111,12 @@ public class ContrathrfillMetier {
 			if (contract.getContractEndDate().before(contract2.getContractEndDate())) {
 			    lock = false;
 			}
-
 		    }
-
 		}
 
 		if (lock) {
 		    contractReutrn = contract;
 		}
-
 	    }
 	}
 
@@ -197,8 +184,6 @@ public class ContrathrfillMetier {
 		    egd.setStatus("ENDED");
 		    eGeneralDataRepos.save(egd);
 
-		   
-		    
 		    EContractData eContractData = new EContractData();
 		    eContractData = eContractDataRepos.findOne(contrat.getContractId());
 		    eContractData.setContractStatus("wrong data");
@@ -213,7 +198,6 @@ public class ContrathrfillMetier {
 		    egd.setStatus("ACTIVE");
 		    eGeneralDataRepos.save(egd);
 
-		   		    
 		    EContractData eContractData = new EContractData();
 		    eContractData = eContractDataRepos.findOne(contrat.getContractId());
 		    eContractData.setContractStatus("Ongoing");

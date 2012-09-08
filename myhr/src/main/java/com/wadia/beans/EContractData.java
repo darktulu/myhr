@@ -1,4 +1,5 @@
 package com.wadia.beans;
+
 // Generated 30 ao�t 2012 18:58:08 by Hibernate Tools 3.2.1.GA
 
 import java.util.Date;
@@ -31,93 +32,107 @@ public class EContractData implements java.io.Serializable {
     }
 
     public EContractData(String resurceId) {
-        this.resurceId = resurceId;
+	this.resurceId = resurceId;
     }
 
-    public EContractData(String resurceId, String contractType, Date hireDate, Date contractStartDate, Date contractEndDate, String contractStatus, String description) {
-        this.resurceId = resurceId;
-        this.contractType = contractType;
-        this.hireDate = hireDate;
-        this.contractStartDate = contractStartDate;
-        this.contractEndDate = contractEndDate;
-        this.contractStatus = contractStatus;
-        this.description = description;
+    public EContractData(String resurceId, String contractType, Date hireDate, Date contractStartDate,
+	    Date contractEndDate, String contractStatus, String description) {
+	this.resurceId = resurceId;
+	this.contractType = contractType;
+	this.hireDate = hireDate;
+	this.contractStartDate = contractStartDate;
+	this.contractEndDate = contractEndDate;
+	this.contractStatus = contractStatus;
+	this.description = description;
     }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "CONTRAT_Id", unique = true, nullable = false)
     public Integer getContratId() {
-        return this.contratId;
+	return this.contratId;
     }
 
     public void setContratId(Integer contratId) {
-        this.contratId = contratId;
+	this.contratId = contratId;
     }
 
     @Column(name = "RESURCE_ID", nullable = false, length = 500)
     public String getResurceId() {
-        return this.resurceId;
+	return this.resurceId;
     }
 
     public void setResurceId(String resurceId) {
-        this.resurceId = resurceId;
+	this.resurceId = resurceId;
     }
 
     @Column(name = "CONTRACT_TYPE", length = 100)
     public String getContractType() {
-        return this.contractType;
+	return this.contractType;
     }
 
     public void setContractType(String contractType) {
-        this.contractType = contractType;
+	this.contractType = contractType;
     }
 
     @Temporal(TemporalType.DATE)
     @Column(name = "HIRE_DATE", length = 10)
     public Date getHireDate() {
-        return this.hireDate;
+	return this.hireDate;
     }
 
     public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
+	this.hireDate = hireDate;
     }
 
     @Temporal(TemporalType.DATE)
     @Column(name = "CONTRACT_START_DATE", length = 10)
     public Date getContractStartDate() {
-        return this.contractStartDate;
+	return this.contractStartDate;
     }
 
     public void setContractStartDate(Date contractStartDate) {
-        this.contractStartDate = contractStartDate;
+	this.contractStartDate = contractStartDate;
     }
 
     @Temporal(TemporalType.DATE)
     @Column(name = "CONTRACT_END_DATE", length = 10)
     public Date getContractEndDate() {
-        return this.contractEndDate;
+	return this.contractEndDate;
     }
 
     public void setContractEndDate(Date contractEndDate) {
-        this.contractEndDate = contractEndDate;
+	this.contractEndDate = contractEndDate;
     }
 
     @Column(name = "CONTRACT_STATUS", length = 100)
     public String getContractStatus() {
-        return this.contractStatus;
+	return this.contractStatus;
     }
 
     public void setContractStatus(String contractStatus) {
-        this.contractStatus = contractStatus;
+	this.contractStatus = contractStatus;
     }
 
     @Column(name = "DESCRIPTION", length = 500)
     public String getDescription() {
-        return this.description;
+	return this.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+	this.description = description;
     }
+
+    @Override
+    public String toString() {
+	return "EContractData [" + (contratId != null ? "contratId=" + contratId + ", " : "")
+		+ (resurceId != null ? "resurceId=" + resurceId + ", " : "")
+		+ (contractType != null ? "contractType=" + contractType + ", " : "")
+		+ (hireDate != null ? "hireDate=" + hireDate + ", " : "")
+		+ (contractStartDate != null ? "contractStartDate=" + contractStartDate + ", " : "")
+		+ (contractEndDate != null ? "contractEndDate=" + contractEndDate + ", " : "")
+		+ (contractStatus != null ? "contractStatus=" + contractStatus + ", " : "")
+		+ (description != null ? "description=" + description : "") + "]";
+    }
+
 }

@@ -32,12 +32,11 @@ public class ContratMetier {
 	List<EContractData> listContrat = new ArrayList<EContractData>();
 	Date lastDate = null;
 	// HashSet<Date> listDates = new HashSet<Date>();
-	listContrat = eContractDataRepos.findAll();
+	listContrat = eContractDataRepos.findByResurceId(username);
 
 	for (EContractData contrat : listContrat) {
 
-	    if (contrat.getContractType().equals("CDI") && contrat.getContractStatus().equals("Ongoing")
-		    && contrat.getResurceId().equals(username)) {
+	    if (contrat.getContractType().equals("CDI") && contrat.getContractStatus().equals("Ongoing")) {
 		lastDate = contrat.getContractStartDate();
 	    }
 

@@ -98,40 +98,23 @@ public class ChargeMetier {
 
     }
 
-    public Double calculeCharge(String Username) {
+    public Double calculeCharge(String username) {
 	Double totalCharge = 0.0;
 	Double SalaireBase = 0.0;
-	Double retrnuCNSS = 0.0;
-	Double retenuNotCNSS = 0.0;
-	int mois;
-	int ans;
 
-	if (echargeRepos.findByMoisMax(Username) != null) {
-	    mois = echargeRepos.findByMoisMax(Username).intValue();
-	} else {
-	    mois = 0;
-	}
-	if (echargeRepos.findByAnsMax(Username) != null) {
-	    ans = echargeRepos.findByAnsMax(Username).intValue();
-	} else {
-	    ans = 0;
-	}
-
-	SalaireBase = salaryListMetier.calculeSalaireImposable(Username);
+	SalaireBase = salaryListMetier.calculeSalaireImposable(username);
+	
 	SalaryCharge charges = new SalaryCharge();
 	List<Echarge> listCharge = new ArrayList<Echarge>();
-	listCharge = getChargeByUsername(Username, mois, ans);
+	listCharge = echargeRepos.findLastEcharge(username);
 	for (Echarge charge : listCharge) {
-	    charges = findByName(charge.getNom());
+	    charges = chargeRepos.findByNomCharge(charge.getNom());
 	    if (SalaireBase <= 6000) {
-		totalCharge = totalCharge + (charges.getTax() * SalaireBase) / 100;
-		System.out.println("total charge :" + totalCharge);
+		totalCharge += (charges.getTax() * SalaireBase) / 100;
 	    }
-	    if (SalaireBase >= 6000) {
+	    if (SalaireBase > 6000) {//TODO BUG
 		totalCharge = 257.40 + (2 * SalaireBase) / 100;
-		System.out.println("total charge :" + totalCharge);
 	    }
-
 	}
 	return totalCharge;
     }

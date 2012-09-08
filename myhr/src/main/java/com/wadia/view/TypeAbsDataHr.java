@@ -4,21 +4,18 @@
  */
 package com.wadia.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import com.wadia.beans.TypeAbsence;
-import com.wadia.repos.TypeAbsenceRepos;
+import com.wadia.service.TypeAbsenceService;
 
 /**
  * 
  * @author toshiba
  */
-@ManagedBean (name="TypeAbsDataHr")
+@ManagedBean(name = "TypeAbsDataHr")
 @RequestScoped
 public class TypeAbsDataHr {
 
@@ -26,21 +23,11 @@ public class TypeAbsDataHr {
     private String payed;
     private Integer nombreDays;
     private String commantaire;
-    private static TypeAbsence data;
+    private TypeAbsence data;
     private int idToDelete;
 
     @ManagedProperty(value = "#{typeAbsenceRepos}")
-    private TypeAbsenceRepos typeAbsenceRepos;
-
-
-
-    public TypeAbsenceRepos getTypeAbsenceRepos() {
-        return typeAbsenceRepos;
-    }
-
-    public void setTypeAbsenceRepos(TypeAbsenceRepos typeAbsenceRepos) {
-        this.typeAbsenceRepos = typeAbsenceRepos;
-    }
+    private TypeAbsenceService typeAbsenceService;
 
     public String getName() {
 	return name;
@@ -80,9 +67,8 @@ public class TypeAbsDataHr {
 
     public void setIdToDelete(int idToDelete) {
 	this.idToDelete = idToDelete;
-
 	if (idToDelete != 0) {
-	    data = typeAbsenceRepos.findOne(idToDelete);
+	    data = typeAbsenceService.findOne(idToDelete);
 	}
     }
 
@@ -94,43 +80,19 @@ public class TypeAbsDataHr {
 	this.data = data;
     }
 
-    public boolean TyeBKO(TypeAbsence abs) {
-	boolean var = true;
-	List<TypeAbsence> listabsence = new ArrayList<TypeAbsence>();
-	listabsence = typeAbsenceRepos.findAll();
-
-	for (TypeAbsence abse : listabsence) {
-
-	    if (abs.getName().equals(abse.getName())) {
-		var = false;
-	    }
-
-	}
-
-	return var;
-
-    }
-
     public String saveTYpeAbs() {
-
 	TypeAbsence absence = new TypeAbsence(name, payed, nombreDays, commantaire);
-	System.out.println("hereeee");
-	if (TyeBKO(absence)) {
-	    typeAbsenceRepos.save(absence);
+	if (!typeAbsenceService.existTypeAbsence(absence)) {
+	    typeAbsenceService.addTypeAbsence(absence);
 	}
-
 	return "ok";
-
     }
 
     public String deleteType() {
-
 	if (data != null) {
-
-	    typeAbsenceRepos.delete(data);
+	    typeAbsenceService.deleteTypeAbsence(data);
 	}
 	return "ok";
-
     }
 
 }

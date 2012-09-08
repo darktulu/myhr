@@ -8,4 +8,6 @@ public interface ChargeRepos extends JpaRepository<SalaryCharge, Integer> {
 
     public SalaryCharge findByIdCharge(Integer id);
     
+    public SalaryCharge findByNomCharge(String nomCharge);
+    
 }

@@ -31,6 +31,21 @@ public class ChildMetier {
     @Inject
     private ESpouseRepos espouseRepos;
 
+    public int countPersonnePrisEnCharge(String username) {
+	int result = 0;
+	List<Child> listChild;
+
+	List<ESpouse> listSpouse = espouseRepos.findByResurceId(username);
+	if (listSpouse == null)
+	    return 0;
+	for (ESpouse spouse : listSpouse) {
+	    listChild = childRepos.findBySpouseId(spouse.getSpouseId());
+	    if (listChild != null)
+		result += listChild.size();
+	}
+	return listSpouse.size() + result;
+    }
+
     public List<Child> countChilds(String username) {
 
 	List<Child> ListToReturn = new ArrayList<Child>();

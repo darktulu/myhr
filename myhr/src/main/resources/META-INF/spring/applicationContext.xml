@@ -29,10 +29,25 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-<!-- 				<value>com.bull.grh.i18n.message.ErrorMessages</value> -->
-<!-- 				<value>com.bull.grh.i18n.message.ValidationMessages</value> -->
-<!-- 				<value>com.bull.grh.i18n.message.InfoMessages</value> -->
+				<!-- <value>com.bull.grh.i18n.message.ErrorMessages</value> -->
+				<!-- <value>com.bull.grh.i18n.message.ValidationMessages</value> -->
+				<!-- <value>com.bull.grh.i18n.message.InfoMessages</value> -->
 			</list>
+		</property>
+	</bean>
+
+	<cache:annotation-driven />
+
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean "
+					p:name="default" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean "
+					p:name="salaryHR" />
+			</set>
 		</property>
 	</bean>
 
