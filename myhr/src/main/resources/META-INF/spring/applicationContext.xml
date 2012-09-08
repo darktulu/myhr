@@ -46,7 +46,9 @@
 					p:name="default" />
 				<bean
 					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean "
-					p:name="salaryHR" />
+					p:name="salaryHR" /><bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean "
+					p:name="listDirect" />
 			</set>
 		</property>
 	</bean>

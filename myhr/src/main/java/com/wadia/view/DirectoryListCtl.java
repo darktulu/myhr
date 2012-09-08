@@ -10,16 +10,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StopWatch;
-
 
 import com.wadia.local.Directory;
 import com.wadia.metier.DirectoryMetier;
-import com.wadia.repos.ELDataRepos;
 
 /**
  *
@@ -30,11 +27,11 @@ import com.wadia.repos.ELDataRepos;
 public class DirectoryListCtl implements Serializable {
 
     private List<Directory> listDirect = new ArrayList<Directory>();
-    private static Directory selectedEmploy;
+    private Directory selectedEmploy = new Directory();
     private String search;
     
     
-    private static DirectoryMetier directoryMetier() {
+    private DirectoryMetier directoryMetier() {
         return SpringJSFUtil.getBean("directoryMetier");
     }
     
@@ -43,13 +40,15 @@ public class DirectoryListCtl implements Serializable {
     public void init(){
         StopWatch stopWatch= new StopWatch();
         stopWatch.start();
-        listDirect = directoryMetier().findAll();
+ 
         stopWatch.stop();
         System.out.println("Exec in "+stopWatch.getTotalTimeMillis());
 
     }
 
+    @Cacheable("listDirect")
     public List<Directory> getListDirect() {
+        listDirect = directoryMetier().findAll();
         return listDirect;
     }
 
