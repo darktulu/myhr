@@ -12,8 +12,7 @@ import com.wadia.beans.ELData;
 
 @Repository
 public interface ELDataRepos extends JpaRepository<ELData, Integer>{
-
-    
+	
     @Query("From ELData d where d.resurceId=:username")
     public List<ELData> findByUsername(@Param("username")String username);
 

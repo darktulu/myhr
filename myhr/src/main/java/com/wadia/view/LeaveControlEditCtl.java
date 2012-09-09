@@ -29,11 +29,11 @@ public class LeaveControlEditCtl implements Serializable {
     private int leveToApprove;
     private ELData data = new ELData("no one");
     
-    private static ELDataRepos eLDataRepos() {
-        return SpringJSFUtil.getBean("elDataRepos");
+    private ELDataRepos eLDataRepos() {
+        return SpringJSFUtil.getBean("eLDataRepos");
     }
     
-    private static AffectationMetier affectationMetier() {
+    private AffectationMetier affectationMetier() {
         return SpringJSFUtil.getBean("affectationMetier");
     }
     
@@ -57,11 +57,11 @@ public class LeaveControlEditCtl implements Serializable {
         data.setStatus("Approved By PM");
         data.setSatatusDescription(" ");
         eLDataRepos().save(data);
-        mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
-        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
-        mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
-        MailForm mailForm = new MailForm();
-        mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
+//        mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
+//        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
+//        mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+//        MailForm mailForm = new MailForm();
+//        mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
         return "myTeam?faces-redirect=true";
     }
 
@@ -87,11 +87,11 @@ public class LeaveControlEditCtl implements Serializable {
 
         System.out.println("Approved object is : " + data.getResurceId());
         List<String> mailList = new ArrayList<String>();
-        mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
-        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
-        mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
-        MailForm mailForm = new MailForm();
-        mailForm.leaveDesapprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
+//        mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
+//        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
+//        mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+//        MailForm mailForm = new MailForm();
+//        mailForm.leaveDesapprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
 
         return "myTeam?faces-redirect=true";
     }
