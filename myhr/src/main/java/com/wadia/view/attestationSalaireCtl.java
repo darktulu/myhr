@@ -4,6 +4,7 @@
  */
 package com.wadia.view;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -14,8 +15,11 @@ import javax.faces.bean.RequestScoped;
 
 import com.wadia.beans.EGeneralData;
 import com.wadia.fileUpload.attestationSalaire;
+import com.wadia.local.DateProvider;
 import com.wadia.metier.ContratMetier;
 import com.wadia.metier.PathProvider;
+import com.wadia.metier.SalarySimpleMetier;
+import com.wadia.metier.SalarySimplefillMetier;
 import com.wadia.repos.EGeneralDataRepos;
 
 /**
@@ -32,18 +36,23 @@ public class attestationSalaireCtl {
     private String date_embauche;    
     private String salaireNet;  
     private PathProvider pathProvider = new PathProvider();
+    private String month;
+    private DateProvider dateProvider = new DateProvider();     
      
      @ManagedProperty(value="#{eGeneralDataRepos}")
      private EGeneralDataRepos eGeneralDataRepos; 
      @ManagedProperty(value="#{contratMetier}")
      private ContratMetier contratMetier;
-     private SalarySimpleCtl simpleCtl = new SalarySimpleCtl();
+     @ManagedProperty(value = "#{salarySimplefillMetier}")
+     private SalarySimplefillMetier salarySimplefillMetier;
 
     @PostConstruct
     public void init() {
+    	
         pdf = "documents/" + user.getUsername() + "_salary" + ".pdf";
         date_embauche = contratMetier.embauche(user.getUsername());
-        //salaireNet = ""+simpleCtl.getSalarySimpleMetier().getMonthlyNetSalary()+" DH ";
+        salaireNet = ""+salarySimplefillMetier.listSalary(user.getUsername()).getMonthlyNetSalary();
+        month = dateProvider.getCurrentMonth();
 
     }
 
@@ -129,14 +138,6 @@ public class attestationSalaireCtl {
         this.salaire = salaire;
     }
 
-    public SalarySimpleCtl getSimpleCtl() {
-        return simpleCtl;
-    }
-
-    public void setSimpleCtl(SalarySimpleCtl simpleCtl) {
-        this.simpleCtl = simpleCtl;
-    }
-
     public PathProvider getPathProvider() {
         return pathProvider;
     }
@@ -144,4 +145,29 @@ public class attestationSalaireCtl {
     public void setPathProvider(PathProvider pathProvider) {
         this.pathProvider = pathProvider;
     }
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public DateProvider getDateProvider() {
+		return dateProvider;
+	}
+
+	public void setDateProvider(DateProvider dateProvider) {
+		this.dateProvider = dateProvider;
+	}
+
+	public SalarySimplefillMetier getSalarySimplefillMetier() {
+		return salarySimplefillMetier;
+	}
+
+	public void setSalarySimplefillMetier(
+			SalarySimplefillMetier salarySimplefillMetier) {
+		this.salarySimplefillMetier = salarySimplefillMetier;
+	}
 }

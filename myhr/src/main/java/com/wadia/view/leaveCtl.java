@@ -87,8 +87,8 @@ public class leaveCtl {
 	 */
 
 	mailList.add(affectationMetier.findMyManager(user.getUsername()).getInfo());
-	mailList.add(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
-	mailList.add(user.getUser().getInfo());
+	//mailList.add(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
+	//mailList.add(user.getUser().getInfo());
         System.out.println("manager "+affectationMetier.findMyManager(user.getUsername()).getInfo());
         System.out.println("HR "+affectationMetier.findMyHrManager(user.getUsername()).getInfo());
         System.out.println("Moi "+affectationMetier.findMe(user.getUsername()).getInfo());

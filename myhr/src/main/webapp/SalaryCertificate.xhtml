@@ -194,11 +194,7 @@ and open the template in the editor.
 											rendered="#{EmployCtl.geteGeneralData().cin==null}"
 											style="color : red;" />
 										est employé en qualité
-										<h:outputText value="#{OrganizationalDataCtl.jobe_title}"
-											rendered="#{OrganizationalDataCtl.jobe_title!=null}" />
-										<h:outputText value="not found"
-											rendered="#{OrganizationalDataCtl.jobe_title==null}"
-											style="color : red;" />
+										<h:outputText value="#{EmployCtl.geteGeneralData().jobeTitle}"/>
 									</p>
 									<p
 										style="text-align: center; font: 18px Helvetica, Arial, sans-serif;">
@@ -209,7 +205,7 @@ and open the template in the editor.
 											rendered="#{attestationTravailCtl.date_embauche=='0000-00-00'}"
 											style="color : red;" />
 										jusqu'à aujourd’hui.<br /> Il est toujours présent dans notre
-										établissement et a perçu pour le mois de Janvier un salaire
+										établissement et a perçu pour le mois de <h:outputText value="#{attestationSalaireCtl.month}" /> un salaire
 										net de
 										<h:outputText value="#{attestationSalaireCtl.salaireNet}" />
 										DH.

@@ -28,9 +28,8 @@ import com.wadia.repos.ESalaryDataRepos;
 public class SalaryDetailsCtl {
 
     private static String IdToView;
-    @ManagedProperty(value="#{salarySimpleMetier}")
     private static SalarySimpleMetier salarySimpleMetier;
-    @ManagedProperty(value="#{salarySimplefillMetier}")
+    @ManagedProperty(value = "#{salarySimplefillMetier}")
     private SalarySimplefillMetier salarySimplefillMetier;
     @ManagedProperty(value="#{histoSalaryfillMetier}")
     private HistoSalaryfillMetier histoSalaryfillMetier;

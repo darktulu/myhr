@@ -162,19 +162,7 @@ and open the template in the editor.
                                             <h:outputText value="#{emp.status}" rendered="#{emp.status=='ACTIVE'}"  style="color: blue;"/>
                                             <h:outputText value="#{emp.status}" rendered="#{emp.status=='ENDED'}"  style="color: red;"/>
                                         </rich:column>
-                                        <rich:column style="width: 140px; height : 30px;">
-                                            <f:facet name="header">
-                                                <h:outputText value="Birthday" />
-                                            </f:facet>
-                                            <h:outputText value="#{emp.birthday}" />
-                                        </rich:column>
-                                        <rich:column style="width: 140px; height : 30px;">
-                                            <f:facet name="header">
-                                                <h:outputText value="CIN " />
-                                            </f:facet>
-                                            <h:outputText value="#{emp.cin}"/>
-                                        </rich:column>
-
+                                       
                                         <rich:column style="text-align: center; width: 80px;">
                                             <f:facet name="header">
                                                 <h:outputText value="View"/>

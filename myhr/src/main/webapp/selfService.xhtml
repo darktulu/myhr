@@ -134,7 +134,7 @@ and open the template in the editor.
                                             Nous soussigné, 3GCOM  Sise au 11 Secteur 22, Bloc G, Rue  Anissone , Hay Ryad à Rabat, 
                                             certifions par la présente  que <h:outputText value="#{EmployCtl.geteGeneralData().surname} #{EmployCtl.geteGeneralData().name}" style="color : blue;"/>, Titulaire de la carte d’Identité Nationale <br/>
                                             <h:outputText value="#{EmployCtl.geteGeneralData().cin}" rendered="#{EmployCtl.geteGeneralData().cin!=null}"/><h:outputText value="not found" rendered="#{EmployCtl.geteGeneralData().cin==null}" style="color : red;"/>  travaille  dans notre société en tant que :</p>
-                                        <p style="margin: auto; text-align: center; font:   18px Helvetica, Arial, sans-serif;"><h:outputText value="#{OrganizationalDataCtl.jobe_title}" rendered="#{OrganizationalDataCtl.jobe_title!=null}"/><h:outputText value="not found" rendered="#{OrganizationalDataCtl.jobe_title==null}" style="color : red;"/></p>
+                                        <p style="margin: auto; text-align: center; font:   18px Helvetica, Arial, sans-serif;"><h:outputText value="#{EmployCtl.geteGeneralData().jobeTitle}"/></p>
                                         <p style=" text-align: center; font:   18px Helvetica, Arial, sans-serif;">Et ce depuis le   <h:outputText value="#{attestationTravailCtl.date_embauche}" rendered="#{attestationTravailCtl.date_embauche!='0000-00-00'}"/><h:outputText value="#{attestationTravailCtl.date_embauche}" rendered="#{attestationTravailCtl.date_embauche=='0000-00-00'}" style="color : red;"/>   jusqu'à aujourd’hui.<br/>
 
                                         </p>

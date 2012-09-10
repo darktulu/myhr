@@ -4,14 +4,20 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<title>MyHR</title>
-	<link rel='stylesheet' id='layout-css' href='./css/layout.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='layout-csss' href='../css/layout.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='layout-css' href='./css/layout.css'
+		type='text/css' media='all' />
+	<link rel='stylesheet' id='layout-csss' href='../css/layout.css'
+		type='text/css' media='all' />
 	<link rel="Stylesheet" href="./css/only.css" type="text/css" />
 	<link rel="Stylesheet" href="../css/only.css" type="text/css" />
 	<link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css" />
@@ -67,62 +73,85 @@ and open the template in the editor.
 					<td>
 						<div id="left"
 							style="width: 200px; min-height: 1200px; background: #f1f1f1; font: 14px Helvetfontica, Arial, sans-serif;">
-							<h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;">
-								<rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax"
-									groupExpandedLeftIcon="triangleUp" groupCollapsedLeftIcon="triangleDown"
-									topGroupExpandedRightIcon="chevronUp" topGroupCollapsedRightIcon="chevronDown"
-									itemLeftIcon="disc" expandSingle="false">
-									<rich:panelMenuGroup label="My Team Data" rendered="#{authByRoleCtl.RH}">
-										<a href="myTeamData.xhtml"><rich:panelMenuItem label="HR Management"
-												name="HR Management" leftIcon="images/group.png" /> </a>
+							<h:panelGrid columns="2" columnClasses="cols,cols" width="400"
+								style="background: #ffffff;">
+								<rich:panelMenu style="width:198px" itemMode="ajax"
+									groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+									groupCollapsedLeftIcon="triangleDown"
+									topGroupExpandedRightIcon="chevronUp"
+									topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+									expandSingle="false">
+									<rich:panelMenuGroup label="My Team Data"
+										rendered="#{authByRoleCtl.RH}">
+										<a href="myTeamData.xhtml"><rich:panelMenuItem
+												label="HR Management" name="HR Management"
+												leftIcon="images/group.png" /> </a>
 									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="My Team" rendered="#{authByRoleCtl.PM}">
-										<a href="myTeam.xhtml"><rich:panelMenuItem label="Leaves Summary"
-												name="Leaves Summary" leftIcon="images/group_go.png" /> </a>
-										<a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Calendar"
-												name="Team Calendar" leftIcon="images/calendar_view_day.png" /> </a>
-										<a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Data" name="Team Data"
+									<rich:panelMenuGroup label="My Team"
+										rendered="#{authByRoleCtl.PM}">
+										<a href="myTeam.xhtml"><rich:panelMenuItem
+												label="Leaves Summary" name="Leaves Summary"
+												leftIcon="images/group_go.png" /> </a>
+										<a href="teamcalendar.xhtml"><rich:panelMenuItem
+												label="Team Calendar" name="Team Calendar"
+												leftIcon="images/calendar_view_day.png" /> </a>
+										<a href="teamcalendar.xhtml"><rich:panelMenuItem
+												label="Team Data" name="Team Data"
 												leftIcon="images/group_gear.png" /> </a>
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="My Data" expanded="true">
-										<a href="acceuil.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data"
+										<a href="acceuil.xhtml"><rich:panelMenuItem
+												label="Personal Data" name="Personal Data"
 												leftIcon="images/user_gray.png" /> </a>
-										<a href="OrganizationalData.xhtml"><rich:panelMenuItem label="Organizational Data"
-												name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
-										<a href="familyData.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data"
+										<a href="OrganizationalData.xhtml"><rich:panelMenuItem
+												label="Organizational Data" name="Organizational Data"
+												leftIcon="images/chart_organisation.png" /> </a>
+										<a href="familyData.xhtml"><rich:panelMenuItem
+												label="Family Data" name="Family Data"
 												leftIcon="images/house.png" /> </a>
-										<a href="contratData.xhtml"><rich:panelMenuItem label="Contract Data"
-												name="Contract Data" leftIcon="images/page_white_text_width.png" /> </a>
-										<a href="salary.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data"
+										<a href="contratData.xhtml"><rich:panelMenuItem
+												label="Contract Data" name="Contract Data"
+												leftIcon="images/page_white_text_width.png" /> </a>
+										<a href="salary.xhtml"><rich:panelMenuItem
+												label="Salary Data" name="Salary Data"
 												leftIcon="images/cash-icon.png" /> </a>
-										<a href="EducationData.xhtml"><rich:panelMenuItem label="My Education"
-												name="My Education" leftIcon="images/medal_gold_1.png" /> </a>
+										<a href="EducationData.xhtml"><rich:panelMenuItem
+												label="My Education" name="My Education"
+												leftIcon="images/medal_gold_1.png" /> </a>
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="My Leaves" expanded="true">
-										<a href="leaves.xhtml"><rich:panelMenuItem label="My Leaves" name="My Leaves"
+										<a href="leaves.xhtml"><rich:panelMenuItem
+												label="My Leaves" name="My Leaves"
 												leftIcon="images/status_away.png" /> </a>
-										<a href="absenceList.xhtml"><rich:panelMenuItem label="My Absences" name="My Absences"
+										<a href="absenceList.xhtml"><rich:panelMenuItem
+												label="My Absences" name="My Absences"
 												leftIcon="images/status_busy.png" /> </a>
-										<a href="teamcalendar.xhtml"><rich:panelMenuItem label="My Team Calendar"
-												name="My Team Calendar" leftIcon="images/calendar.png" /> </a>
+										<a href="teamcalendar.xhtml"><rich:panelMenuItem
+												label="My Team Calendar" name="My Team Calendar"
+												leftIcon="images/calendar.png" /> </a>
 
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Medical Inssurance" expanded="true">
-										<a href="leaves.xhtml"><rich:panelMenuItem label="Inssurance Follow"
-												name="Inssurance Follow" leftIcon="images/pill.png" /> </a>
+										<a href="leaves.xhtml"><rich:panelMenuItem
+												label="Inssurance Follow" name="Inssurance Follow"
+												leftIcon="images/pill.png" /> </a>
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Self Service" expanded="true">
-										<a href="selfService.xhtml"><rich:panelMenuItem label="Employment Certificate"
-												name="Certificate of Employment" leftIcon="images/timeline_marker.png" /> </a>
-										<a href="SalaryCertificate.xhtml"><rich:panelMenuItem label="Salary Certificate"
-												name="Salary Certificate" leftIcon="images/coins.png" /> </a>
-										<a href="#"><rich:panelMenuItem label="Payslip" name="Payslip"
-												leftIcon="images/page_key.png" /> </a>
+										<a href="selfService.xhtml"><rich:panelMenuItem
+												label="Employment Certificate"
+												name="Certificate of Employment"
+												leftIcon="images/timeline_marker.png" /> </a>
+										<a href="SalaryCertificate.xhtml"><rich:panelMenuItem
+												label="Salary Certificate" name="Salary Certificate"
+												leftIcon="images/coins.png" /> </a>
+										<a href="#"><rich:panelMenuItem label="Payslip"
+												name="Payslip" leftIcon="images/page_key.png" /> </a>
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Directory" expanded="true">
-										<a href="directory.xhtml"><rich:panelMenuItem label="Employees data"
-												name="Employees data" leftIcon="images/database_table.png" style="background: #fee6cd;" />
-										</a>
+										<a href="directory.xhtml"><rich:panelMenuItem
+												label="Employees data" name="Employees data"
+												leftIcon="images/database_table.png"
+												style="background: #fee6cd;" /> </a>
 									</rich:panelMenuGroup>
 
 								</rich:panelMenu>
@@ -132,43 +161,55 @@ and open the template in the editor.
 
 					</td>
 					<td style="border: solid 1px #f1f1f1; width: 100%;">
-						<div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+						<div id="middle"
+							style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
 
-							<div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+							<div id="actions"
+								style="width: 100%; height: 80px; margin-bottom: 2px;"
+								title="Actions">
 								<p
 									style="color: #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px;">Actions
 									:</p>
-								<h:panelGrid columns="2" style="margin-top: 4px; margin-left: 4px;">
-									<h:outputText value="Total Employes : #{EmployListCtl.total_active}"
+								<h:panelGrid columns="2"
+									style="margin-top: 4px; margin-left: 4px;">
+									<h:outputText
+										value="Total Employes : #{EmployListCtl.total_active}"
 										style="font: bold 11px Helvetica, Arial, sans-serif; margin-right: 20px;"></h:outputText>
 									<h:panelGrid columns="2" style="margin-left: 20px;">
-										<a href="directory.xhtml"><img src="images/1341096810_arrow_circle_left.png" /></a>
+										<a href="directory.xhtml"><img
+											src="images/1341096810_arrow_circle_left.png" /></a>
 										<h:outputText value="Refresh data  ">
 										</h:outputText>
 									</h:panelGrid>
 								</h:panelGrid>
 							</div>
-							<rich:panel header="3Gcom Employees" style="margin-top:10px; min-height: 1100px;">
+							<rich:panel header="3Gcom Employees"
+								style="margin-top:10px; min-height: 1100px;">
 
 
 								<h:panelGroup style="float: right; margin-bottom: 10px;">
 									<h:outputText value="Search" style="margin-right: 8px;" />
-									<h:inputText style="vertical-align: middle; " value="#{DirectoryListCtl.search}">
+									<h:inputText style="vertical-align: middle; "
+										value="#{DirectoryListCtl.search}">
 										<a4j:ajax event="keyup" render="employsList" />
 									</h:inputText>
-									<h:graphicImage style="vertical-align: middle; margin-left : 5px;" width="16px"
-										value="images/Loupe-icon.png" />
+									<h:graphicImage
+										style="vertical-align: middle; margin-left : 5px;"
+										width="16px" value="images/Loupe-icon.png" />
 								</h:panelGroup>
 
-								<rich:dataTable value="#{DirectoryListCtl.listDirect}" var="employe" id="employsList"
-									rows="20" rowClasses="odd-row, even-row" styleClass="stable" style="width: 100%;">
+								<rich:dataTable value="#{DirectoryListCtl.listDirect}"
+									var="employe" id="employsList" rows="20"
+									rowClasses="odd-row, even-row" styleClass="stable"
+									style="width: 100%;">
 
 
 									<rich:column style="width: 42px;">
 										<f:facet name="header">
 											<h:outputText value="Photo" />
 										</f:facet>
-										<img src="#{employe.idPhoto}" style="margin: auto; width: 40px; height: 30px;" />
+										<img src="#{employe.idPhoto}"
+											style="margin: auto; width: 40px; height: 30px;" />
 									</rich:column>
 									<rich:column style="width : 100px;">
 										<f:facet name="header">
@@ -212,7 +253,8 @@ and open the template in the editor.
 											<h:outputText value="View" />
 										</f:facet>
 
-										<a4j:commandLink styleClass="btn" oncomplete="#{rich:component('details')}.show()"
+										<a4j:commandLink styleClass="btn"
+											oncomplete="#{rich:component('details')}.show()"
 											render="details" style=" display:block; text-align:center;">
 											<f:setPropertyActionListener value="#{employe}"
 												target="#{DirectoryListCtl.selectedEmploy}" />
@@ -231,15 +273,17 @@ and open the template in the editor.
 					</td>
 				</tr>
 			</tbody>
-			<rich:jQuery selector=".stable tr" event="mouseover" query="jQuery(this).addClass('active-row')" />
+			<rich:jQuery selector=".stable tr" event="mouseover"
+				query="jQuery(this).addClass('active-row')" />
 			<rich:jQuery selector=".stable tr" event="mouseout"
 				query="jQuery(this).removeClass('active-row')" />
 		</table>
 	</h:form>
-		
-		<rich:popupPanel autosized="false" id="details" modal="true"
-			style=" background: #ffffff; font: 12px Helvetica, Arial, sans-serif;" width="750" height="310">
-			<h:form id="popup" prependId="false">
+
+	<rich:popupPanel autosized="false" id="details" modal="true"
+		style=" background: #ffffff; font: 12px Helvetica, Arial, sans-serif;"
+		width="750" height="310">
+		<h:form id="popup" prependId="false">
 			<f:facet name="header">
                     Profil 2
                 </f:facet>
@@ -250,26 +294,33 @@ and open the template in the editor.
 							src="#{DirectoryListCtl.selectedEmploy.idPhoto}"
 							style="margin: auto; width: 150px; height: 120px; margin-left: 110px" /></td>
 
-						<td style="width: 370px; height: 120px;"><h:panelGrid columns="2">
+						<td style="width: 370px; height: 120px;"><h:panelGrid
+								columns="2">
 								<h:outputText value="First name : "
 									style="margin-bottom: 4px; font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.firstname}"
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.firstname}"
 									style="margin-bottom: 4px; " />
 								<h:outputText value="Last name : "
 									style="margin-bottom: 4px; font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.lastname}"
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.lastname}"
 									style="margin-bottom: 4px;" />
 								<h:outputText value="Job Title : "
 									style="margin-bottom: 4px;  font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.jobTitle}" style="height : 30px;" />
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.jobTitle}"
+									style="height : 30px;" />
 								<h:outputText value="Mobile Number : "
 									style="margin-bottom: 4px;  font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.mobileNumber}"
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.mobileNumber}"
 									style="margin-bottom: 4px;" />
 							</h:panelGrid></td>
 					</tr>
 					<tr>
-						<td style="background: #ffffff; width: 370px; height: 100px;"><h:panelGrid columns="2">
+						<td style="background: #ffffff; width: 370px; height: 100px;"><h:panelGrid
+								columns="2">
 								<h:outputText value="Country : "
 									style="margin-bottom: 6px; font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText value="#{DirectoryListCtl.selectedEmploy.country}" />
@@ -278,21 +329,26 @@ and open the template in the editor.
 								<h:outputText value="#{DirectoryListCtl.selectedEmploy.region}" />
 								<h:outputText value="Depatment : "
 									style="margin-bottom: 6px; font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.deparment}" />
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.deparment}" />
 							</h:panelGrid></td>
-						<td style="background: #ffffff; widht: 370px; height: 100px;"><h:panelGrid columns="2">
+						<td style="background: #ffffff; widht: 370px; height: 100px;"><h:panelGrid
+								columns="2">
 								<h:outputText value="Direct Manager : "
 									style="margin-bottom: 6px; font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.lineManager}" />
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.lineManager}" />
 								<h:outputText value="Status : "
 									style="margin-bottom: 6px; font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText value="#{DirectoryListCtl.selectedEmploy.intExt}" />
 								<h:outputText value="Fax Number : "
 									style="margin-bottom: 6px; font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.faxNumber}" />
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.faxNumber}" />
 								<h:outputText value="Land Line Number : "
 									style="margin-bottom: 6px; font: bold 12px Helvetica, Arial, sans-serif;" />
-								<h:outputText value="#{DirectoryListCtl.selectedEmploy.landLineNumber}" />
+								<h:outputText
+									value="#{DirectoryListCtl.selectedEmploy.landLineNumber}" />
 							</h:panelGrid></td>
 
 					</tr>
@@ -305,8 +361,8 @@ and open the template in the editor.
 				</h:commandLink>
 			</div>
 
-	</h:form>
-		</rich:popupPanel>
+		</h:form>
+	</rich:popupPanel>
 
 
 </h:body>

@@ -17,7 +17,7 @@ import com.wadia.repos.EGeneralDataRepos;
  * 
  * @author toshiba
  */
-@ManagedBean
+@ManagedBean (name="EmployEditCtl")
 @RequestScoped
 public class EmployEditCtl {
 
