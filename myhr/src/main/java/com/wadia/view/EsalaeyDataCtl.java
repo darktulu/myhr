@@ -13,210 +13,221 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 /**
- *
- * @author massin
+ * 
+ * @author wadi3
  */
-@ManagedBean
+@ManagedBean(name = "EsalaeyDataCtl")
 @RequestScoped
 public class EsalaeyDataCtl {
 
-    private static String IdToViewSalary;
-    private List<EIndemnite> eIndemnites = new ArrayList<EIndemnite>();
-    private List<EPrime> ePrimes = new ArrayList<EPrime>();
-    private List<Echarge> echarges = new ArrayList<Echarge>();
-    private ESalaryData eSalaryData = new ESalaryData();
-    private SalaryMetier salaryMetier = new SalaryMetier();
-    private int rowId;
-    private int ans;
-    private int mois;
-    private Double baseSalary;
-    private String description;
+	private static String IdToViewSalary;
+	private List<EIndemnite> eIndemnites = new ArrayList<EIndemnite>();
+	private List<EPrime> ePrimes = new ArrayList<EPrime>();
+	private List<Echarge> echarges = new ArrayList<Echarge>();
 
-    public String saveSalary() {
-        
-        eSalaryData.setAns(ans);
-        eSalaryData.setMois(mois);
-        eSalaryData.setBaseSalary(baseSalary);
-        eSalaryData.setDescription(description);
-        if (eSalaryData != null) {
-            eSalaryData.setResurceId(IdToViewSalary);
-        }
+	private ESalaryData eSalaryData = new ESalaryData();
 
-        for (EIndemnite eIndemnite : eIndemnites) {
-            eIndemnite.setResureceId(IdToViewSalary);
-        }
-        for (EPrime ePrime : ePrimes) {
-            ePrime.setResourceId(IdToViewSalary);
-        }
-        for (Echarge echarge : echarges) {
-            echarge.setResourceId(IdToViewSalary);
-        }
-        salaryMetier.saveSalary(eSalaryData, eIndemnites, ePrimes, echarges);
-        return "ok";
-    }
+	@ManagedProperty(value = "#{salaryMetier}")
+	private SalaryMetier salaryMetier;
 
-    public void removeRowIndem() {
-        geteIndemnites().remove(rowId);
+	private int rowId;
+	private int ans;
+	private int mois;
+	private Double baseSalary;
+	private String description;
 
-    }
+	public String saveSalary() {
 
-    public void removeRowCharge() {
+		eSalaryData.setAns(ans);
+		eSalaryData.setMois(mois);
+		eSalaryData.setBaseSalary(baseSalary);
+		eSalaryData.setDescription(description);
+		if (eSalaryData != null) {
+			eSalaryData.setResurceId(IdToViewSalary);
+		}
 
-        getEcharges().remove(rowId);
-    }
+		for (EIndemnite eIndemnite : eIndemnites) {
+			eIndemnite.setResureceId(IdToViewSalary);
+		}
+		for (EPrime ePrime : ePrimes) {
+			ePrime.setResourceId(IdToViewSalary);
+		}
+		for (Echarge echarge : echarges) {
+			echarge.setResourceId(IdToViewSalary);
+		}
+		salaryMetier.saveSalary(eSalaryData, eIndemnites, ePrimes, echarges);
+		return "SalaryHr?faces-redirect=true";
+	}
 
-    public void removeRowPrime() {
+	public void removeRowIndem() {
+		geteIndemnites().remove(rowId);
 
-        getePrimes().remove(rowId);
+	}
 
-    }
+	public void removeRowCharge() {
 
-    public void addIndeminte() {
-        System.out.println("addIndemnite...");
-        geteIndemnites().add(new EIndemnite());
-    }
+		getEcharges().remove(rowId);
+	}
 
-    public void addcharge() {
-        System.out.println("addIndemnite...");
-        getEcharges().add(new Echarge());
-    }
+	public void removeRowPrime() {
 
-    public void addPrime() {
-        System.out.println("addIndemnite...");
-        getePrimes().add(new EPrime());
-    }
+		getePrimes().remove(rowId);
 
-    /**
-     * @return the eIndemnites
-     */
-    public List<EIndemnite> geteIndemnites() {
-        return eIndemnites;
-    }
+	}
 
-    /**
-     * @param eIndemnites the eIndemnites to set
-     */
-    public void seteIndemnites(List<EIndemnite> eIndemnites) {
-        this.eIndemnites = eIndemnites;
-    }
+	public void addIndeminte() {
+		System.out.println("addIndemnite...");
+		geteIndemnites().add(new EIndemnite());
+	}
 
-    /**
-     * @return the ePrimes
-     */
-    public List<EPrime> getePrimes() {
-        return ePrimes;
-    }
+	public void addcharge() {
+		System.out.println("addIndemnite...");
+		getEcharges().add(new Echarge());
+	}
 
-    /**
-     * @param ePrimes the ePrimes to set
-     */
-    public void setePrimes(List<EPrime> ePrimes) {
-        this.ePrimes = ePrimes;
-    }
+	public void addPrime() {
+		System.out.println("addIndemnite...");
+		getePrimes().add(new EPrime());
+	}
 
-    /**
-     * @return the echarges
-     */
-    public List<Echarge> getEcharges() {
-        return echarges;
-    }
+	/**
+	 * @return the eIndemnites
+	 */
+	public List<EIndemnite> geteIndemnites() {
+		return eIndemnites;
+	}
 
-    /**
-     * @param echarges the echarges to set
-     */
-    public void setEcharges(List<Echarge> echarges) {
-        this.echarges = echarges;
-    }
+	/**
+	 * @param eIndemnites
+	 *            the eIndemnites to set
+	 */
+	public void seteIndemnites(List<EIndemnite> eIndemnites) {
+		this.eIndemnites = eIndemnites;
+	}
 
+	/**
+	 * @return the ePrimes
+	 */
+	public List<EPrime> getePrimes() {
+		return ePrimes;
+	}
 
-    /**
-     * @return the salaryMetier
-     */
-    public SalaryMetier getSalaryMetier() {
-        return salaryMetier;
-    }
+	/**
+	 * @param ePrimes
+	 *            the ePrimes to set
+	 */
+	public void setePrimes(List<EPrime> ePrimes) {
+		this.ePrimes = ePrimes;
+	}
 
-    /**
-     * @param salaryMetier the salaryMetier to set
-     */
-    public void setSalaryMetier(SalaryMetier salaryMetier) {
-        this.salaryMetier = salaryMetier;
-    }
+	/**
+	 * @return the echarges
+	 */
+	public List<Echarge> getEcharges() {
+		return echarges;
+	}
 
-    /**
-     * @return the rowId
-     */
-    public int getRowId() {
-        return rowId;
-    }
+	/**
+	 * @param echarges
+	 *            the echarges to set
+	 */
+	public void setEcharges(List<Echarge> echarges) {
+		this.echarges = echarges;
+	}
 
-    /**
-     * @param rowId the rowId to set
-     */
-    public void setRowId(int rowId) {
-        this.rowId = rowId;
-    }
+	/**
+	 * @return the salaryMetier
+	 */
+	public SalaryMetier getSalaryMetier() {
+		return salaryMetier;
+	}
 
-    /**
-     * @return the IdToViewSalary
-     */
-    public String getIdToViewSalary() {
-        return IdToViewSalary;
-    }
+	/**
+	 * @param salaryMetier
+	 *            the salaryMetier to set
+	 */
+	public void setSalaryMetier(SalaryMetier salaryMetier) {
+		this.salaryMetier = salaryMetier;
+	}
 
-    /**
-     * @param IdToViewSalary the IdToViewSalary to set
-     */
-    public void setIdToViewSalary(String IdToViewSalary) {
-        this.IdToViewSalary = IdToViewSalary;
-    }
+	/**
+	 * @return the rowId
+	 */
+	public int getRowId() {
+		return rowId;
+	}
 
-    public ESalaryData geteSalaryData() {
-        return eSalaryData;
-    }
+	/**
+	 * @param rowId
+	 *            the rowId to set
+	 */
+	public void setRowId(int rowId) {
+		this.rowId = rowId;
+	}
 
-    public void seteSalaryData(ESalaryData eSalaryData) {
-        this.eSalaryData = eSalaryData;
-    }
+	/**
+	 * @return the IdToViewSalary
+	 */
+	public String getIdToViewSalary() {
+		return IdToViewSalary;
+	}
 
-    public int getAns() {
-        return ans;
-    }
+	/**
+	 * @param IdToViewSalary
+	 *            the IdToViewSalary to set
+	 */
+	public void setIdToViewSalary(String IdToViewSalary) {
+		this.IdToViewSalary = IdToViewSalary;
+	}
 
-    public void setAns(int ans) {
-        this.ans = ans;
-    }
+	public ESalaryData geteSalaryData() {
+		return eSalaryData;
+	}
 
-    public int getMois() {
-        return mois;
-    }
+	public void seteSalaryData(ESalaryData eSalaryData) {
+		this.eSalaryData = eSalaryData;
+	}
 
-    public void setMois(int mois) {
-        this.mois = mois;
-    }
+	public int getAns() {
+		return ans;
+	}
 
-    public Double getBaseSalary() {
-        return baseSalary;
-    }
+	public void setAns(int ans) {
+		this.ans = ans;
+	}
 
-    public void setBaseSalary(Double baseSalary) {
-        this.baseSalary = baseSalary;
-    }
+	public int getMois() {
+		return mois;
+	}
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
+	public void setMois(int mois) {
+		this.mois = mois;
+	}
 
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public Double getBaseSalary() {
+		return baseSalary;
+	}
+
+	public void setBaseSalary(Double baseSalary) {
+		this.baseSalary = baseSalary;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

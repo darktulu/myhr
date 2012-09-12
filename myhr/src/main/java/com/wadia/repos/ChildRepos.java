@@ -12,7 +12,7 @@ import com.wadia.beans.Child;
 @Repository
 public interface ChildRepos extends JpaRepository<Child, String>{
 
-    @Query("UPDATE Child SET approved = :status WHERE childId = :childID")
+    @Query("UPDATE Child SET approved =:status WHERE childId =:childID")
     public void setStatus(@Param("status")String status,@Param("childID")String id);
     
     public List<Child> findBySpouseId(String spouseId);

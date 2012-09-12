@@ -7,6 +7,10 @@ package com.wadia.view;
 import com.wadia.beans.EGeneralData;
 import com.wadia.metier.OrgFillMetier;
 import com.wadia.metier.OrganizationaMetier;
+import com.wadia.repos.EGeneralDataRepos;
+import com.wadia.service.OrganizationalService;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,38 +18,38 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author toshiba
+ * @author wadi3
  */
 @ManagedBean(name="EmpOrganizational")
-@RequestScoped
-public class EmpOrganizational {
+@ViewScoped
+public class EmpOrganizational implements Serializable {
 
-    private List<OrganizationaMetier> listOrganiz = new ArrayList<OrganizationaMetier>();
-    private static OrganizationaMetier orgToview = new OrganizationaMetier();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<OrganizationaMetier> listOrganiz = new ArrayList<OrganizationaMetier>();
     private String OrgToEdit;
     private String search;
-    @ManagedProperty("#{orgFillMetier}")
-    private OrgFillMetier orgFillMetier;
+
+    
+    private OrganizationalService organizationalService() {
+        return SpringJSFUtil.getBean("organizationalService");
+    }
     
     @PostConstruct
     public void init(){
     
-        listOrganiz = orgFillMetier.listOrg();
+        listOrganiz = organizationalService().listOrg();
      
     
     }
     
     
-    public static OrganizationaMetier getOrgToview() {
-        return orgToview;
-    }
-
-    public static void setOrgToview(OrganizationaMetier aOrgToview) {
-        orgToview = aOrgToview;
-    }
 
     public List<OrganizationaMetier> getListOrganiz() {
         return listOrganiz;
@@ -80,29 +84,24 @@ public class EmpOrganizational {
     public void setSearch(String search) {
         this.search = search;
         if(search!=null){
-        listOrganiz = orgFillMetier.listOrg();
+        listOrganiz = organizationalService().listOrg();
         List<OrganizationaMetier> listSearch = new ArrayList<OrganizationaMetier>();    
         
         for(OrganizationaMetier org : listOrganiz){
         
             if(org.getName().toLowerCase().contains(search.toLowerCase())
-               ||org.getSurname().toLowerCase().contains(search.toLowerCase())){
+               ||org.getSurname().toLowerCase().contains(search.toLowerCase())
+               ||org.getRessoureceID().toLowerCase().contains(search.toLowerCase())){
             
                 listSearch.add(org);
             }
         }
-        listOrganiz = listSearch;
+        listOrganiz.clear();
+        listOrganiz.addAll(listSearch);
         
         }
     }
 
 
-    public OrgFillMetier getOrgFillMetier() {
-        return orgFillMetier;
-    }
-
-
-    public void setOrgFillMetier(OrgFillMetier orgFillMetier) {
-        this.orgFillMetier = orgFillMetier;
-    }
+   
 }

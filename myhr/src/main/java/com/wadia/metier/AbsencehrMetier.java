@@ -4,13 +4,14 @@
  */
 package com.wadia.metier;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author ITR2012
  */
-public class AbsencehrMetier {
+public class AbsencehrMetier implements Serializable {
     private String name;
      private String surname;
      private String username;

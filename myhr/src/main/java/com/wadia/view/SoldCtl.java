@@ -15,7 +15,7 @@ import com.wadia.repos.SoldleaveRepos;
  *
  * @author toshiba
  */
-@ManagedBean
+@ManagedBean (name="SoldCtl")
 @RequestScoped
 public class SoldCtl {
     
@@ -24,8 +24,11 @@ public class SoldCtl {
     @ManagedProperty(value = "#{soldleaveRepos}")
     private SoldleaveRepos soldleaveRepos;
     
-    public void delete(){
+    public String delete(){
+    	System.out.println("on delete method");
 	soldleaveRepos.delete(soldLeave);
+	System.out.println("on delete method");
+	return "LeaveSummaryList?faces-redirect=true";
     }
     
     
@@ -50,5 +53,17 @@ public class SoldCtl {
     public void setSoldLeave(Soldleave soldLeave) {
         this.soldLeave = soldLeave;
     }
+
+
+
+	public SoldleaveRepos getSoldleaveRepos() {
+		return soldleaveRepos;
+	}
+
+
+
+	public void setSoldleaveRepos(SoldleaveRepos soldleaveRepos) {
+		this.soldleaveRepos = soldleaveRepos;
+	}
     
 }

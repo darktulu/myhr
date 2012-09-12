@@ -4,13 +4,14 @@
  */
 package com.wadia.local;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author toshiba
  */
-public class family {
+public class family implements Serializable {
     
     private String name;
     private String surname;

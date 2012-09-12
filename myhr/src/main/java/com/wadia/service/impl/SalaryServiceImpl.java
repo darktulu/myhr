@@ -56,19 +56,20 @@ public class SalaryServiceImpl implements SalaryService {
     private ESpouseRepos espouseRepos;
 
     @Override
-    @Cacheable("salaryHR")
     public List<SalaryHrMetier> listSalary() {
 
 	List<EGeneralData> eGenList = new ArrayList<EGeneralData>();
 	List<SalaryHrMetier> hrMetiers = new ArrayList<SalaryHrMetier>();
 	ESalaryData eSalaryData = new ESalaryData();
-
+  //  int i =0;
 	eGenList = eGeneralDataRepos.findAll();
-
+   // System.out.println("EG size "+eGenList.size());
 	for (EGeneralData employ : eGenList) {
 	    SalaryHrMetier salaryHrMetier = new SalaryHrMetier();
-
-	    salaryHrMetier.setName(employ.getName());
+        
+	    //System.out.println("Employ "+employ.getResurceId());
+	    
+        salaryHrMetier.setName(employ.getName());
 	    salaryHrMetier.setSurname(employ.getSurname());
 	    salaryHrMetier.setUsername(employ.getResurceId());
 	    salaryHrMetier.setEmployStatut(employ.getStatus());
@@ -84,17 +85,21 @@ public class SalaryServiceImpl implements SalaryService {
 	    }
 
 	    eSalaryData = eSalaryDataRepos.findLastSalary(employ.getResurceId());
+
 	    if (eSalaryData == null)
 		continue;
+         
+	    
 	    salaryHrMetier.setMonthlyBaeSalary(eSalaryData.getBaseSalary());
 	    salaryHrMetier.setTotalAllowance(getTotalAllowance(employ.getResurceId()));
 	    salaryHrMetier.setTotalDeduction(calculeCharge(employ.getResurceId()));
 	    salaryHrMetier.setMonthlyNetSalary(calculeSalaireNet(employ.getResurceId()));
 	    salaryHrMetier.setSalaireImposable(calculeSalaireImposable(employ.getResurceId()));
-
+ 
 	    hrMetiers.add(salaryHrMetier);
+	    
 	}
-
+   // System.out.println("list size "+hrMetiers.size());
 	return hrMetiers;
     }
 

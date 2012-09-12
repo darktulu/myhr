@@ -4,37 +4,43 @@
  */
 package com.wadia.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.wadia.beans.TypeAbsence;
+import com.wadia.repos.EGeneralDataRepos;
 import com.wadia.repos.TypeAbsenceRepos;
 
 /**
  * 
  * @author toshiba
  */
-@ManagedBean
-@RequestScoped
-public class TypeAbsenceList {
+@ManagedBean (name="TypeAbsenceList")
+@ViewScoped
+public class TypeAbsenceList implements Serializable {
 
     private List<TypeAbsence> list = new ArrayList<TypeAbsence>();
     private String search;
+    
+    private TypeAbsenceRepos typeAbsenceRepos() {
+        return SpringJSFUtil.getBean("typeAbsenceRepos");
+    }
+    
+    @PostConstruct
+    public void init() {
 
-    @ManagedProperty(value = "#{typeAbsenceRepos}")
-    private TypeAbsenceRepos typeAbsenceRepos;
-
-    public TypeAbsenceList() {
-
-	list = typeAbsenceRepos.findAll();
+	list = typeAbsenceRepos().findAll();
     }
 
     public void update() {
-	list = typeAbsenceRepos.findAll();
+	list = typeAbsenceRepos().findAll();
     }
 
     public List<TypeAbsence> getList() {
@@ -53,7 +59,7 @@ public class TypeAbsenceList {
 	this.search = search;
 
 	if (search != null) {
-	    list = typeAbsenceRepos.findAll();
+	    list = typeAbsenceRepos().findAll();
 	    List<TypeAbsence> lisToAffect = new ArrayList<TypeAbsence>();
 	    for (TypeAbsence abs : list) {
 
@@ -65,8 +71,10 @@ public class TypeAbsenceList {
 
 	    }
 
-	    list = lisToAffect;
+	    list.clear();
+	    list.addAll(lisToAffect);
 
 	}
     }
+
 }

@@ -6,6 +6,10 @@ package com.wadia.view;
 
 import com.wadia.local.family;
 import com.wadia.metier.famillyMetier;
+import com.wadia.service.FamilyService;
+import com.wadia.service.OrganizationalService;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,22 +17,27 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author toshiba
  */
 @ManagedBean (name="FamilyListCtl")
-@RequestScoped
-public class FamilyListCtl {
-    @ManagedProperty(value="#{famillyMetier}")
-    private famillyMetier famillyMetier;
+@ViewScoped
+public class FamilyListCtl implements Serializable {
+
     private List<family> listFamily = new ArrayList<family>();
     private String search;
+    
+    private FamilyService familyService() {
+        return SpringJSFUtil.getBean("familyService");
+    }
+    
     @PostConstruct
     public void init() {
 
-        listFamily = famillyMetier.family();
+        listFamily = familyService().myFamily();
     }
 
     public List<family> getListFamily() {
@@ -48,22 +57,17 @@ public class FamilyListCtl {
         if (search != null) {
             List<family> employsListSearch = new ArrayList<family>();
             //System.out.println("filtering employs... " + search);
-            listFamily = famillyMetier.family();
+            listFamily = familyService().myFamily();
             for (family fam : listFamily) {
                 if (fam.getName().toLowerCase().contains(search.toLowerCase())
                         || fam.getUsername().toLowerCase().contains(search.toLowerCase())) {
                     employsListSearch.add(fam);
                 }
             }
-            listFamily = employsListSearch;
+            listFamily.clear();
+            listFamily.addAll(employsListSearch);
+            
         }
     }
 
-    public famillyMetier getFamillyMetier() {
-        return famillyMetier;
-    }
-
-    public void setFamillyMetier(famillyMetier famillyMetier) {
-        this.famillyMetier = famillyMetier;
-    }
 }

@@ -22,11 +22,11 @@ import com.wadia.repos.ELDataRepos;
  * @author toshiba
  */
 
-@ManagedBean
+@ManagedBean (name="LeaveControlCtl")
 @RequestScoped
 public class LeaveControlCtl {
 
-    @ManagedProperty(value = "elDataRepos")
+    @ManagedProperty(value = "#{elDataRepos}")
     private ELDataRepos elDataRepos;
 
     private static String name;

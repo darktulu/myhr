@@ -20,7 +20,7 @@ import com.wadia.repos.SoldleaveRepos;
  * 
  * @author toshiba
  */
-@ManagedBean
+@ManagedBean (name="soldLeaveHr")
 @RequestScoped
 public class soldLeaveHr {
 
@@ -98,5 +98,13 @@ public class soldLeaveHr {
 
 	}
     }
+
+	public SoldleaveRepos getSoldleaveRepos() {
+		return soldleaveRepos;
+	}
+
+	public void setSoldleaveRepos(SoldleaveRepos soldleaveRepos) {
+		this.soldleaveRepos = soldleaveRepos;
+	}
 
 }

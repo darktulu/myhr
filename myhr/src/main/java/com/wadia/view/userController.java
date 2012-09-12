@@ -41,7 +41,7 @@ public class userController implements Serializable{
     @PostConstruct
     public  void init(){
 	
-	fullname = usersRepos.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getFullName();
+	fullname = usersRepos.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getFirstname()+" "+usersRepos.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getLastname();
 	
     }
     

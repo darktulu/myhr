@@ -15,7 +15,7 @@ import com.wadia.service.TypeAbsenceService;
  * 
  * @author toshiba
  */
-@ManagedBean(name = "TypeAbsDataHr")
+@ManagedBean(name ="TypeAbsDataHr")
 @RequestScoped
 public class TypeAbsDataHr {
 
@@ -26,7 +26,7 @@ public class TypeAbsDataHr {
     private TypeAbsence data;
     private int idToDelete;
 
-    @ManagedProperty(value = "#{typeAbsenceRepos}")
+    @ManagedProperty(value = "#{typeAbsenceService}")
     private TypeAbsenceService typeAbsenceService;
 
     public String getName() {
@@ -85,14 +85,22 @@ public class TypeAbsDataHr {
 	if (!typeAbsenceService.existTypeAbsence(absence)) {
 	    typeAbsenceService.addTypeAbsence(absence);
 	}
-	return "ok";
+	return "AbsenceHr?faces-redirect=true";
     }
 
     public String deleteType() {
 	if (data != null) {
 	    typeAbsenceService.deleteTypeAbsence(data);
 	}
-	return "ok";
+	return "AbsenceHr?faces-redirect=true";
     }
+
+	public TypeAbsenceService getTypeAbsenceService() {
+		return typeAbsenceService;
+	}
+
+	public void setTypeAbsenceService(TypeAbsenceService typeAbsenceService) {
+		this.typeAbsenceService = typeAbsenceService;
+	}
 
 }

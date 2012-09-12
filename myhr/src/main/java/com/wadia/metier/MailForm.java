@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import com.wadia.local.Recipients;
+import com.wadia.service.SendMail;
+
 /**
  *
  * @author wadi3
@@ -16,10 +19,10 @@ import java.util.List;
 public class MailForm {
 
     private SendMailTLS sendMailTLS;
+    private SendMail sendMail;
     
 
-
-    public void RequestLeave(List<String> toMail, String Manager, String User, String year, Date startDate, Date endDate, int days, String motif) {
+    public void RequestLeave(List<Recipients> toMail, String Manager, String User, String year, Date startDate, Date endDate, int days, String motif) {
         String mail;
 
         Calendar calendar = new GregorianCalendar();
@@ -81,8 +84,7 @@ public class MailForm {
                 + "MyHR"
                 + "</p>"
                 + "</div>";
-        sendMailTLS = new SendMailTLS();
-        sendMailTLS.sendMailHTML(toMail, "Vacation Request", mail);
+        sendMail.sendMailHTML(toMail, "Vacation Request", mail);
 
     }
 
@@ -254,6 +256,8 @@ public class MailForm {
         sendMailTLS.sendMailHTML(toMail, "Vacation Request", mail);
 
     }
+    
+    
 
     public SendMailTLS getSendMailTLS() {
         return sendMailTLS;

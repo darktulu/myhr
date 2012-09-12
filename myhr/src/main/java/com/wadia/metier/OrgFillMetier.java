@@ -4,6 +4,7 @@
  */
 package com.wadia.metier;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,13 @@ import com.wadia.repos.EGeneralDataRepos;
  */
 @Service
 @Transactional
+public class OrgFillMetier implements Serializable {
 
-public class OrgFillMetier {
-
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private EGeneralDataRepos eGeneralDataRepos;
     @Inject
     private AffectationMetier affectationMetier;

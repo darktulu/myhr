@@ -17,6 +17,7 @@ import javax.faces.bean.RequestScoped;
 import com.wadia.beans.EGeneralData;
 import com.wadia.beans.ELData;
 import com.wadia.beans.Soldleave;
+import com.wadia.local.Recipients;
 import com.wadia.metier.AffectationMetier;
 import com.wadia.metier.MailForm;
 import com.wadia.metier.SoldleaveMetier;
@@ -41,7 +42,7 @@ public class leaveCtl {
     private String motif;
     private Integer idToEdit;
     private static ELData leaveToEdit = new ELData();
-    
+    private Recipients recipients;
     @ManagedProperty(value = "#{soldleaveMetier}")
     private SoldleaveMetier soldleaveMetier;
    
@@ -68,7 +69,7 @@ public class leaveCtl {
 
 	Soldleave sold = new Soldleave();
 	int yearC;
-	List<String> mailList = new ArrayList<String>();
+	List<Recipients> mailList = new ArrayList<Recipients>();
 	/* Here we create leave to save */
 
 	leave = new ELData(user.getUsername(), year, "conge", start, end, days, "waiting", motif);
@@ -85,15 +86,22 @@ public class leaveCtl {
 	 * toMail, String Manager, String User, int year ,Date startDate, Date
 	 * endDate, int days, String motif )
 	 */
+    recipients.setMail(affectationMetier.findMyManager(user.getUsername()).getInfo());
+    recipients.setType("To");
+	mailList.add(recipients); // ADD MANAGER
+	
+	recipients.setMail(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
+    recipients.setType("Cc");
+	mailList.add(recipients);//ADD HR
+	
+	recipients.setMail(user.getUser().getInfo());
+    recipients.setType("Cc");
+	mailList.add(recipients);// ADD ME
+	
 
-	mailList.add(affectationMetier.findMyManager(user.getUsername()).getInfo());
-	//mailList.add(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
-	//mailList.add(user.getUser().getInfo());
         System.out.println("manager "+affectationMetier.findMyManager(user.getUsername()).getInfo());
         System.out.println("HR "+affectationMetier.findMyHrManager(user.getUsername()).getInfo());
         System.out.println("Moi "+affectationMetier.findMe(user.getUsername()).getInfo());
-	// mailList.add("ouadia.g@gmail.com");
-	// mailList.add("o.GAMRANE@3gcom-int.com");
 
 	if (sold != null) {
 
@@ -171,7 +179,7 @@ public class leaveCtl {
 	    MailForm mailForm = new MailForm();
 	    // mailForm.takeLeaveMail(affectationMetier.findMyManagerMail(user.getUsername()),
 	    // user.getUser().getFirstname(), user.getUser().getLastname());
-	    // mailForm.takeLeaveMail(affectationMetier.findMyRHMail(user.getUsername()),
+	     //mailForm.takeLeaveMail(affectationMetier.findMyRHMail(user.getUsername()),
 	    // user.getUser().getFirstname(), user.getUser().getLastname());
 
 	}
@@ -367,5 +375,13 @@ public class leaveCtl {
     public void seteLDataRepos(ELDataRepos eLDataRepos) {
         this.eLDataRepos = eLDataRepos;
     }
+
+	public Recipients getRecipients() {
+		return recipients;
+	}
+
+	public void setRecipients(Recipients recipients) {
+		this.recipients = recipients;
+	}
 
 }

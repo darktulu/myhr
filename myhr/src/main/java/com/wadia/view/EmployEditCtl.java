@@ -57,7 +57,9 @@ public class EmployEditCtl {
     private String matricule_inssurance;
     private String secondaryMailAdress;
     private String toEdit;
+   
     private static EGeneralData eGeneralData;
+   
     @ManagedProperty(value = "#{eGeneralDataRepos}")
     private EGeneralDataRepos eGeneralDataRepos;
 

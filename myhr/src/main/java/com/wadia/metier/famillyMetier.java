@@ -27,9 +27,9 @@ public class famillyMetier {
     @Inject
     private EGeneralDataRepos eGeneralDataRepos;
     @Inject
-    ChildMetier childMetier;
+    private ChildMetier childMetier;
     @Inject
-    SpouseListMetier spouseListMetier;
+    private SpouseListMetier spouseListMetier;
 
     public List<family> family() {
 

@@ -19,10 +19,11 @@ import com.wadia.repos.ESalaryDataRepos;
  * 
  * @author toshiba
  */
-@ManagedBean
+@ManagedBean(name="SalaryDetailsEditCtl")
 @RequestScoped
 public class SalaryDetailsEditCtl {
-    @ManagedProperty(value = "#{eIndemniteRepos}")
+   
+	@ManagedProperty(value = "#{eIndemniteRepos}")
     private EIndemniteRepos eIndemniteRepos;
     @ManagedProperty(value = "#{ePrimeRepos}")
     private EPrimeRepos ePrimeRepos;
@@ -136,7 +137,7 @@ public class SalaryDetailsEditCtl {
 
 	    ePrimeRepos.delete(ePrime);
 	}
-	return "ok";
+	return "SalaryHr?faces-redirect=true";
 
     }
 
@@ -144,7 +145,7 @@ public class SalaryDetailsEditCtl {
 	if (eIndemnite != null) {
 	    eIndemniteRepos.delete(eIndemnite);
 	}
-	return "ok";
+	return "SalaryHr?faces-redirect=true";
 
     }
 
@@ -152,7 +153,7 @@ public class SalaryDetailsEditCtl {
 	if (eSalaryData != null) {
 	    eSalaryDataRepos.delete(eSalaryData);
 	}
-	return "ok";
+	return "SalaryHr?faces-redirect=true";
 
     }
 

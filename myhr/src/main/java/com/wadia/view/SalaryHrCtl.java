@@ -35,6 +35,7 @@ public class SalaryHrCtl {
 	StopWatch stopWatch = new StopWatch();
 	stopWatch.start();
 	salaryHrMetiers = salaryService.listSalary();
+	System.out.println(salaryHrMetiers.size());
 	stopWatch.stop();
 	System.out.println("method time : " + stopWatch.getTotalTimeMillis() + " ms");
     }

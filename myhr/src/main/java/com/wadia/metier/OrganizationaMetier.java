@@ -4,11 +4,13 @@
  */
 package com.wadia.metier;
 
+import java.io.Serializable;
+
 /**
  *
  * @author toshiba
  */
-public class OrganizationaMetier {
+public class OrganizationaMetier implements Serializable{
     
      
      private String name;

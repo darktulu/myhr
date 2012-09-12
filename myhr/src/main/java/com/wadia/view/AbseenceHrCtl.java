@@ -4,6 +4,7 @@
  */
 package com.wadia.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,43 +12,35 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.wadia.metier.AbsencefillMetier;
 import com.wadia.metier.AbsencehrMetier;
+import com.wadia.repos.TypeAbsenceRepos;
 
 /**
  *
  * @author ITR2012
  */
 @ManagedBean (name="AbseenceHrCtl")
-@RequestScoped
-public class AbseenceHrCtl {
-    @ManagedProperty(value="#{absencefillMetier}")
-    private AbsencefillMetier absencefillMetier;
+@ViewScoped
+public class AbseenceHrCtl implements Serializable {
+    
     private List<AbsencehrMetier>  absencehrMetier = new ArrayList<AbsencehrMetier>();
     private int totalAbscence; 
     private String search;
     
+    private AbsencefillMetier absencefillMetier() {
+        return SpringJSFUtil.getBean("absencefillMetier");
+    }
+    
     @PostConstruct
     public void init()
     {
-    absencehrMetier =absencefillMetier.listAbsence();
+    absencehrMetier =absencefillMetier().listAbsence();
     
     }
 
-    /**
-     * @return the absencefillMetier
-     */
-    public AbsencefillMetier getAbsencefillMetier() {
-        return absencefillMetier;
-    }
-
-    /**
-     * @param absencefillMetier the absencefillMetier to set
-     */
-    public void setAbsencefillMetier(AbsencefillMetier absencefillMetier) {
-        this.absencefillMetier = absencefillMetier;
-    }
 
    
     public int getTotalAbscence() {
@@ -86,7 +79,7 @@ public class AbseenceHrCtl {
 
 
             List<AbsencehrMetier> leaveListSearchs = new ArrayList<AbsencehrMetier>();
-             absencehrMetier =absencefillMetier.listAbsence();
+             absencehrMetier =absencefillMetier().listAbsence();
             System.out.println("filtering employs... " + search);
 
             for (AbsencehrMetier absence : absencehrMetier) {
@@ -97,7 +90,8 @@ public class AbseenceHrCtl {
                 }
             }
            // System.out.println("filtering employs... " + leaveListSearchs.size());
-            absencehrMetier = leaveListSearchs;
+            absencehrMetier.clear();
+            absencehrMetier.addAll(leaveListSearchs);
         }
         
     }

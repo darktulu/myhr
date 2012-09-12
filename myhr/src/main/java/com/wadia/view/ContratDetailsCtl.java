@@ -115,13 +115,15 @@ public class ContratDetailsCtl {
 	this.contraToDelete = contraToDelete;
     }
 
-    public void delete() {
+    public String delete() {
 
 	if (contraToDelete != null) {
 
 	    eContractDataRepos.delete(contraToDelete);
 
 	}
+	
+	return "ContratHr?faces-redirect=true";
 
     }
     public EContractDataRepos geteContractDataRepos() {

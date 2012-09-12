@@ -195,7 +195,7 @@ and open the template in the editor.
                 <br/><br/>
                 <h:panelGrid columns="2" >
                     <a4j:commandButton onclick="#{rich:component('delete')}.hide()" value="Cancel"/>
-                    <a4j:commandButton render="tab" action="#{SoldCtl.delete()}"  onclick="#{rich:component('delete')}.hide()" oncomplete="#{soldLeaveHr.update()}" value="Delete"/>
+                    <a4j:commandButton action="#{SoldCtl.delete()}" value="Delete"/>
                 </h:panelGrid>
             </rich:popupPanel>
 

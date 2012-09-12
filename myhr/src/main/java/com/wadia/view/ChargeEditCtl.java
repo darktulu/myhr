@@ -15,7 +15,7 @@ import com.wadia.repos.EchargeRepos;
  *
  * @author toshiba
  */
-@ManagedBean
+@ManagedBean(name="ChargeEditCtl")
 @RequestScoped
 public class ChargeEditCtl {
     @ManagedProperty(value="#{echargeRepos}")
@@ -42,7 +42,7 @@ public class ChargeEditCtl {
 	  echargeRepos.delete(data);
           
       }  
-      return "ok";
+      return "SalaryHr?faces-redirect=true";
     
     }
 

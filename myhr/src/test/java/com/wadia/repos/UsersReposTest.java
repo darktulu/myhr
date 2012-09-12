@@ -2,6 +2,9 @@ package com.wadia.repos;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -9,20 +12,30 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.wadia.metier.EEducationDataMetier;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-	"classpath:META-INF/spring/applicationContext-data.xml",
-	"classpath:META-INF/spring/applicationContext-security.xml",
-	"classpath:META-INF/spring/applicationContext.xml" })
+import com.wadia.local.Recipients;
+import com.wadia.metier.OrgFillMetier;
+import com.wadia.metier.OrgShowList;
+import com.wadia.service.OrganizationalService;
+import com.wadia.service.SalaryService;
+import com.wadia.service.SendMail;
+
 public class UsersReposTest {
 
-    @Inject
-    private EEducationDataMetier eEducationDataMetier;
+    
+    private SendMail sendMail; 	
+   
     @Test
     public void test() {
-	System.out.println(eEducationDataMetier.findByUsername("o.gamrane").size());
+    
+    List<Recipients> list = new ArrayList<Recipients>();
+    Recipients rep = new Recipients();
+    rep.setMail("o.GAMRANE@3gcon-int.com");
+    rep.setType("To");
+    list.add(rep);
+    sendMail.sendMailHTML(list, "test", "Hello world");
+    	
+	
     }
 
 }

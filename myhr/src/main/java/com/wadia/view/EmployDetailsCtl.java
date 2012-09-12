@@ -26,20 +26,10 @@ public class EmployDetailsCtl {
     private String IdToView;
     private static EGeneralData eGeneralData = new EGeneralData();
     private PathProvider pathProvider = new PathProvider();
+   
     @ManagedProperty(value = "#{eGeneralDataRepos}")
     private EGeneralDataRepos eGeneralDataRepos;
 
-    public EGeneralDataRepos geteGeneralDataRepos() {
-	return eGeneralDataRepos;
-    }
-
-    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
-	this.eGeneralDataRepos = eGeneralDataRepos;
-    }
-
-    public EmployDetailsCtl() {
-
-    }
 
     public void resetImage() throws IOException {
 
@@ -73,12 +63,31 @@ public class EmployDetailsCtl {
 
     }
 
-    public static EGeneralData geteGeneralData() {
-	return eGeneralData;
+    
+    
+
+    public EGeneralDataRepos geteGeneralDataRepos() {
+	return eGeneralDataRepos;
     }
 
-    public static void seteGeneralData(EGeneralData aeGeneralData) {
-	eGeneralData = aeGeneralData;
+    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
+	this.eGeneralDataRepos = eGeneralDataRepos;
     }
+
+	public EGeneralData geteGeneralData() {
+		return eGeneralData;
+	}
+
+	public void seteGeneralData(EGeneralData eGeneralData) {
+		this.eGeneralData = eGeneralData;
+	}
+
+	public PathProvider getPathProvider() {
+		return pathProvider;
+	}
+
+	public void setPathProvider(PathProvider pathProvider) {
+		this.pathProvider = pathProvider;
+	}
 
 }

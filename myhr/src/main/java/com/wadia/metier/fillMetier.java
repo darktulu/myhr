@@ -4,6 +4,7 @@
  */
 package com.wadia.metier;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import com.wadia.repos.UsersRepos;
  */
 @Service
 @Transactional
-public class fillMetier {
+public class fillMetier implements Serializable{
 
     @Inject
     private UsersRepos usersRepos;

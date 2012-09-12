@@ -4,6 +4,7 @@
  */
 package com.wadia.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +12,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.wadia.beans.EGeneralData;
 import com.wadia.local.fabrique;
 import com.wadia.local.user;
+import com.wadia.metier.DirectoryMetier;
 import com.wadia.metier.fillMetier;
 import com.wadia.repos.EGeneralDataRepos;
 
@@ -24,13 +27,17 @@ import com.wadia.repos.EGeneralDataRepos;
  */
 
 @ManagedBean (name="EmployListCtl")
-@RequestScoped
-public class EmployListCtl implements Cloneable {
+@ViewScoped
+public class EmployListCtl implements Cloneable, Serializable {
 
-    @ManagedProperty(value = "#{eGeneralDataRepos}")
-    private EGeneralDataRepos eGeneralDataRepos;
-    @ManagedProperty(value = "#{fillMetier}")
-    private fillMetier fillMetier;
+    
+    private EGeneralDataRepos eGeneralDataRepos() {
+        return SpringJSFUtil.getBean("eGeneralDataRepos");
+    }
+    
+    private fillMetier fillMetier() {
+        return SpringJSFUtil.getBean("fillMetier");
+    }
 
     
     private List<EGeneralData> listEmploys = new ArrayList<EGeneralData>();
@@ -42,21 +49,21 @@ public class EmployListCtl implements Cloneable {
     @PostConstruct
     public void init() {
 
-        listEmploys = eGeneralDataRepos.findAll();
+        listEmploys = eGeneralDataRepos().findAll();
         total = listEmploys.size();
-        total_active = eGeneralDataRepos.findByStatus("ACTIVE").size();
+        total_active = eGeneralDataRepos().findByStatus("ACTIVE").size();
     }
 
     public void update() {
 
-	fillMetier.fill();
+	fillMetier().fill();
 
 
     }
 
     public void recherger() {
 
-        listEmploys = eGeneralDataRepos.findAll();
+        listEmploys = eGeneralDataRepos().findAll();
     }
 
     public List<EGeneralData> getListEmploys() {
@@ -83,7 +90,7 @@ public class EmployListCtl implements Cloneable {
         this.search = search;
          if (search != null) {
             System.out.println("filtering employs... " + search);
-            listEmploys = eGeneralDataRepos.findAll();
+            listEmploys = eGeneralDataRepos().findAll();
             List<EGeneralData> EmploysListSearch = new ArrayList<EGeneralData>();
             for (EGeneralData employ : listEmploys) {
                 if (employ.getResurceId().toLowerCase().contains(search.toLowerCase())
@@ -93,7 +100,8 @@ public class EmployListCtl implements Cloneable {
                     EmploysListSearch.add(employ);
                 }
             }
-            listEmploys = EmploysListSearch;
+            listEmploys.clear();
+            listEmploys.addAll(EmploysListSearch);
             System.out.println("taille... " + EmploysListSearch.size());
 
         }
@@ -117,19 +125,4 @@ public class EmployListCtl implements Cloneable {
         this.total_active = total_active;
     }
     
-    public EGeneralDataRepos geteGeneralDataRepos() {
-	return eGeneralDataRepos;
-    }
-
-    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
-	this.eGeneralDataRepos = eGeneralDataRepos;
-    }
-
-    public fillMetier getFillMetier() {
-        return fillMetier;
-    }
-
-    public void setFillMetier(fillMetier fillMetier) {
-        this.fillMetier = fillMetier;
-    }
 }

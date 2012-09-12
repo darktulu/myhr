@@ -15,7 +15,7 @@ import com.wadia.repos.SoldleaveRepos;
  * 
  * @author toshiba
  */
-@ManagedBean
+@ManagedBean (name="SoldEditCtl")
 @RequestScoped
 public class SoldEditCtl {
 
@@ -96,5 +96,13 @@ public class SoldEditCtl {
     public void setSoldleave(Soldleave soldleave) {
 	this.soldleave = soldleave;
     }
+
+	public SoldleaveRepos getSoldleaveRepos() {
+		return soldleaveRepos;
+	}
+
+	public void setSoldleaveRepos(SoldleaveRepos soldleaveRepos) {
+		this.soldleaveRepos = soldleaveRepos;
+	}
 
 }
