@@ -42,7 +42,8 @@ public class leaveCtl {
     private String motif;
     private Integer idToEdit;
     private static ELData leaveToEdit = new ELData();
-    private Recipients recipients;
+    
+    
     @ManagedProperty(value = "#{soldleaveMetier}")
     private SoldleaveMetier soldleaveMetier;
    
@@ -80,28 +81,34 @@ public class leaveCtl {
 	sold = soldleaveRepos.findByUsernameAndYear(user.getUsername(), yearC);
 	sold.setPlanned(sold.getPlanned() + days);
 	soldleaveRepos.save(sold);
-
+    
+	System.out.println("manager "+affectationMetier.findMyManager(user.getUsername()).getInfo());
+    System.out.println("HR "+affectationMetier.findMyHrManager(user.getUsername()).getInfo());
+    System.out.println("Moi "+affectationMetier.findMe(user.getUsername()).getInfo());
+	
+	
 	/*
 	 * On envoi l'email par la methode public void RequestLeave(List<String>
 	 * toMail, String Manager, String User, int year ,Date startDate, Date
 	 * endDate, int days, String motif )
 	 */
-    recipients.setMail(affectationMetier.findMyManager(user.getUsername()).getInfo());
-    recipients.setType("To");
-	mailList.add(recipients); // ADD MANAGER
+    Recipients manager = new Recipients();
+    manager.setMail(affectationMetier.findMyManager(user.getUsername()).getInfo());
+    manager.setType("To");
+	mailList.add(manager); // ADD MANAGER
 	
-	recipients.setMail(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
-    recipients.setType("Cc");
-	mailList.add(recipients);//ADD HR
+	Recipients HrManager = new Recipients();
+	HrManager.setMail(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
+	HrManager.setType("Cc");
+	mailList.add(HrManager);//ADD HR
 	
-	recipients.setMail(user.getUser().getInfo());
-    recipients.setType("Cc");
-	mailList.add(recipients);// ADD ME
+	Recipients Me = new Recipients();
+	Me.setMail(affectationMetier.findMe(user.getUsername()).getInfo());
+	Me.setType("Cc");
+	mailList.add(Me);// ADD ME
 	
 
-        System.out.println("manager "+affectationMetier.findMyManager(user.getUsername()).getInfo());
-        System.out.println("HR "+affectationMetier.findMyHrManager(user.getUsername()).getInfo());
-        System.out.println("Moi "+affectationMetier.findMe(user.getUsername()).getInfo());
+        
 
 	if (sold != null) {
 
@@ -113,15 +120,18 @@ public class leaveCtl {
 	     * ()).getFullName(), user.getUser().getFullName(),yearC, start,
 	     * end, days, motif );
 	     */
-            System.out.println("Before");
+	    for(Recipients rep : mailList){
+	     System.out.println("leveCtl "+rep.getMail());	
+	    }
+           
 	    mailForm.RequestLeave(mailList, affectationMetier.findMyManager(user.getUsername()).getFullName(), user
 		    .getUser().getFullName(), year, start, end, days, motif);
-	    System.out.println("Done");
+	    
 	}
 	return "leaves?faces-redirect=true";
     }
 
-    public void cancel() {
+    public String cancel() {
 
 	if (leaveToEdit != null) {
 	    System.out.println("leave to cancel : " + leaveToEdit.getLeaveId());
@@ -143,7 +153,7 @@ public class leaveCtl {
 	    // mailForm.canceledLeaveMail(affectationMetier.findMyRHMail(user.getUsername()),
 	    // user.getUser().getFirstname(), user.getUser().getLastname());
 	}
-
+	 return "leaves?faces-redirect=true";
     }
 
     public boolean cancel(String status) {
@@ -159,7 +169,7 @@ public class leaveCtl {
 	return var;
     }
 
-    public void take() {
+    public String take() {
 
 	if (leaveToEdit != null) {
 	    System.out.println("leave to cancel : " + leaveToEdit.getLeaveId());
@@ -181,8 +191,9 @@ public class leaveCtl {
 	    // user.getUser().getFirstname(), user.getUser().getLastname());
 	     //mailForm.takeLeaveMail(affectationMetier.findMyRHMail(user.getUsername()),
 	    // user.getUser().getFirstname(), user.getUser().getLastname());
-
+       
 	}
+	 return "leaves?faces-redirect=true";
 
     }
 
@@ -210,24 +221,17 @@ public class leaveCtl {
 
     }
 
-    public void delete() {
+    public String delete() {
 
 	if (leaveToEdit != null) {
-	    System.out.println("leave to cancel : " + leaveToEdit.getLeaveId());
+	    System.out.println("leave to delete : " + leaveToEdit.getLeaveId());
 	    eLDataRepos.delete(leaveToEdit);
 	}
+	
+	 return "leaves?faces-redirect=true";
 
     }
 
-    public void delete(Integer id) {
-	if (id != null) {
-	    System.out.println("heeeree !!");
-	    ELData eld = new ELData();
-	    eld = eLDataRepos.findOne(id);
-	    eLDataRepos.delete(eld);
-	}
-
-    }
 
     public String getId() {
 	return id;
@@ -376,12 +380,5 @@ public class leaveCtl {
         this.eLDataRepos = eLDataRepos;
     }
 
-	public Recipients getRecipients() {
-		return recipients;
-	}
-
-	public void setRecipients(Recipients recipients) {
-		this.recipients = recipients;
-	}
 
 }

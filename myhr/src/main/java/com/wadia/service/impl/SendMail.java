@@ -13,11 +13,11 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
 import com.wadia.local.Recipients;
-import com.wadia.service.SendMail;
 
-public class SendMailImpl implements SendMail {
 
-	@Override
+public class SendMail{
+
+	
 	public void sendMailHTML(List<Recipients> toMail, String title, String mail) {
 		 final String username = "MyHR@3gcom-int.com";
 	        final String password = "G3com123";
@@ -44,26 +44,34 @@ public class SendMailImpl implements SendMail {
 	            
 	            /*message.setRecipients(Message.RecipientType.TO,
 	                    InternetAddress.parse(toMail));*/
+	            javax.mail.Message.RecipientType type =  Message.RecipientType.TO;
 	            
+	            for(Recipients rep : toMail){
+	       	     System.out.println("SendMail "+rep.getMail());	
+	       	    }
 	            
 	            for (Recipients recipient : toMail) {
 	            	
-	            	RecipientType type = null;
+	            	
 	            	
 	            	if ("To".equals(recipient.getType())) {
 	            	
-	            		type = (RecipientType) Message.RecipientType.TO;
+	            		type =  Message.RecipientType.TO; // Send To
 	            		
-	            	} else if ("Cc".equals(recipient.getType())) {
+	            	} 
 	            	
-	            		type = (RecipientType) Message.RecipientType.CC;
+	            	if ("Cc".equals(recipient.getType())) {
+	            	
+	            		type = Message.RecipientType.CC;
 	            		
-	            	} else if ("Bcc".equals(recipient.getType())) {
+	            	} 
 	            	
-	            		type = (RecipientType) Message.RecipientType.BCC;
+	            	if ("Bcc".equals(recipient.getType())) {
+	            	
+	            		type = Message.RecipientType.BCC;
 	            	}
 	            	
-	            	message.addRecipients(type, InternetAddress.parse(recipient.getMail(), false));
+	            	message.setRecipients(type, InternetAddress.parse(recipient.getMail()));
 	            
 	            }
 	            

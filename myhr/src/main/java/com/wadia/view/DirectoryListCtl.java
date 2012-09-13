@@ -80,7 +80,9 @@ public class DirectoryListCtl implements Serializable {
                 }
             }
 
-            listDirect = toreturn;
+            listDirect.clear();
+            listDirect.addAll(toreturn);
+            
 
 
         }

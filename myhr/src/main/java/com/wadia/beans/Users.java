@@ -1,6 +1,6 @@
 package com.wadia.beans;
 
-// Generated 30 ao�t 2012 18:58:08 by Hibernate Tools 3.2.1.GA
+
 
 import java.util.ArrayList;
 import java.util.Collection;

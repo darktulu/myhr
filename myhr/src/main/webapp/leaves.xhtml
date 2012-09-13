@@ -240,7 +240,7 @@ and open the template in the editor.
 
 
                                 <rich:dataTable value="#{LeavesListCtl.geteLData()}" var="leave"
-                                                id="tab" rows="15" rowClasses="odd-row, even-row"
+                                                id="tabLeaves" rows="15" rowClasses="odd-row, even-row"
                                                 styleClass="stable" style="width: 100%;">
 
                                     <rich:column  style="height : 40px;" >
@@ -291,7 +291,7 @@ and open the template in the editor.
 
                                         <div id="canc" style=" float: right;">
                                             <a4j:commandLink   style="color: lightseagreen; margin-left: 2px; margin-right: 2px;"  rendered="#{leaveCtl.cancel(leave.status)}"
-                                                               onclick="#{rich:component('cancel')}.show()" render="tab" oncomplete="#{LeavesListCtl.update()}">                      
+                                                               onclick="#{rich:component('cancel')}.show()" reRender="tabLeaves" oncomplete="#{LeavesListCtl.init()}">                      
                                                 <img src="images/1336230614_150.png" title="Cancel leave"/>
                                                 <f:setPropertyActionListener  value="#{leave.leaveId}" target="#{leaveCtl.idToEdit}"/>
                                             </a4j:commandLink>
@@ -299,14 +299,14 @@ and open the template in the editor.
 
                                         <div id="tk" style=" float: right;">
                                             <a4j:commandLink   style="color: lightseagreen; margin-left: 2px; margin-right: 2px;"  rendered="#{leave.status == 'Approved By HR'}"
-                                                               onclick="#{rich:component('take')}.show()" render="tab" oncomplete="#{LeavesListCtl.update()}">                      
+                                                               onclick="#{rich:component('take')}.show()" reRender="tabLeaves" oncomplete="#{LeavesListCtl.init()}">                      
                                                 <img src="images/1336231149_4.png" title="Cancel leave"/>
                                                 <f:setPropertyActionListener  value="#{leave.leaveId}" target="#{leaveCtl.idToEdit}"/>
                                             </a4j:commandLink>
                                         </div>
                                         <div id="delete" style=" float: right;">
                                             <a4j:commandLink   style="color: lightseagreen; margin-left: 2px; margin-right: 2px;"  rendered="#{ leave.status == 'canceled'}"
-                                                               onclick="#{rich:component('dele')}.show()" render="tab" oncomplete="#{LeavesListCtl.update()}">                      
+                                                               onclick="#{rich:component('dele')}.show()" reRender="tabLeaves" oncomplete="#{LeavesListCtl.init()}">                      
                                                 <img src="images/1336230653_3.png" title="Delete leave"/>
                                                 <f:setPropertyActionListener  value="#{leave.leaveId}" target="#{leaveCtl.idToEdit}"/>
                                             </a4j:commandLink>
@@ -342,23 +342,28 @@ and open the template in the editor.
                              query="jQuery(this).removeClass('active-row')"/>
             </table> 
 
-            <rich:popupPanel id="cancel" width="350" height="120">
+            <rich:popupPanel id="cancel" width="350" height="140">
                 <f:facet name="header">
                     Cancel leave
                 </f:facet>
-                <b></b>
-                <br/>
-                do you want to cancel this leave ?
-                <br/>
-                <h:panelGrid columns="2" width="50%">
-                    <a4j:commandButton value="no" onclick="#{rich:component('cancel')}.hide()"/>
+                <f:facet name="controls">
+                      <h:outputLink value="#" onclick="#{rich:component('dele')}.hide(); return false;">
+                         X
+                      </h:outputLink>
+               </f:facet>
+                <h:panelGrid columns="2" style="width: 300px;">
+                    <p style="font:  bold 12px Helvetica, Arial, sans-serif; margin-top: 20px; float: left; color : #f08520;">Do you want to cancel this leave ?</p>
+                    <img src="images/1336862975_notification_warning.png" style="float : right; margin: auto; "/>
+                </h:panelGrid>
+                <h:panelGrid columns="2" style="width: 100px; height : 30px; margin-top: 8px; float : right;">
                     <a4j:commandButton value="yes"
                                        action="#{leaveCtl.cancel()}"
-                                       onclick="#{rich:component('cancel')}.hide()" oncomplete="#{LeavesListCtl.update()}" render="tab">
+                                       onclick="#{rich:component('cancel')}.hide()" oncomplete="#{LeavesListCtl.init()}" reRender="forms" style="width : 60px; float: right; height : 20px;">
 
                     </a4j:commandButton>
                 </h:panelGrid>
             </rich:popupPanel>
+            
             <rich:popupPanel id="take" width="350" height="120">
                 <f:facet name="header">
                     Take leave
@@ -371,7 +376,7 @@ and open the template in the editor.
                     <a4j:commandButton value="no" onclick="#{rich:component('take')}.hide()"/>
                     <a4j:commandButton value="yes"
                                        action="#{leaveCtl.take()}"
-                                       onclick="#{rich:component('take')}.hide()" oncomplete="#{LeavesListCtl.update()}" render="tab">
+                                       onclick="#{rich:component('take')}.hide()" oncomplete="#{LeavesListCtl.init()}" reRender="forms">
 
                     </a4j:commandButton>
                 </h:panelGrid>
@@ -380,19 +385,29 @@ and open the template in the editor.
                 <f:facet name="header">
                     Delete leave
                 </f:facet>
+               
+                <f:facet name="controls">
+                      <h:outputLink value="#" onclick="#{rich:component('dele')}.hide(); return false;">
+                         X
+                      </h:outputLink>
+               </f:facet>
+               
                 <h:panelGrid columns="2" style="width: 300px;">
                     <p style="font:  bold 12px Helvetica, Arial, sans-serif; margin-top: 20px; float: left; color : #f08520;">Do you want to delete this leave ?</p>
                     <img src="images/1336862975_notification_warning.png" style="float : right; margin: auto; "/>
                 </h:panelGrid>
                 <h:panelGrid columns="2" style="width: 100px; height : 30px; margin-top: 8px; float : right;" >
-                    <a4j:commandButton value="No" onclick="#{rich:component('dele')}.hide()" style="width : 60px; float: right; height: 20px;"/>
                     <a4j:commandButton value="yes"
                                        action="#{leaveCtl.delete()}"
-                                       onclick="#{rich:component('dele')}.hide()" oncomplete="#{LeavesListCtl.update()}" render="tab" style="width : 60px; float: right; height : 20px;">
+                                       onclick="#{rich:component('dele')}.hide()" oncomplete="#{LeavesListCtl.init()}" reRender="forms" style="width : 60px; float: right; height : 20px;">
 
                     </a4j:commandButton>
+
                 </h:panelGrid>
             </rich:popupPanel>
+            
+            
+            
         </h:form>
 
     </h:body>

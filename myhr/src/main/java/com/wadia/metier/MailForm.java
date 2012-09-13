@@ -10,7 +10,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.wadia.local.Recipients;
-import com.wadia.service.SendMail;
+import com.wadia.service.impl.SendMail;
+
+
 
 /**
  *
@@ -19,7 +21,7 @@ import com.wadia.service.SendMail;
 public class MailForm {
 
     private SendMailTLS sendMailTLS;
-    private SendMail sendMail;
+    private SendMail sendMail = new SendMail();
     
 
     public void RequestLeave(List<Recipients> toMail, String Manager, String User, String year, Date startDate, Date endDate, int days, String motif) {
@@ -84,6 +86,11 @@ public class MailForm {
                 + "MyHR"
                 + "</p>"
                 + "</div>";
+        
+        for(Recipients rep : toMail){
+   	     System.out.println("MailFrom "+rep.getMail());	
+   	    }
+        
         sendMail.sendMailHTML(toMail, "Vacation Request", mail);
 
     }

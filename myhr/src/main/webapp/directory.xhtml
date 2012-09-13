@@ -66,7 +66,7 @@ and open the template in the editor.
 		<ui:include src="header.xhtml" />
 	</div>
 
-	<h:form id="forms">
+	<h:form id="forms" >
 		<table style="max-width: 1700px; margin: auto;">
 			<tbody>
 				<tr>
@@ -252,14 +252,13 @@ and open the template in the editor.
 										<f:facet name="header">
 											<h:outputText value="View" />
 										</f:facet>
-
-										<a4j:commandLink styleClass="btn"
-											oncomplete="#{rich:component('details')}.show()"
-											render="details" style=" display:block; text-align:center;">
-											<f:setPropertyActionListener value="#{employe}"
-												target="#{DirectoryListCtl.selectedEmploy}" />
-											<img src="images/1342282295_find.png" />
+										
+										<a4j:commandLink oncomplete="#{rich:component('details')}.show()"
+											 render="details">
+											<img src="images/1342282295_find.png"/>
+											<f:setPropertyActionListener value="#{employe}" target="#{DirecSelectedEmp.selectedEmploy}" />
 										</a4j:commandLink>
+
 									</rich:column>
 									<f:facet name="footer">
 										<rich:dataScroller />
@@ -278,20 +277,20 @@ and open the template in the editor.
 			<rich:jQuery selector=".stable tr" event="mouseout"
 				query="jQuery(this).removeClass('active-row')" />
 		</table>
-	</h:form>
+
 
 	<rich:popupPanel autosized="false" id="details" modal="true"
 		style=" background: #ffffff; font: 12px Helvetica, Arial, sans-serif;"
-		width="750" height="310">
-		<h:form id="popup" prependId="false">
-			<f:facet name="header">
-                    Profil 2
-                </f:facet>
-			<table>
-				<tbody>
+		width="750" height="310"
+		onmaskclick="#{rich:component('details')}.hide()">
+        	<h:form id="detailsEmploy">
+		<table>
+			<tbody>
+			
 					<tr>
+
 						<td style="width: 370px; height: 120px;"><img
-							src="#{DirectoryListCtl.selectedEmploy.idPhoto}"
+							src="#{DirecSelectedEmp.selectedEmploy.idPhoto}"
 							style="margin: auto; width: 150px; height: 120px; margin-left: 110px" /></td>
 
 						<td style="width: 370px; height: 120px;"><h:panelGrid
@@ -299,22 +298,22 @@ and open the template in the editor.
 								<h:outputText value="First name : "
 									style="margin-bottom: 4px; font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirectoryListCtl.selectedEmploy.firstname}"
+									value="#{DirecSelectedEmp.selectedEmploy.firstname}"
 									style="margin-bottom: 4px; " />
 								<h:outputText value="Last name : "
 									style="margin-bottom: 4px; font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirectoryListCtl.selectedEmploy.lastname}"
+									value="#{DirecSelectedEmp.selectedEmploy.lastname}"
 									style="margin-bottom: 4px;" />
 								<h:outputText value="Job Title : "
 									style="margin-bottom: 4px;  font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirectoryListCtl.selectedEmploy.jobTitle}"
+									value="#{DirecSelectedEmp.selectedEmploy.jobTitle}"
 									style="height : 30px;" />
 								<h:outputText value="Mobile Number : "
 									style="margin-bottom: 4px;  font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirectoryListCtl.selectedEmploy.mobileNumber}"
+									value="#{DirecSelectedEmp.selectedEmploy.mobileNumber}"
 									style="margin-bottom: 4px;" />
 							</h:panelGrid></td>
 					</tr>
@@ -352,18 +351,19 @@ and open the template in the editor.
 							</h:panelGrid></td>
 
 					</tr>
-				</tbody>
-			</table>
-			<div style="width: 100%; height: 30px; background: royalblue;">
+				
+			</tbody>
+		</table>
+		<!--  <div style="width: 100%; height: 30px; background: royalblue;">
 				<h:commandLink styleClass="btn"
 					style=" display:block; text-align:center;" immediate="true">
 					<img src="images/1343749177_window-close.png" />
 				</h:commandLink>
-			</div>
+			</div>-->
 
-		</h:form>
+          </h:form>
 	</rich:popupPanel>
 
-
+	</h:form>
 </h:body>
 </html>

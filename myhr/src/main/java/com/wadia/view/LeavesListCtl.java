@@ -44,11 +44,6 @@ public class LeavesListCtl {
 	}
     }
 
-    public void update() {
-	eLData = leavesMetier.findByUsername(usercontroller.getUsername());
-	
-    }
-
     public List<ELData> geteLData() {
 	return eLData;
     }
