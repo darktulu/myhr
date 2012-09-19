@@ -46,10 +46,10 @@ public class LeaveControlEditCtl implements Serializable {
         eLDataRepos().save(data);
         //mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
         //mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
-        mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
-        MailForm mailForm = new MailForm();
-        mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "HR Manager");
-        return "ok";
+       // mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+       // MailForm mailForm = new MailForm();
+       // mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "HR Manager");
+        return "LeaveSummaryList?faces-redirect=true";
     }
 
     public String approuvePM() {
@@ -59,10 +59,23 @@ public class LeaveControlEditCtl implements Serializable {
         eLDataRepos().save(data);
 //       mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
 //        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
-      mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
-       MailForm mailForm = new MailForm();
-       mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
+     // mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+     //  MailForm mailForm = new MailForm();
+     //  mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
         return "myTeam?faces-redirect=true";
+    }
+    
+    public String taken() {
+        List<String> mailList = new ArrayList<String>();
+        data.setStatus("taken");
+        data.setSatatusDescription(" ");
+        eLDataRepos().save(data);
+//       mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
+//        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
+     // mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+     //  MailForm mailForm = new MailForm();
+     //  mailForm.leaveApprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
+        return "LeaveSummaryList?faces-redirect=true";
     }
 
     public String disapprouve() {
@@ -73,10 +86,10 @@ public class LeaveControlEditCtl implements Serializable {
         System.out.println("Approved object is : " + data.getResurceId());
        // mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
        // mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
-        mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
-        MailForm mailForm = new MailForm();
-        mailForm.leaveDesapprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "HR Manager");
-        return "ok";
+        //mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+       // MailForm mailForm = new MailForm();
+       // mailForm.leaveDesapprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "HR Manager");
+        return "LeaveSummaryList?faces-redirect=true";
     }
 
     public String disapprouvePM() {
@@ -89,9 +102,9 @@ public class LeaveControlEditCtl implements Serializable {
         List<String> mailList = new ArrayList<String>();
 //        mailList.add(affectationMetier().findMyManager(data.getResurceId()).getInfo());
 //        mailList.add(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
-      mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
-       MailForm mailForm = new MailForm();
-        mailForm.leaveDesapprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
+      //mailList.add(affectationMetier().findMe(data.getResurceId()).getInfo());
+      // MailForm mailForm = new MailForm();
+      //  mailForm.leaveDesapprouved(mailList, affectationMetier().findMe(data.getResurceId()).getFullName(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(), "line Manager");
 
         return "myTeam?faces-redirect=true";
     }

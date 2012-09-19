@@ -7,13 +7,16 @@ package com.wadia.metier;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wadia.beans.EGeneralData;
 import com.wadia.beans.ELData;
+import com.wadia.local.user;
 import com.wadia.repos.ELDataRepos;
 
 /**
@@ -46,6 +49,17 @@ public class LeavesMetier {
 	}
 	return (leavessToReturn);
     }
+    
+    public List<ELData> findTask(List<EGeneralData> team){
+    	
+    	List<ELData> taskList = new ArrayList<ELData>();
+    	
+    	for(EGeneralData employ : team){
+    		
+    		taskList.addAll(eLDataRepos.findWaiting(employ.getResurceId()));
+    	}
+    	return taskList;
+    }
 
     public List<ELData> findByApprovedPM(String username) {
 
@@ -55,7 +69,7 @@ public class LeavesMetier {
 
 	for (ELData leave : eLdatas) {
 
-	    if (leave.getStatus().equals("Approved By PM") && leave.getResurceId().equals(username)) {
+	    if ((leave.getStatus().equals("Approved By PM") && leave.getResurceId().equals(username)) ||( leave.getStatus().equals("Approved By HR") && leave.getResurceId().equals(username))) {
 
 		leavessToReturn.add(leave);
 
@@ -103,5 +117,6 @@ public class LeavesMetier {
 	return years;
 
     }
-
+    
+    
 }

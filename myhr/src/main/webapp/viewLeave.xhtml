@@ -25,54 +25,69 @@ and open the template in the editor.
         <div id="container">
             <ui:include src="header.xhtml"/>
         </div>
-        <div id="Menu">
-            <ui:include src="Menus/MenuLeavs.xhtml"/>
-        </div>
-
         <h:form id="forms">
-            <table style="float: left; max-width: 200px;">
+            <table style=" max-width: 1700px; margin: auto;">
                 <tbody>
                     <tr>
-                        <td><div id="left" style="width: 150px; min-height: 826px; background: #f1f1f1; border: activeborder 1px #000; font:  14px Helvetica, Arial, sans-serif; "> 
-
-                                <table style="margin-left: 5px;">
-                                    <tbody>
-                                        <tr  style="background: #ffffff;">
-                                            <td style="border: solid 1px #c9c9c9; background: #f5b050; "><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="leaves.xhtml">
-                                                    <h:outputText value="My Leaves" style="color: #000;"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;"><a href="absenceList.xhtml">
-                                                    <h:outputText value="My Absences" style="color: #000;"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;"><a href="teamcalendar.xhtml">
-                                                    <h:outputText value="My Team Calendar" style="color: #000;"/>
-                                                </a></td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-
-                        </td>
-
                         <td>
+                            <div id="left" style="width: 200px; min-height: 935px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="198" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="My Team Data" rendered="#{authByRoleCtl.RH}"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="HR Management" name="HR Management" leftIcon="images/group.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team" rendered="#{authByRoleCtl.PM}"> 
+                                            <a href="myTeam.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/group_go.png"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Calendar" name="Team Calendar" leftIcon="images/calendar_view_day.png"/> </a>  
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="Team Data" name="Team Data" leftIcon="images/group_gear.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Data" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png"  /> </a>
+                                            <a href="OrganizationalData.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
+                                            <a href="familyData.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="contratData.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="salary.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                            <a href="EducationData.xhtml"><rich:panelMenuItem label="My Education" name="My Education" leftIcon="images/medal_gold_1.png" /> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="My Leaves" expanded="true" > 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="My Leaves" name="My Leaves" leftIcon="images/status_away.png" style="background: #fee6cd;"/> </a>
+                                            <a href="absenceList.xhtml"><rich:panelMenuItem label="My Absences" name="My Absences" leftIcon="images/status_busy.png"/> </a> 
+                                            <a href="teamcalendar.xhtml"><rich:panelMenuItem label="My Team Calendar" name="My Team Calendar" leftIcon="images/calendar.png"/> </a>
 
-                            <div style="width: 1000px; background: #f5b050; height: 30px; color : #ffffff;"> 
-                                <div style="margin-top: 1px; margin-right: 1px; width: 998px; background: #ffffff; height: 28px; color : #f5b050; float: right;" > 
-                                    <h:outputText value="Actions : " style="font: bold 11px Helvetica, Arial, sans-serif; width: 100%;"/>
-                                    <a href="leaves.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336143521_back.png"/></a>
-                                    <h:outputText value="Back : " style="float : right; margin-left: 10px; margin-right: 2px; margin-top: 4px;"/>
-                                </div>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="leaves.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Self Service" expanded="true"> 
+                                            <a href="selfService.xhtml"><rich:panelMenuItem label="Employment Certificate" name="Certificate of Employment" leftIcon="images/timeline_marker.png"/> </a>  
+                                            <a href="#"><rich:panelMenuItem label="Salary Certificate" name="Salary Certificate" leftIcon="images/coins.png"/> </a> 
+                                            <a href="#"><rich:panelMenuItem label="Payslip" name="Payslip" leftIcon="images/page_key.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Directory" expanded="true"> 
+                                            <a href="directory.xhtml"><rich:panelMenuItem label="Employees data" name="Employees data" leftIcon="images/database_table.png"/> </a>
+                                        </rich:panelMenuGroup>
+
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
+
                             </div>
-                            <rich:panel header="View leave status" style="height: 100%; width: 996px;">
+
+                        </td>                          
+                            <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="1" style="margin-top: 4px; margin-left: 4px;">
+                                        <h:panelGrid columns="2" >
+                                            <a href="leaves.xhtml"><img src="images/1341936090_back.png"/></a>
+                                            <h:outputText value="Back"  style="margin-left: 8px;"></h:outputText>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </div>
+                            
+                            <rich:panel header="View leave status" style="height: 100%; width: 100%;">
 
                                 <table style="margin: auto; min-width: 800px; min-height:200px;" id="datatablesG">
                                     <tbody>
@@ -96,15 +111,9 @@ and open the template in the editor.
 
                                     </tbody>
                                 </table>
-
+                                   <div style="height:630px" />
                             </rich:panel>
-                            <div style="height:584px" />
-                        </td>
-                        <td>
-                            <div style="width: 190px; min-height: 826px; border: solid 1px #f1f1f1; background: #f1f1f1;">
-                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
-                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
-                                </div>
+                            
                             </div>
                         </td>
                     </tr>

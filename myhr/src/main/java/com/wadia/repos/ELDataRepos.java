@@ -15,5 +15,8 @@ public interface ELDataRepos extends JpaRepository<ELData, Integer>{
 	
     @Query("From ELData d where d.resurceId=:username")
     public List<ELData> findByUsername(@Param("username")String username);
+    
+    @Query("From ELData d where d.resurceId=:username AND status='waiting'")
+    public List<ELData> findWaiting(@Param("username")String username);
 
 }

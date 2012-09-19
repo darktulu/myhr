@@ -26,8 +26,8 @@ import com.wadia.repos.ELDataRepos;
 @RequestScoped
 public class LeaveControlCtl {
 
-    @ManagedProperty(value = "#{elDataRepos}")
-    private ELDataRepos elDataRepos;
+    @ManagedProperty(value = "#{eLDataRepos}")
+    private ELDataRepos eLDataRepos;
 
     private static String name;
     private static String surname;
@@ -43,8 +43,7 @@ public class LeaveControlCtl {
    
     @ManagedProperty(value = "#{eGeneralDataRepos}")
     private EGeneralDataRepos eGeneralDataRepos;
-    @ManagedProperty(value = "#{eLDataRepos}")
-    private ELDataRepos eLDataRepos;
+
 
     
     public void update() {
@@ -138,13 +137,13 @@ public class LeaveControlCtl {
 	this.leveToApprove = leveToApprove;
 	if (leveToApprove != 0) {
 
-	    data = elDataRepos.findOne(leveToApprove);
+	    data = eLDataRepos.findOne(leveToApprove);
 	    System.out.println("" + data.toString());
 
 	}
     }
 
-    public void approuve() {
+    public String approuve() {
 
 	
 	ELData eld = new ELData();
@@ -152,15 +151,11 @@ public class LeaveControlCtl {
 	    eld.setStatus("Approved By HR");
 	    eLDataRepos.save(eld);
 	System.out.println("i try to approuve !!");
+	
+	 return "LeaveSummaryList?faces-redirect=true";
     }
 
-    public ELDataRepos getElDataRepos() {
-	return elDataRepos;
-    }
 
-    public void setElDataRepos(ELDataRepos elDataRepos) {
-	this.elDataRepos = elDataRepos;
-    }
     
     public EGeneralDataRepos geteGeneralDataRepos() {
 	return eGeneralDataRepos;

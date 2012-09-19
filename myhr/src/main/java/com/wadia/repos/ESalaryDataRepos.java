@@ -16,7 +16,7 @@ public interface ESalaryDataRepos extends JpaRepository<ESalaryData, Integer> {
     @Query("SELECT MAX(ans) FROM ESalaryData WHERE resurceId=:username")
     public Integer findByAnsMax(@Param("username") String username);
 
-    @Query("SELECT MAX(mois) FROM ESalaryData e WHERE e.resurceId=:username AND e.ans=(SELECT MAX(ans) FROM e) ")
+    @Query("SELECT MAX(mois) FROM ESalaryData e WHERE e.resurceId=:username AND e.ans=(SELECT MAX(ans) FROM e WHERE resurceId=:username) ")
     public Integer findByMoisMax(@Param("username") String username);
 
     @Query("SELECT e FROM ESalaryData e WHERE " + "e.resurceId=:username "

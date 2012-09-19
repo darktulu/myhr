@@ -15,6 +15,7 @@ import javax.faces.bean.RequestScoped;
 
 import com.wadia.beans.ELData;
 import com.wadia.metier.LeavesMetier;
+import com.wadia.metier.SoldleaveMetier;
 
 /**
  * 
@@ -28,6 +29,9 @@ public class LeavesListCtl {
 
     @ManagedProperty(value = "#{leavesMetier}")
     private LeavesMetier leavesMetier;
+    
+    @ManagedProperty(value = "#{soldleaveMetier}")
+    private SoldleaveMetier soldleaveMetier;
 
     private userController usercontroller = new userController();
     private Date searchByDate;
@@ -41,6 +45,7 @@ public class LeavesListCtl {
 
 	if (usercontroller.getUsername() != null) {
 	    eLData = leavesMetier.findByUsername(usercontroller.getUsername());
+	    soldleaveMetier.updateSoldProvider(usercontroller.getUsername());
 	}
     }
 
@@ -122,5 +127,13 @@ public class LeavesListCtl {
     public void setUsercontroller(userController usercontroller) {
         this.usercontroller = usercontroller;
     }
+
+	public SoldleaveMetier getSoldleaveMetier() {
+		return soldleaveMetier;
+	}
+
+	public void setSoldleaveMetier(SoldleaveMetier soldleaveMetier) {
+		this.soldleaveMetier = soldleaveMetier;
+	}
 
 }

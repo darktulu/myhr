@@ -187,17 +187,28 @@ and open the template in the editor.
                                                 <h:outputText value="Actions"/>
                                             </f:facet>
 
-                                            <a4j:commandLink onclick="#{rich:component('Approuve')}.show()" rendered="#{leave.status!='Approved By HR'}" >
+                                            <a4j:commandLink oncomplete="#{rich:component('Approuve')}.show()" rendered="#{leave.status=='Approved By PM'}" render="approuveForm" >
                                                 <img src="images/accept.png"/>
-                                                <f:setPropertyActionListener value="#{leave.leaveId}" target="#{LeaveControlEditCtl.leveToApprove}"/>
+                                                <f:setPropertyActionListener value="#{leave}" target="#{LeaveControlEditCtl.data}"/>
                                             </a4j:commandLink>
 
-                                            <a4j:commandLink onclick="#{rich:component('Disaprouve')}.show()" rendered="#{leave.status!='Disapproved By HR'}">
+                                            <a4j:commandLink oncomplete="#{rich:component('Disaprouve')}.show()" rendered="#{leave.status=='Approved By PM'}" render="disaprouveForm">
                                                 <img src="images/delete.png"/>
-                                                <f:setPropertyActionListener value="#{leave.leaveId}" target="#{LeaveControlEditCtl.leveToApprove}"/>
+                                                <f:setPropertyActionListener value="#{leave}" target="#{LeaveControlEditCtl.data}"/>
                                             </a4j:commandLink>
                                         </rich:column>
 
+                                       <rich:column style="text-align: center; width:60px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Take"/>
+                                            </f:facet>
+
+                                            <a4j:commandLink oncomplete="#{rich:component('TakeLeave')}.show()" rendered="#{leave.status=='Approved By HR'}" render="takeForm" >
+                                                <img src="images/checkmark.png"/>
+                                                <f:setPropertyActionListener value="#{leave}" target="#{LeaveControlEditCtl.data}"/>
+                                            </a4j:commandLink>
+                                        </rich:column>
+                                       
                                         <f:facet name="footer">
                                             <rich:dataScroller/>
                                         </f:facet>
@@ -212,8 +223,29 @@ and open the template in the editor.
                              query="jQuery(this).addClass('active-row')"/>
                 <rich:jQuery selector=".stable tr" event="mouseout"
                              query="jQuery(this).removeClass('active-row')"/>
-            </table> 
+            </table>
+             </h:form>
+            <rich:popupPanel id="TakeLeave" width="350" height="120">
+            <h:form id="takeForm">
+                <f:facet name="header">
+                    Take Leave
+                </f:facet>
+                <b></b>
+                <br/>
+                Are you sure you want to change status to Taken for  <h:outputText value="#{LeaveControlEditCtl.data.resurceId}"/> ?
+                <br/><br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('TakeLeave')}.hide()"/>
+                    <a4j:commandButton value="Approve"
+                                       action="#{LeaveControlEditCtl.taken()}"
+                                       onclick="#{rich:component('TakeLeave')}.hide()" oncomplete="#{LeaveControlCtl.update()}" render="tab">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+                </h:form>
+            </rich:popupPanel>  
             <rich:popupPanel id="Approuve" width="350" height="120">
+            <h:form id="approuveForm">
                 <f:facet name="header">
                     Approuve Leave
                 </f:facet>
@@ -229,8 +261,10 @@ and open the template in the editor.
 
                     </a4j:commandButton>
                 </h:panelGrid>
+                </h:form>
             </rich:popupPanel>
             <rich:popupPanel id="Disaprouve" width="350" height="200">
+            <h:form id="disaprouveForm">
                 <f:facet name="header">
                     Approuve Leave
                 </f:facet>
@@ -249,8 +283,9 @@ and open the template in the editor.
 
                     </a4j:commandButton>
                 </h:panelGrid>
+                </h:form>
             </rich:popupPanel>
-        </h:form>
+       
 
     </h:body>
 </html>

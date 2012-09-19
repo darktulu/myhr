@@ -114,11 +114,15 @@ public class SalaryServiceImpl implements SalaryService {
 
 	List<EIndemnite> listIndem = new ArrayList<EIndemnite>();
 	List<EPrime> listPrime = new ArrayList<EPrime>();
-	listIndem = eIndemniteRepos.findLastEIndemnite(username);
+	
+	listIndem = eIndemniteRepos.findLastEIndemnite(username); // TODO
 	totalIndem = getTotalIndem(listIndem);
+	
 	listPrime = ePrimeRepos.findLastEPrime(username);
 	totalPrim = getTotalPrim(listPrime);
+	
 	totalAllowance = totalPrim + totalIndem;
+	
 	return totalAllowance;
     }
 
@@ -203,6 +207,7 @@ public class SalaryServiceImpl implements SalaryService {
 	Double baseIr;
 	Double iR;
 	baseIr = CalculeBaseIR(Username);
+	
 	if (baseIr <= 2500) {
 	    iR = 0.0;
 	    retenuIr = 0.0;

@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import com.wadia.beans.EGeneralData;
 import com.wadia.beans.ELData;
@@ -70,67 +72,43 @@ public class leaveCtl {
 
 	Soldleave sold = new Soldleave();
 	int yearC;
+	String returValue=null;
 	List<Recipients> mailList = new ArrayList<Recipients>();
+	
 	/* Here we create leave to save */
-
-	leave = new ELData(user.getUsername(), year, "conge", start, end, days, "waiting", motif);
-	eLDataRepos.save(leave);
 	yearC = extractInt(year);
-
+	
+	/* vérification du sold */ 
+	
+	if(soldleaveMetier.soldKO(user.getUsername(), yearC, days)){
+	
+		leave = new ELData(user.getUsername(), year, "conge", start, end, days, "waiting", motif);
+	    eLDataRepos.save(leave);
+	
 	/* Here we create sold to save */
-	sold = soldleaveRepos.findByUsernameAndYear(user.getUsername(), yearC);
+	
+	    sold = soldleaveRepos.findByUsernameAndYear(user.getUsername(), yearC);
 	sold.setPlanned(sold.getPlanned() + days);
 	soldleaveRepos.save(sold);
-    
-	System.out.println("manager "+affectationMetier.findMyManager(user.getUsername()).getInfo());
-    System.out.println("HR "+affectationMetier.findMyHrManager(user.getUsername()).getInfo());
-    System.out.println("Moi "+affectationMetier.findMe(user.getUsername()).getInfo());
-	
-	
-	/*
-	 * On envoi l'email par la methode public void RequestLeave(List<String>
-	 * toMail, String Manager, String User, int year ,Date startDate, Date
-	 * endDate, int days, String motif )
-	 */
-    Recipients manager = new Recipients();
-    manager.setMail(affectationMetier.findMyManager(user.getUsername()).getInfo());
-    manager.setType("To");
-	mailList.add(manager); // ADD MANAGER
-	
-	Recipients HrManager = new Recipients();
-	HrManager.setMail(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
-	HrManager.setType("Cc");
-	mailList.add(HrManager);//ADD HR
-	
-	Recipients Me = new Recipients();
-	Me.setMail(affectationMetier.findMe(user.getUsername()).getInfo());
-	Me.setType("Cc");
-	mailList.add(Me);// ADD ME
-	
-
-        
-
-	if (sold != null) {
-
-	    MailForm mailForm = new MailForm();
-	    /*
-	     * mailForm.RequestLeave(affectationMetier.findMyManager(user.
-	     * getUsername()).getInfo(),
-	     * affectationMetier.findMyManager(user.getUsername
-	     * ()).getFullName(), user.getUser().getFullName(),yearC, start,
-	     * end, days, motif );
-	     */
-	    for(Recipients rep : mailList){
-	     System.out.println("leveCtl "+rep.getMail());	
-	    }
-           
-	    mailForm.RequestLeave(mailList, affectationMetier.findMyManager(user.getUsername()).getFullName(), user
-		    .getUser().getFullName(), year, start, end, days, motif);
-	    
+	returValue = "leaves?faces-redirect=true";
+	}else {
+		
+		FacesContext.getCurrentInstance().addMessage(
+			    null,
+			    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Number of days not allowed",
+				    null));
+		//returValue = "leave?faces-redirect=true";
 	}
-	return "leaves?faces-redirect=true";
+   
+	return returValue;
     }
-
+    
+    public String Skip(){
+    
+    	return "leaves?faces-redirect=true";
+    	
+    }
+    
     public String cancel() {
 
 	if (leaveToEdit != null) {

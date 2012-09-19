@@ -83,7 +83,7 @@ and open the template in the editor.
                                     <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
                                     <h:panelGrid columns="2" style="margin-top: 4px; margin-left: 4px;">
                                         <h:panelGrid columns="2" >
-                                            <a4j:commandLink action="#{leaveCtl.save()}"   onclick="#{rich:component('wait')}.show()" oncomplete="#{rich:component('wait')}.hide()" style="margin-left: 5px;"><img src="images/1336142816_cog_edit.png"/></a4j:commandLink>
+                                            <a4j:commandLink action="#{leaveCtl.save()}" style="margin-left: 5px;" render="messagesLeave"><img src="images/1336142816_cog_edit.png"/></a4j:commandLink>
                                             <h:outputText value="Save"  style="margin-left: 8px;"></h:outputText>
                                         </h:panelGrid>
                                         <h:panelGrid columns="2" >
@@ -98,18 +98,25 @@ and open the template in the editor.
                                         <tbody>
                                             <tr>
                                                 <td style="width: 150px; height: 30px;"><h:outputText value="Start Date" styleClass="required"/></td>
-                                                <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{leaveCtl.start}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                                <td style="background: #fff;"><rich:calendar id="startDay" mode="ajax" boundaryDatesMode="scroll" value="#{leaveCtl.start}" required="true" requiredMessage="not null value for start date" style="width: 100%; height: 99%; background: #f1f1f1;"/>
+                                                </td>
                                                 <td style="width: 150px; height : 30px;"><h:outputText value="End Date :" styleClass="required"/></td>
-                                                <td style="background: #fff;"><rich:calendar mode="ajax" boundaryDatesMode="scroll" value="#{leaveCtl.end}" style="width: 100%; height: 99%; background: #f1f1f1;"/></td>
+                                                <td style="background: #fff;"><rich:calendar mode="ajax" id="endDay" boundaryDatesMode="scroll" value="#{leaveCtl.end}" style="width: 100%; height: 99%; background: #f1f1f1;" required="true" requiredMessage="not null value for end date"/>
+                                               
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 150px; height : 30px;"><h:outputText value="Days" styleClass="required"/></td>
-                                                <td style="background: #fff; "><h:inputText value="#{leaveCtl.days}" style="width: 100%; height: 30px; background: #fedd97;" /></td>
+                                                <td style="background: #fff; "><h:inputText value="#{leaveCtl.days}" id="days" style="width: 100%; height: 30px; background: #fedd97;" required="true" requiredMessage="not null value for days" />
+                                               
+                                                </td>
 
                                                 <td style="width: 250px;"> <h:outputText value="Year" styleClass="required"/></td>
-                                                <td style="background: #fff; width: 220px; height: 99%px; "><rich:select enableManualInput="true" value="#{leaveCtl.year}">
+                                                <td style="background: #fff; width: 220px; height: 99%px; "><rich:select enableManualInput="true" value="#{leaveCtl.year}" id="year" required="true" requiredMessage="not null value for year">
                                                         <f:selectItems itemLabel="#{year.intValue()}" itemValue="#{year.intValue()}" var="year" value="#{SoldleaveCtl.years()}"/>  
-                                                    </rich:select></td>
+                                                    </rich:select>
+                                                      
+                                                    </td>
                                             </tr>
 
                                             <tr>
@@ -119,24 +126,37 @@ and open the template in the editor.
 
                                         </tbody>
                                     </table>
-                                    <h:outputText styleClass="required" value=" " style="margin-left: 8px;"/><h:outputText value="this values are required" style="color : #000000;"/>
-                                    <div style="height:600px" />
+                                    
+                                     
+                                                                     
+                                         <h:messages id="messagesLeave"  styleClass="error-validation"/>
+                                    
+                                    
+                                    
+                                    <div style="height:570px" />
                                 </rich:panel> 
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <rich:popupPanel id="wait" width="350" height="120">
+            
+            <rich:popupPanel id="wait" width="420" height="190"  resizeable="false">
                 <f:facet name="header">
-                    Saving
+                     Saving Request  <img src="images/ajax-loader.gif" style="float : right;"/>
                 </f:facet>
-                <b></b>
-                <br/>
-                Please wait while saving
-                <img src="images/ajax-loader.gif" style="float : right; margin-right: 160px;"/>
-                <br/>
+                <h:panelGrid columns="2" style="width: 300px;">
+                    <p style="font:  bold 12px Helvetica, Arial, sans-serif; margin-top: 20px; float: left; color : #f08520;">Please wait while send request email, that action may take several seconds</p>
+                    <img src="images/1347879265_email.png" style="float : right; margin: auto; "/>
+                </h:panelGrid>
+                <h:panelGrid columns="2" style="width: 100px; height : 40px; margin-top: 8px; float : left;">
+                    <a4j:commandButton value="Skip sending mail"
+                                       action="#{leaveCtl.skip()}">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
             </rich:popupPanel>
+            
         </h:form>
 
     </h:body>

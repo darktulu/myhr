@@ -124,6 +124,7 @@ public class LeaveSummCtl {
 	    soldleaveMetier.updateSoldProvider(username);
 	    list = soldleaveMetier.findbyusername(toEdit);
 	    eLData = eLDataRepos.findByUsername(username);
+	    
 
 	}
 

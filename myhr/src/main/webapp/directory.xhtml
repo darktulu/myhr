@@ -202,8 +202,6 @@ and open the template in the editor.
 									var="employe" id="employsList" rows="20"
 									rowClasses="odd-row, even-row" styleClass="stable"
 									style="width: 100%;">
-
-
 									<rich:column style="width: 42px;">
 										<f:facet name="header">
 											<h:outputText value="Photo" />
@@ -253,10 +251,10 @@ and open the template in the editor.
 											<h:outputText value="View" />
 										</f:facet>
 										
-										<a4j:commandLink oncomplete="#{rich:component('details')}.show()"
-											 render="details">
+										<a4j:commandLink onclick="#{rich:component('DetailsEmp')}.show()"
+											 render="detailsEmploy">
 											<img src="images/1342282295_find.png"/>
-											<f:setPropertyActionListener value="#{employe}" target="#{DirecSelectedEmp.selectedEmploy}" />
+											<f:setPropertyActionListener value="#{employe}" target="#{DirectoryListCtl.selectedEmploy}" />
 										</a4j:commandLink>
 
 									</rich:column>
@@ -277,20 +275,21 @@ and open the template in the editor.
 			<rich:jQuery selector=".stable tr" event="mouseout"
 				query="jQuery(this).removeClass('active-row')" />
 		</table>
+	</h:form>
 
-
-	<rich:popupPanel autosized="false" id="details" modal="true"
+	<rich:popupPanel autosized="false" id="DetailsEmp"
 		style=" background: #ffffff; font: 12px Helvetica, Arial, sans-serif;"
 		width="750" height="310"
 		onmaskclick="#{rich:component('details')}.hide()">
-        	<h:form id="detailsEmploy">
+        	
+      <h:form id="detailsEmploy">
 		<table>
 			<tbody>
 			
 					<tr>
 
 						<td style="width: 370px; height: 120px;"><img
-							src="#{DirecSelectedEmp.selectedEmploy.idPhoto}"
+							src="#{DirectoryListCtl.selectedEmploy.idPhoto}"
 							style="margin: auto; width: 150px; height: 120px; margin-left: 110px" /></td>
 
 						<td style="width: 370px; height: 120px;"><h:panelGrid
@@ -298,22 +297,22 @@ and open the template in the editor.
 								<h:outputText value="First name : "
 									style="margin-bottom: 4px; font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirecSelectedEmp.selectedEmploy.firstname}"
+									value="#{DirectoryListCtl.selectedEmploy.firstname}"
 									style="margin-bottom: 4px; " />
 								<h:outputText value="Last name : "
 									style="margin-bottom: 4px; font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirecSelectedEmp.selectedEmploy.lastname}"
+									value="#{DirectoryListCtl.selectedEmploy.lastname}"
 									style="margin-bottom: 4px;" />
 								<h:outputText value="Job Title : "
 									style="margin-bottom: 4px;  font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirecSelectedEmp.selectedEmploy.jobTitle}"
+									value="#{DirectoryListCtl.selectedEmploy.jobTitle}"
 									style="height : 30px;" />
 								<h:outputText value="Mobile Number : "
 									style="margin-bottom: 4px;  font: bold 12px Helvetica, Arial, sans-serif;" />
 								<h:outputText
-									value="#{DirecSelectedEmp.selectedEmploy.mobileNumber}"
+									value="#{DirectoryListCtl.selectedEmploy.mobileNumber}"
 									style="margin-bottom: 4px;" />
 							</h:panelGrid></td>
 					</tr>
@@ -364,6 +363,6 @@ and open the template in the editor.
           </h:form>
 	</rich:popupPanel>
 
-	</h:form>
+
 </h:body>
 </html>

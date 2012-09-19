@@ -165,7 +165,7 @@ and open the template in the editor.
                                                 <h:outputText value="Delete"/>
                                             </f:facet>
 
-                                            <a4j:commandLink  onclick="#{rich:component('delete')}.show()">
+                                            <a4j:commandLink  oncomplete="#{rich:component('delete')}.show()" render="delete">
                                                 <f:setPropertyActionListener  value="#{sold.id}" target="#{SoldCtl.toEdit}"/>
                                                 <img src="images/delete-icon.gif"/>
                                             </a4j:commandLink>

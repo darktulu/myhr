@@ -103,7 +103,7 @@ and open the template in the editor.
 												label="My Reports" name="My Reports"
 												leftIcon="images/calendar_view_day.png" /> </a>
 									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="My Data" expanded="true">
+									<rich:panelMenuGroup label="My Data" expanded="false">
 										<a href="acceuil.xhtml"><rich:panelMenuItem
 												label="Personal Data" name="Personal Data"
 												leftIcon="images/user_gray.png" /> </a>
@@ -123,7 +123,7 @@ and open the template in the editor.
 												label="Education Data" name="My Education"
 												leftIcon="images/medal_gold_1.png" /> </a>
 									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="My Leaves" expanded="true">
+									<rich:panelMenuGroup label="My Leaves" expanded="false">
 										<a href="leaves.xhtml"><rich:panelMenuItem
 												label="My Leaves" name="My Leaves"
 												leftIcon="images/status_away.png" /> </a>
@@ -135,12 +135,12 @@ and open the template in the editor.
 												leftIcon="images/calendar.png" /> </a>
 
 									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Medical Inssurance" expanded="true">
+									<rich:panelMenuGroup label="Medical Inssurance" expanded="false">
 										<a href="leaves.xhtml"><rich:panelMenuItem
 												label="Inssurance Follow" name="Inssurance Follow"
 												leftIcon="images/pill.png" /> </a>
 									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Self Service" expanded="true">
+									<rich:panelMenuGroup label="Self Service" expanded="false">
 										<a href="selfService.xhtml"><rich:panelMenuItem
 												label="Employment Certificate"
 												name="Certificate of Employment"
@@ -151,7 +151,7 @@ and open the template in the editor.
 										<a href="#"><rich:panelMenuItem label="Payslip"
 												name="Payslip" leftIcon="images/page_key.png" /> </a>
 									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Directory" expanded="true">
+									<rich:panelMenuGroup label="Directory" expanded="false">
 										<a href="directory.xhtml"><rich:panelMenuItem
 												label="Employees data" name="Employees data"
 												leftIcon="images/database_table.png" /> </a>
@@ -184,20 +184,18 @@ and open the template in the editor.
 							</div>
 
 							<rich:panel header="My Team Data" style="min-height: 860px;">
-								<h:panelGroup style="float: right; margin-bottom: 10px;">
-									<h:outputText value="Search" style="margin-right: 5px;" />
-									<h:inputText style="vertical-align: middle; "
-										value="#{FamilyListCtl.search}">
-										<a4j:ajax event="keyup" render="tab" />
-									</h:inputText>
-									<h:graphicImage
-										style="vertical-align: middle; margin-left : 5px;"
-										width="16px" value="images/Loupe-icon.png" />
-								</h:panelGroup>
 								<rich:dataTable value="#{LeaveListManagerCtl.team}" var="emp"
 									id="tab" rows="20" rowClasses="odd-row, even-row"
 									styleClass="stable" style="width: 100%; text-align:center;">
-
+                                    
+                                    <rich:column style="width: 42px;">
+										<f:facet name="header">
+											<h:outputText value="Photo" />
+										</f:facet>
+										<img src="#{emp.idPhoto}"
+											style="margin: auto; width: 40px; height: 30px;" />
+									</rich:column>
+									
 									<rich:column style=" width: 140px; height : 40px;">
 										<f:facet name="header">
 											<h:outputText value="Name" />
@@ -231,13 +229,6 @@ and open the template in the editor.
 										</f:facet>
 										<h:outputText value="#{emp.jobeTitle}" />
 									</rich:column>
-									<rich:column style=" width: 120px; height : 40px;">
-										<f:facet name="header">
-											<h:outputText value="CIN " />
-										</f:facet>
-										<h:outputText value="#{emp.cin}" />
-									</rich:column>
-
 									<rich:column style=" width:80px;">
 										<f:facet name="header">
 											<h:outputText value="Organizational" />

@@ -4,66 +4,59 @@
  */
 package com.wadia.view;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.wadia.beans.Soldleave;
+import com.wadia.metier.DirectoryMetier;
 import com.wadia.repos.SoldleaveRepos;
 
 /**
- *
+ * 
  * @author toshiba
  */
-@ManagedBean (name="SoldCtl")
-@RequestScoped
-public class SoldCtl {
-    
-    private int toEdit;
-    private static Soldleave soldLeave = new Soldleave();
-    @ManagedProperty(value = "#{soldleaveRepos}")
-    private SoldleaveRepos soldleaveRepos;
-    
-    public String delete(){
-    	System.out.println("on delete method");
-	soldleaveRepos.delete(soldLeave);
-	System.out.println("on delete method");
-	return "LeaveSummaryList?faces-redirect=true";
-    }
-    
-    
+@ManagedBean(name = "SoldCtl")
+@ViewScoped
+public class SoldCtl implements Serializable {
 
-    public int getToEdit() {
-        return toEdit;
-        
-        
-    }
+	private int toEdit;
+	private static Soldleave soldLeave = new Soldleave();
 
-    public void setToEdit(int toEdit) {
-        this.toEdit = toEdit;
-        if(toEdit!=0){
-        soldLeave = soldleaveRepos.findOne(toEdit);
-        }
-    }
+	private SoldleaveRepos soldleaveRepos() {
+		return SpringJSFUtil.getBean("soldleaveRepos");
+	}
 
-    public Soldleave getSoldLeave() {
-        return soldLeave;
-    }
+	public String delete() {
+		System.out.println("on delete method");
+		soldleaveRepos().delete(soldLeave);
+		System.out.println("on delete method");
+		return "LeaveSummaryList?faces-redirect=true";
+	}
 
-    public void setSoldLeave(Soldleave soldLeave) {
-        this.soldLeave = soldLeave;
-    }
+	public int getToEdit() {
+		return toEdit;
 
+	}
 
+	public void setToEdit(int toEdit) {
+		this.toEdit = toEdit;
+		if (toEdit != 0) {
+			soldLeave = soldleaveRepos().findOne(toEdit);
+		}
+	}
 
-	public SoldleaveRepos getSoldleaveRepos() {
-		return soldleaveRepos;
+	public Soldleave getSoldLeave() {
+		return soldLeave;
+	}
+
+	public void setSoldLeave(Soldleave soldLeave) {
+		this.soldLeave = soldLeave;
 	}
 
 
 
-	public void setSoldleaveRepos(SoldleaveRepos soldleaveRepos) {
-		this.soldleaveRepos = soldleaveRepos;
-	}
-    
 }

@@ -274,10 +274,12 @@
         <navigation-case>
             <from-outcome>view</from-outcome>
             <to-view-id>/FamilyDetails.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>control</from-outcome>
             <to-view-id>/FamilyControl.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>

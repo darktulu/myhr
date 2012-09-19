@@ -13,9 +13,11 @@ public interface EPrimeRepos extends JpaRepository<EPrime, Integer>{
     @Query("SELECT MAX(ans) FROM EPrime WHERE resourceId=:username")
     public Integer findByAnsMax(@Param("username") String username);
 
-    @Query("SELECT MAX(mois) FROM EPrime e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e) ")
+    @Query("SELECT MAX(mois) FROM EPrime e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e WHERE resourceId=:username) ")
     public Integer findByMoisMax(@Param("username") String username);
     
-    @Query("SELECT e FROM EPrime e WHERE e.resourceId=:username AND e.mois = (SELECT MAX(mois) FROM e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e)) ")
+    @Query("SELECT e FROM EPrime e WHERE e.resourceId=:username " +
+    		"AND e.mois = (SELECT MAX(mois) FROM e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e WHERE resourceId=:username)) " +
+    		"AND e.ans= (SELECT MAX(ans) FROM EPrime WHERE resourceId=:username)")
     public List<EPrime> findLastEPrime(@Param("username")String username);
 }

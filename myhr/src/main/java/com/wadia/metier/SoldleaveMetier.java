@@ -116,6 +116,13 @@ public class SoldleaveMetier {
      * 
      * }
      */
+    
+    /*public void updateSold(String username){
+    	
+    	List<ELData> list = elDataRepos.findByUsername(username);
+    	
+    }*/
+    
     public double userSoldByYear(String username, int year) {
 
 	double sold = 0;
@@ -265,25 +272,38 @@ public class SoldleaveMetier {
 
 	return ko;
     }
+    
+    
+    /** this method update your sold leave **/ 
 
     public void updateSoldProvider(String username) {
-
+    
+    int planned = 0;
+    int consumed = 0;
 	List<ELData> l_data = new ArrayList<ELData>();
 	List<Soldleave> listSolds = new ArrayList<Soldleave>();
-	int planned = 0;
+	
 	l_data = elDataRepos.findByUsername(username);
 	listSolds = soldleaveRepos.findByUsername(username);
 
 	for (Soldleave sold : listSolds) {
 	    planned = 0;
+	    consumed = 0;
 	    for (ELData leave : l_data) {
 
 		if (!leave.getStatus().equals("taken") && !leave.getStatus().equals("canceled")
 			&& extractInt(leave.getDate()) == sold.getYear()) {
 		    planned += leave.getTotalDays();
+		}else if(leave.getStatus().equals("taken")&& extractInt(leave.getDate()) == sold.getYear()) {
+			
+			consumed += leave.getTotalDays();
+			
 		}
+	   
+	    
 	    }
 	    sold.setPlanned(planned);
+	    sold.setConsumed(consumed);
 	    soldleaveRepos.save(sold);
 	}
 
@@ -298,4 +318,18 @@ public class SoldleaveMetier {
 
 	return Integer.parseInt(matcher.group());
     }
+    
+    public boolean soldKO(String username, Integer year , Integer days){
+    	
+    	boolean var = false;
+    	
+    	Soldleave soldleave = soldleaveRepos.findByUsernameAndYear(username, year);
+    	if(days<=soldleave.getPlanned()){
+    		
+    		var = true;
+    	}
+    	return var;
+    }
+    
+    
 }

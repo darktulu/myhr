@@ -8,21 +8,25 @@ import com.wadia.beans.EIndemnite;
 import com.wadia.beans.Echarge;
 import com.wadia.beans.EPrime;
 import com.wadia.beans.ESalaryData;
+import com.wadia.metier.DirectoryMetier;
 import com.wadia.metier.SalaryMetier;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  * 
  * @author wadi3
  */
 @ManagedBean(name = "EsalaeyDataCtl")
-@RequestScoped
-public class EsalaeyDataCtl {
+@ViewScoped
+public class EsalaeyDataCtl implements Serializable{
 
 	private static String IdToViewSalary;
 	private List<EIndemnite> eIndemnites = new ArrayList<EIndemnite>();
@@ -31,9 +35,11 @@ public class EsalaeyDataCtl {
 
 	private ESalaryData eSalaryData = new ESalaryData();
 
-	@ManagedProperty(value = "#{salaryMetier}")
-	private SalaryMetier salaryMetier;
 
+	 
+    private SalaryMetier salaryMetier() {
+        return SpringJSFUtil.getBean("salaryMetier");
+    }
 	private int rowId;
 	private int ans;
 	private int mois;
@@ -59,7 +65,7 @@ public class EsalaeyDataCtl {
 		for (Echarge echarge : echarges) {
 			echarge.setResourceId(IdToViewSalary);
 		}
-		salaryMetier.saveSalary(eSalaryData, eIndemnites, ePrimes, echarges);
+		salaryMetier().saveSalary(eSalaryData, eIndemnites, ePrimes, echarges);
 		return "SalaryHr?faces-redirect=true";
 	}
 
@@ -81,17 +87,17 @@ public class EsalaeyDataCtl {
 
 	public void addIndeminte() {
 		System.out.println("addIndemnite...");
-		geteIndemnites().add(new EIndemnite());
+		eIndemnites.add(new EIndemnite());
 	}
 
 	public void addcharge() {
-		System.out.println("addIndemnite...");
-		getEcharges().add(new Echarge());
+		System.out.println("addcharge...");
+		echarges.add(new Echarge());
 	}
 
 	public void addPrime() {
-		System.out.println("addIndemnite...");
-		getePrimes().add(new EPrime());
+		System.out.println("addPrime...");
+		ePrimes.add(new EPrime());
 	}
 
 	/**
@@ -137,21 +143,6 @@ public class EsalaeyDataCtl {
 	 */
 	public void setEcharges(List<Echarge> echarges) {
 		this.echarges = echarges;
-	}
-
-	/**
-	 * @return the salaryMetier
-	 */
-	public SalaryMetier getSalaryMetier() {
-		return salaryMetier;
-	}
-
-	/**
-	 * @param salaryMetier
-	 *            the salaryMetier to set
-	 */
-	public void setSalaryMetier(SalaryMetier salaryMetier) {
-		this.salaryMetier = salaryMetier;
 	}
 
 	/**

@@ -46,21 +46,25 @@ public class FamilyDetailsCtl {
    
  
 
-    public void appSpouse(String id) {
+    public String appSpouse(String id) {
 	eSpouseRepos.setStatus("Approved", id);
+	return "FamilyControl?faces-redirect=true";
     }
 
-    public void DappSpouse(String id) {
+    public String DappSpouse(String id) {
 	eSpouseRepos.setStatus("Disapproved", id);
+	return "FamilyControl?faces-redirect=true";
     }
 
-    public void appChild(String id) {
+    public String appChild(String id) {
 
 	childRepos.setStatus("Approved", id);
+	return "FamilyControl?faces-redirect=true";
     }
 
-    public void DappChild(String id) {
+    public String DappChild(String id) {
 	childRepos.setStatus("Disapproved", id);
+	return "FamilyControl?faces-redirect=true";
     }
 
     public void update() {

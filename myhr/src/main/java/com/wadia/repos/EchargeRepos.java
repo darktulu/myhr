@@ -15,11 +15,11 @@ public interface EchargeRepos extends JpaRepository<Echarge, Integer> {
     @Query("SELECT MAX(ans) FROM Echarge WHERE resourceId=:username")
     public Integer findByAnsMax(@Param("username") String username);
 
-    @Query("SELECT MAX(mois) FROM Echarge e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e) ")
+    @Query("SELECT MAX(mois) FROM Echarge e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e WHERE resourceId=:username) ")
     public Integer findByMoisMax(@Param("username") String username);
 
     @Query("SELECT e FROM Echarge e WHERE e.resourceId=:username "
-	    + "AND e.mois = (SELECT MAX(mois) FROM e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e)) "
+	    + "AND e.mois = (SELECT MAX(mois) FROM e WHERE e.resourceId=:username AND e.ans=(SELECT MAX(ans) FROM e WHERE resourceId=:username)) "
 	    + "AND e.ans=(SELECT MAX(ans) FROM e WHERE e.resourceId=:username)")
     public List<Echarge> findLastEcharge(@Param("username") String username);
 }
