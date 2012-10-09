@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StopWatch;
 
 import com.wadia.local.Directory;
@@ -40,7 +39,7 @@ public class DirectoryListCtl implements Serializable {
     public void init(){
         StopWatch stopWatch= new StopWatch();
         stopWatch.start();
- 
+        listDirect = directoryMetier().findAll();
         stopWatch.stop();
         System.out.println("Exec in "+stopWatch.getTotalTimeMillis());
 
@@ -48,7 +47,7 @@ public class DirectoryListCtl implements Serializable {
 
     
     public List<Directory> getListDirect() {
-        listDirect = directoryMetier().findAll();
+    	// listDirect = directoryMetier().findAll();
         return listDirect;
     }
 
@@ -69,22 +68,17 @@ public class DirectoryListCtl implements Serializable {
 
             for (Directory direct : listDirect) {
 
-                if (direct.getLastname().toLowerCase().equals(search.toLowerCase())
-                        || direct.getFirstname().toLowerCase().equals(search.toLowerCase())
-                        || direct.getDeparment().toLowerCase().equals(search.toLowerCase())
-                        || direct.getEmail().toLowerCase().equals(search.toLowerCase())
-                        || direct.getJobTitle().toLowerCase().equals(search.toLowerCase())
-                        || direct.getRessourceId().toLowerCase().equals(search.toLowerCase())) {
+                if (direct.getLastname().toLowerCase().contains(search.toLowerCase())
+                        || direct.getFirstname().toLowerCase().contains(search.toLowerCase())
+                        || direct.getEmail().toLowerCase().contains(search.toLowerCase())
+                        || direct.getRessourceId().toLowerCase().contains(search.toLowerCase())) {
 
                     toreturn.add(direct);
                 }
             }
 
-            listDirect.clear();
-            listDirect.addAll(toreturn);
+            listDirect = toreturn;
             
-
-
         }
     }
 

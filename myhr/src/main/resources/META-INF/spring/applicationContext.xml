@@ -37,7 +37,7 @@
 	</bean>
 
 	<cache:annotation-driven />
-
+    <task:annotation-driven/>
 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
 		<property name="caches">
 			<set>

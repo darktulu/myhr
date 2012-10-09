@@ -4,6 +4,7 @@
  */
 package com.wadia.metier;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.wadia.beans.EGeneralData;
 import com.wadia.beans.EWarningData;
 import com.wadia.repos.EGeneralDataRepos;
@@ -21,12 +23,12 @@ import com.wadia.repos.EWarningDataRepos;
  * 
  * @author ITR2012
  */
-@Service
+@Service ("waringnfillMetier")
 @Transactional
-public class WaringnfillMetier {
+public class WaringnfillMetier implements Serializable {
 
     @Inject
-    private EWarningDataRepos eWarningDataDao;
+    private EWarningDataRepos eWarningDataRepos;
     @Inject
     private EGeneralDataRepos eGeneralDataRepos;
 
@@ -34,6 +36,7 @@ public class WaringnfillMetier {
 
 	List<EGeneralData> eGenList = new ArrayList<EGeneralData>();
 	List<WarningHrMetier> eWarningHrMetiers = new ArrayList<WarningHrMetier>();
+	
 	// List<EWarningData> eWarningDatas = new ArrayList<EWarningData>();
 
 	eGenList = eGeneralDataRepos.findAll();
@@ -46,9 +49,12 @@ public class WaringnfillMetier {
 	    warning.setSurname(employ.getSurname());
 	    warning.setUsername(employ.getResurceId());
 	    warning.setEmployStatut(employ.getStatus());
+	   
 	    List<EWarningData> eWarnList = new ArrayList<EWarningData>();
+	   
 	    eWarnList = findByUsername(employ.getResurceId());
 	    warning.setTotalWarning(eWarnList.size());
+	   
 	    for (EWarningData warn : eWarnList) {
 
 		warning.setRaison(warn.getRaison());
@@ -66,7 +72,7 @@ public class WaringnfillMetier {
     public List<EWarningData> findByUsername(String Username) {
 	List<EWarningData> eWarningDataList = new ArrayList<EWarningData>();
 	List<EWarningData> eWarnList = new ArrayList<EWarningData>();
-	eWarnList = eWarningDataDao.findAll();
+	eWarnList = eWarningDataRepos.findAll();
 	for (EWarningData warn : eWarnList) {
 	    if (warn.getResurceId().equals(Username)) {
 		eWarningDataList.add(warn);

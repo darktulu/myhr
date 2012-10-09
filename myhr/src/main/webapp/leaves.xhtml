@@ -220,7 +220,7 @@ and open the template in the editor.
                                 </rich:dataTable>
                             </rich:panel>
 
-                            <rich:panel header="Leaves History" style="margin-top:10px; min-height: 628px;">
+                            <rich:panel header="Leaves History" style="margin-top:10px; height: 720px;">
                                 <h:panelGroup style="float: right; margin-bottom: 10px;">
                                     <h:outputText value="Search By Date " style="margin-right: 5px;" />
                                     <rich:calendar mode="ajax" boundaryDatesMode="scroll"  style="vertical-align: middle; " value="#{LeavesListCtl.searchByDate}">
@@ -283,6 +283,7 @@ and open the template in the editor.
                                         <h:outputText value="#{leave.status}" rendered="#{leave.status=='Approved By PM'}" style="color: orange;"/>
                                         <h:outputText value="#{leave.status}" rendered="#{leave.status=='Approved By HR'}" style="color: #009999;"/>
                                         <h:outputText value="#{leave.status}" rendered="#{leave.status=='Disapproved By HR'}" style="color: #999999;"/>
+                                        <h:outputText value="#{leave.status}" rendered="#{leave.status=='Disapproved By PM'}" style="color: #999999;"/>
                                     </rich:column>
                                     <rich:column style="width:60px">
                                         <f:facet name="header">

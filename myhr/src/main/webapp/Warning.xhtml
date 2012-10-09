@@ -11,7 +11,7 @@ and open the template in the editor.
       xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
-   <h:head>
+       <h:head>
         <title>MyHR</title>
         <link rel='stylesheet' id='layout-css'  href='./css/layout.css' type='text/css' media='all' />
         <link rel='stylesheet' id='layout-csss'  href='../css/layout.css' type='text/css' media='all' />
@@ -56,131 +56,67 @@ and open the template in the editor.
         <div id="container">
             <ui:include src="header.xhtml"/>
         </div>
-        <div id="Menu">
-            <ui:include src="Menus/MenuMyTeam.xhtml"/>
-        </div>
-
         <h:form id="forms">
-            <table style="float: left; max-width: 200px;">
+            <table style=" max-width: 1700px; margin: auto;">
                 <tbody>
-                    <tr>
-                        <td><div id="left" style="width: 180px; min-height: 948px; background: #f1f1f1; border: activeborder 1px; font:  14px Helvetica, Arial, sans-serif; "> 
-
-                                <table style="margin-left: 5px;">
-                                    <tbody>
-
-                                        <!-- HR Data-->
-
-                                        <tr style="background: #ffffff;">
-                                            <td style="background: #f1f1f1;"><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; width: 200px; border: solid 1px #c9c9c9;">
-                                                <a action="myTeamData.xhtml" style=" color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
-                                                    <h:outputText value="HR Data" style="margin-left: 10px; color: f5b050; "/>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="myTeamData.xhtml" style="color: #000; margin-left: 15px;" >
-                                                    <h:outputText value="Personal Data"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div style="width: 10px; "/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="EmpOraganizational.xhtml" style="color: #000;  margin-left: 15px;">
-                                                    <h:outputText value="Organizational Data"/>
-                                                </a></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><div style="width: 10px; "/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="FamilyList.xhtml" style="color: #000;  margin-left: 15px;">
-                                                    <h:outputText value="Family Data"/>
-                                                </a></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px;  border: solid 1px #c9c9c9;"><a href="ContratHr.xhtml" style="color: #000;  margin-left: 15px;">
-                                                    <h:outputText value="Contract Data"/>
-                                                </a></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><h:commandLink action="family" style="color: #000;  margin-left: 15px;">
-                                                    <h:outputText value="Salary Data"/>
-                                                </h:commandLink></td>
-                                        </tr>
-
-                                        <!-- Leave Data-->
-
-                                        <tr style="background: #ffffff;">
-                                            <td style="background: #f1f1f1;"></td>
-                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
-                                                    <h:outputText value="Leave Data" style="margin-left: 10px;"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr style="">
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="LeaveSummaryList.xhtml" style="color: #000; margin-left: 15px;" >
-                                                    <h:outputText value="Leave Summary"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="AbsenceHr.xhtml" style="color: #000;  margin-left: 15px;">
-                                                    <h:outputText value="Absence"/>
-                                                </a></td>
-                                        </tr>
+                    <tr><td>
+                            <div id="left" style="width: 200px; min-height: 1000px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                                    <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                                                    groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                                                    topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
+                                        <rich:panelMenuGroup label="Main Profile" rendered="#{authByRoleCtl.RH}" expanded="true"> 
+                                            <a href="acceuil.xhtml"><rich:panelMenuItem label="Back" name="Back" leftIcon="images/arrow_left.png"/> </a>  
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="My Team Data" expanded="true"> 
+                                            <a href="myTeamData.xhtml"><rich:panelMenuItem label="Personal Data" name="Personal Data" leftIcon="images/user_gray.png" /> </a>
+                                            <a href="EmpOraganizational.xhtml"><rich:panelMenuItem label="Organizational Data" name="Organizational Data" leftIcon="images/chart_organisation.png" /> </a>
+                                            <a href="FamilyList.xhtml"><rich:panelMenuItem label="Family Data" name="Family Data" leftIcon="images/house.png"/> </a>
+                                            <a href="ContratHr.xhtml"><rich:panelMenuItem label="Contract Data" name="Contract Data" leftIcon="images/page_white_text_width.png"/> </a>
+                                            <a href="SalaryHr.xhtml"><rich:panelMenuItem label="Salary Data" name="Salary Data" leftIcon="images/cash-icon.png"/> </a>
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Leave Data" expanded="true" > 
+                                            <a href="LeaveSummaryList.xhtml"><rich:panelMenuItem label="Leaves Summary" name="Leaves Summary" leftIcon="images/status_away.png"  /> </a>
+                                            <a href="AbsenceHr.xhtml"><rich:panelMenuItem label="Absences" name="My Absences" leftIcon="images/status_busy.png" /> </a> 
 
 
-                                        <!-- Medical Inssurance -->
+                                        </rich:panelMenuGroup> 
+                                        <rich:panelMenuGroup label="Medical Inssurance" expanded="true"> 
+                                            <a href="inssuranceHr.xhtml"><rich:panelMenuItem label="Inssurance Follow" name="Inssurance Follow" leftIcon="images/pill.png"/> </a> 
+                                        </rich:panelMenuGroup>
+                                        <rich:panelMenuGroup label="Misconduct and warning" expanded="true"> 
+                                            <a href="Warning.xhtml"><rich:panelMenuItem label="Warning" name="Warning" leftIcon="images/flag_red.png"  style="background: #fee6cd;"/> </a> 
+                                        </rich:panelMenuGroup>
 
-                                        <tr style="background: #ffffff;">
-                                            <td style="background: #f1f1f1;"></td>
-                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="#" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
-                                                    <h:outputText value="Medical inssurance" style="margin-left: 10px;"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="inssuranceHr.xhtml" style="color: #000; margin-left: 15px;" >
-                                                    <h:outputText value="Medical inssurance follow"/>
-                                                </a></td>
-                                        </tr>
-
-                                        <!-- Misconduct & Warning Register -->
-
-                                        <tr style="background: #ffffff;">
-                                            <td style="background: #f1f1f1;"></td>
-                                            <td style="height: 30px; width: 150px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #f5b050; font: bold 12px Helvetica, Arial, sans-serif;" >
-                                                    <h:outputText value="Misconduct and Warning" style="margin-left: 10px;"/>
-                                                </a></td>
-                                        </tr>
-                                        <tr   style=" background: #ffffff;">
-                                            <td    style="background: #f5b050;"><div style="width: 10px;"/></td>
-                                            <td style="height: 30px; border: solid 1px #c9c9c9;"><a href="Warning.xhtml" style="color: #000; margin-left: 15px;" >
-                                                    <h:outputText value="Warning"/>
-                                                </a></td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
+                                    </rich:panelMenu> 
+                                </h:panelGrid> 
 
                             </div>
 
                         </td>
+     
+                         <td style="border : solid 1px #f1f1f1; width: 100%;">
+                            <div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+                                <div id="actions" style="width: 100%; height: 80px; margin-bottom: 2px;" title="Actions">
+                                    <p style="color : #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px; ">Actions : </p>
+                                    <h:panelGrid columns="4" style="margin-top: 4px; margin-left: 4px;">
 
-                        <td>
-
-                            <div style="width: 1000px; background: #f5b050; height: 30px; color : #ffffff;"> 
-                                <div style="margin-top: 1px; margin-right: 1px; width: 998px; background: #ffffff; height: 28px; color : #f5b050; float: right;" >
-                                <h:outputText value="Actions : " style="font: bold 11px Helvetica, Arial, sans-serif; width: 100%;"/>
-                               <a href="WarningDataHr.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336476302_dialog-warning.png"/></a>
-                                <h:outputText value="Add new warning : " style="float : right; margin-left: 10px; margin-right: 6px; margin-top: 4px;"/>
-                                <a href="Warning.xhtml" style="margin-right: 10px; float: right;"><img src="images/1336143861_Synchronize.png"/></a>
-                                <h:outputText value="Refresh : " style="float : right; margin-left: 10px; margin-right: 6px; margin-top: 4px;"/>
-                            </div></div>
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="Warning.xhtml"><img src="images/1336143861_Synchronize.png"/></a>
+                                            <h:outputText value="Refresh data  " style="font: bold 11px Helvetica, Arial, sans-serif;"> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                        
+                                        <h:panelGrid columns="2" style="margin-left: 20px;" >
+                                            <a href="WarningDataHr.xhtml"><img src="images/1336476302_dialog-warning.png"/></a>
+                                            <h:outputText value="Add new warning  " style="font: bold 11px Helvetica, Arial, sans-serif;"> 
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                        
+                                    </h:panelGrid>
+                                </div>
+                            
+                            
                             <rich:panel header="3Gcom Employee Warning" style="margin-top:10px; min-height: 900px;">
                                
                                 <h:panelGroup style="float: right; margin-bottom: 10px;">
@@ -240,26 +176,13 @@ and open the template in the editor.
 
 
                                     </rich:column>
-
-
-
-
-
-
                                     <f:facet name="footer">
                                         <rich:dataScroller/>
                                     </f:facet>
                                 </rich:dataTable>
                             </rich:panel>
 
-
-                        </td>
-                         <td>
-                            <div style="width: 160px; min-height: 948px; border: solid 1px #f1f1f1; background: #f1f1f1;">
-                                <div style="background: #ffffff;  height: 30px; border : solid 1px #f6be6d;">
-                                    <p style="color: #f6be6d; font:  bold 12px Helvetica, Arial, sans-serif; margin: auto; text-align: center;">General informations </p>
-                                </div>
-                            </div>
+                         </div>
                         </td>
                     </tr>
                 </tbody>

@@ -34,6 +34,7 @@ public class LeaveSummCtl {
     private static String name;
     private static String surname;
     private static String username;
+    private static String idphoto;
    
    
     private static List<sold> list = new ArrayList<sold>();
@@ -55,7 +56,7 @@ public class LeaveSummCtl {
 
     public void upListSold() {
 
-	// soldleaveMetier.updateListSold();
+	 soldleaveMetier.updateListSold();
 
     }
 
@@ -121,6 +122,7 @@ public class LeaveSummCtl {
 	    name = eGeneralData.getName();
 	    surname = eGeneralData.getSurname();
 	    username = eGeneralData.getResurceId();
+	    idphoto = eGeneralData.getIdPhoto();
 	    soldleaveMetier.updateSoldProvider(username);
 	    list = soldleaveMetier.findbyusername(toEdit);
 	    eLData = eLDataRepos.findByUsername(username);
@@ -211,4 +213,12 @@ public class LeaveSummCtl {
     public void seteLDataRepos(ELDataRepos eLDataRepos) {
         this.eLDataRepos = eLDataRepos;
     }
+
+	public String getIdphoto() {
+		return idphoto;
+	}
+
+	public void setIdphoto(String idphoto) {
+		this.idphoto = idphoto;
+	}
 }

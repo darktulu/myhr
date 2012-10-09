@@ -14,6 +14,7 @@ import javax.faces.bean.RequestScoped;
 import com.wadia.beans.EContractData;
 import com.wadia.metier.ContratMetier;
 import com.wadia.repos.EContractDataRepos;
+import com.wadia.repos.EGeneralDataRepos;
 
 /**
  * 
@@ -25,10 +26,15 @@ public class ContratDetailsCtl {
 
     private static String IdToView;
     private static EContractData eContractData = new EContractData();
+    private static String idphoto;
+   
     @ManagedProperty(value = "#{eContractDataRepos}")
     private EContractDataRepos eContractDataRepos;
     @ManagedProperty(value = "#{contratMetier}")
     private ContratMetier contratMetier;
+   
+    @ManagedProperty(value = "#{eGeneralDataRepos}")
+    private EGeneralDataRepos eGeneralDataRepos;
 
 
     private static List<EContractData> eContractDatas = new ArrayList<EContractData>();
@@ -41,6 +47,7 @@ public class ContratDetailsCtl {
 	if (IdToView != null) {
 	    eContractData = contratMetier.getLastContrat(IdToView);
 	    eContractDatas = contratMetier.contratHistory(IdToView);
+	    idphoto = eGeneralDataRepos.findOne(IdToView).getIdPhoto();
 	}
 
     }
@@ -61,6 +68,7 @@ public class ContratDetailsCtl {
 	if (IdToView != null) {
 	    eContractData = contratMetier.getLastContrat(IdToView);
 	    eContractDatas = contratMetier.contratHistory(IdToView);
+	    idphoto = eGeneralDataRepos.findOne(IdToView).getIdPhoto();
 	}
     }
 
@@ -141,4 +149,20 @@ public class ContratDetailsCtl {
     public void setContratMetier(ContratMetier contratMetier) {
         this.contratMetier = contratMetier;
     }
+
+	public String getIdphoto() {
+		return idphoto;
+	}
+
+	public void setIdphoto(String idphoto) {
+		this.idphoto = idphoto;
+	}
+
+	public EGeneralDataRepos geteGeneralDataRepos() {
+		return eGeneralDataRepos;
+	}
+
+	public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
+		this.eGeneralDataRepos = eGeneralDataRepos;
+	}
 }

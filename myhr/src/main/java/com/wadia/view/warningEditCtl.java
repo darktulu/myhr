@@ -17,7 +17,7 @@ import com.wadia.repos.EWarningDataRepos;
  * 
  * @author ITR2012
  */
-@ManagedBean
+@ManagedBean (name="warningEditCtl")
 @RequestScoped
 public class warningEditCtl {
     private static Integer warningId;
@@ -29,6 +29,7 @@ public class warningEditCtl {
     private static Integer IdToEdit;
     private Integer idToDelete;
     private static EWarningData data = new EWarningData();
+   
     @ManagedProperty(value = "#{eWarningDataRepos}")
     private EWarningDataRepos eWarningDataRepos;
 

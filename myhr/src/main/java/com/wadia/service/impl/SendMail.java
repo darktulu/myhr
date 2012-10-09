@@ -12,12 +12,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+
 import com.wadia.local.Recipients;
 
-
+@Component
 public class SendMail{
 
-	
+	@Async
 	public void sendMailHTML(List<Recipients> toMail, String title, String mail) {
 		 final String username = "MyHR@3gcom-int.com";
 	        final String password = "G3com123";

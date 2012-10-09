@@ -8,6 +8,7 @@ and open the template in the editor.
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -81,7 +82,7 @@ and open the template in the editor.
 				<tr>
 					<td>
 						<div id="left"
-							style="width: 200px; min-height: 950px; background: #f1f1f1; font: 14px Helvetfontica, Arial, sans-serif;">
+							style="width: 200px; min-height: 970px; background: #f1f1f1; font: 14px Helvetfontica, Arial, sans-serif;">
 							<h:panelGrid columns="2" columnClasses="cols,cols" width="400"
 								style="background: #ffffff;">
 								<rich:panelMenu style="width:198px" itemMode="ajax"
@@ -174,70 +175,57 @@ and open the template in the editor.
 					</td>
 
 					<td style="border: solid 1px #f1f1f1; width: 100%;">
-						<div id="middle"
-							style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+						<div id="middle" style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
 							<div id="actions"
-								style="width: 100%; height: 80px; margin-bottom: 2px;"
-								title="Actions">
-								<p
-									style="color: #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px;">Actions
-									:</p>
-								<h:panelGrid columns="2"
-									style="margin-top: 4px; margin-left: 4px;">
-									<h:panelGrid columns="2" style="margin-left: 20px;">
-										<a href="myTeam.xhtml"><img
-											src="images/1341096810_arrow_circle_left.png" /></a>
-										<h:outputText value="Refresh data  " style="margin-left : 10px;">
-										</h:outputText>
-									</h:panelGrid>
-									
-									<h:panelGrid columns="4" style="margin-left: 20px;">
+								style="width: 100%; height: 100px; margin-bottom: 2px;"
+								title="Tasks">
+								<p style="color: #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px;">Tasks :</p>
+								<h:panelGrid columns="1" style="margin-top: 4px; margin-left: 4px;">									
+									<h:panelGrid columns="3">
 										<h:outputText value="You have "/>
 										<h:outputText value="#{LeaveListManagerCtl.tasks} " style="color : blue; font: bold 12px Helvetica, Arial, sans-serif"/>
-										<h:outputText value=" requests to check for this users :  "/>
-										<rich:select enableManualInput="true" >
-                                                        <f:selectItems itemLabel="#{leave.resurceId}" itemValue="#{leave.resurceId}" var="leave" value="#{LeaveListManagerCtl.taskList}"/>
-                                         </rich:select>
-										
+										<h:outputText value=" requests to check for this users :  "/>	
 									</h:panelGrid>
-									
+									<p:selectOneListbox id="basic" style="height : 40px; width : 100%;"> 
+                                                        <f:selectItems itemLabel="#{leave.resurceId}" itemValue="#{leave.resurceId}" var="leave" value="#{LeaveListManagerCtl.taskList}"/>
+                                        </p:selectOneListbox>
 								</h:panelGrid>
 							</div>
 
-							<rich:panel header="My Reports Leaves Datas"
-								style="margin-top:1px; min-height: 860px;">
-								<rich:dataTable value="#{LeaveListManagerCtl.team}" var="emp"
-									id="tab" rows="20" rowClasses="odd-row, even-row"
-									styleClass="stable" style="width: 100%; text-align: center;">
-									<rich:column style="width: 42px;">
+							<p:panel header="My Reports Leaves Datas" style="margin-top:1px; min-height: 860px;">
+								
+								<p:dataTable value="#{LeaveListManagerCtl.team}" var="emp" id="tab" rows="20" widgetVar="tab"
+									styleClass="stable" style="width: 100%; text-align: center;" paginator="true" paginatorPosition="bottom">
+									
+									<p:column style="width: 42px;">
 										<f:facet name="header">
 											<h:outputText value="Photo" />
 										</f:facet>
 										<img src="#{emp.idPhoto}"
 											style="margin: auto; width: 40px; height: 30px;" />
-									</rich:column>
+									</p:column>
 
-									<rich:column style="width: 140px; height : 30px;">
+									<p:column style="width: 140px; height : 30px;">
 										<f:facet name="header">
 											<h:outputText value="Name" />
 										</f:facet>
 										<h:outputText value="#{emp.name}" />
-									</rich:column>
+									</p:column>
 
-									<rich:column style="width: 140px; height : 30px;">
+									<p:column style="width: 140px; height : 30px;">
 										<f:facet name="header">
 											<h:outputText value="Surname " />
 										</f:facet>
 										<h:outputText value="#{emp.surname}" />
-									</rich:column>
+									</p:column>
 
-									<rich:column style="width: 140px; height : 30px;">
+									<p:column style="width: 140px; height : 30px;">
 										<f:facet name="header">
 											<h:outputText value="Employee ID" />
 										</f:facet>
 										<h:outputText value="#{emp.resurceId}" />
-									</rich:column>
-									<rich:column style="width: 100px; height : 30px;">
+									</p:column>
+									<p:column style="width: 100px; height : 30px;">
 										<f:facet name="header">
 											<h:outputText value="Status" />
 										</f:facet>
@@ -245,42 +233,39 @@ and open the template in the editor.
 											rendered="#{emp.status=='ACTIVE'}" style="color: blue;" />
 										<h:outputText value="#{emp.status}"
 											rendered="#{emp.status=='ENDED'}" style="color: red;" />
-									</rich:column>
+									</p:column>
 
-									<rich:column style="text-align: center; width: 80px;">
+									<p:column style="text-align: center; width: 80px;">
 										<f:facet name="header">
 											<h:outputText value="View" />
 										</f:facet>
 
-										<div id="viewOrg">
-											<h:commandLink styleClass="btn" action="view"
+										
+											<p:commandLink styleClass="btn" action="view"
 												style="display:block; text-align:center;">
 												<img src="images/1336143366_old-edit-find.png" />
 												<f:setPropertyActionListener value="#{emp.resurceId}"
 													target="#{LeaveSummCtl.toEdit}" />
-											</h:commandLink>
-										</div>
-									</rich:column>
+											</p:commandLink>
+										
+									</p:column>
 
-									<rich:column style="text-align: center; width: 80px;">
+									<p:column style="text-align: center; width: 80px;">
 										<f:facet name="header">
 											<h:outputText value="Control" />
 										</f:facet>
-										<div id="control">
-											<h:commandLink styleClass="btn" action="control"
+										
+											<p:commandLink styleClass="btn" action="control"
 												style="display:block; text-align:center;">
 												<img src="images/1336143428_control-center2.png" />
 												<f:setPropertyActionListener value="#{emp.resurceId}"
 													target="#{leavePMcontrol.userToApprove}" />
-											</h:commandLink>
-										</div>
-									</rich:column>
+											</p:commandLink>
+										
+									</p:column>
 
-									<f:facet name="footer">
-										<rich:dataScroller />
-									</f:facet>
-								</rich:dataTable>
-							</rich:panel>
+									</p:dataTable>
+							</p:panel>
 
 						</div>
 					</td>

@@ -47,24 +47,37 @@ public class FamilyDetailsCtl {
  
 
     public String appSpouse(String id) {
-	eSpouseRepos.setStatus("Approved", id);
-	return "FamilyControl?faces-redirect=true";
+    ESpouse eSpouse = new ESpouse();
+    eSpouse = eSpouseRepos.findOne(id);
+	eSpouse.setApproved("Approved");
+	eSpouseRepos.save(eSpouse);
+	return "FamilyList?faces-redirect=true";
     }
 
     public String DappSpouse(String id) {
-	eSpouseRepos.setStatus("Disapproved", id);
-	return "FamilyControl?faces-redirect=true";
+    ESpouse eSpouse = new ESpouse();
+    eSpouse = eSpouseRepos.findOne(id);
+	eSpouse.setApproved("Disapproved");
+	eSpouseRepos.save(eSpouse);
+	return "FamilyList?faces-redirect=true";
     }
 
     public String appChild(String id) {
-
-	childRepos.setStatus("Approved", id);
-	return "FamilyControl?faces-redirect=true";
+    Child  child = new Child();
+    child = childRepos.findOne(id);
+    child.setApproved("Approved");
+    //System.out.println("child "+child.getChildName());
+	childRepos.save(child);
+	return "FamilyList?faces-redirect=true";
     }
 
     public String DappChild(String id) {
-	childRepos.setStatus("Disapproved", id);
-	return "FamilyControl?faces-redirect=true";
+        Child  child = new Child();
+        child = childRepos.findOne(id);
+        child.setApproved("Disapproved");
+       // System.out.println("child "+child.getChildName());
+    	childRepos.save(child);
+	return "FamilyList?faces-redirect=true";
     }
 
     public void update() {

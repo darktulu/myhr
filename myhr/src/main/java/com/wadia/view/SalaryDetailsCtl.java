@@ -17,6 +17,7 @@ import com.wadia.metier.HistoSalaryfillMetier;
 import com.wadia.metier.SalaryMetier;
 import com.wadia.metier.SalarySimpleMetier;
 import com.wadia.metier.SalarySimplefillMetier;
+import com.wadia.repos.EGeneralDataRepos;
 import com.wadia.repos.ESalaryDataRepos;
 
 /**
@@ -33,11 +34,16 @@ public class SalaryDetailsCtl {
     private SalarySimplefillMetier salarySimplefillMetier;
     @ManagedProperty(value="#{histoSalaryfillMetier}")
     private HistoSalaryfillMetier histoSalaryfillMetier;
+    
+    @ManagedProperty(value="#{eGeneralDataRepos}")
+    private EGeneralDataRepos eGeneralDataRepos;
    
     private static List<ESalaryData> esalaeyData = new ArrayList<ESalaryData>();
     private static List<HistoSalaryMetier> histoSalaryMetierListIndem = new ArrayList<HistoSalaryMetier>();
     private static List<HistoSalaryMetier> histoSalaryMetierListPrime = new ArrayList<HistoSalaryMetier>();
     private static List<HistoSalaryMetier> histoSalaryMetierListcharge = new ArrayList<HistoSalaryMetier>();
+    
+    private static String idPhoto;
     
     @ManagedProperty(value="#{eSalaryDataRepos}")
     private ESalaryDataRepos eSalaryDataRepos;
@@ -56,11 +62,12 @@ public class SalaryDetailsCtl {
         this.IdToView = IdToView;
         if (IdToView != null) {
             salarySimpleMetier = salarySimplefillMetier.listSalary(IdToView);
+            idPhoto = eGeneralDataRepos.findOne(IdToView).getIdPhoto();
             histoSalaryMetierListIndem = histoSalaryfillMetier.listHistoIndemnite(IdToView);
             histoSalaryMetierListPrime = histoSalaryfillMetier.listHistoPrime(IdToView);
             histoSalaryMetierListcharge = histoSalaryfillMetier.listHistoCharge(IdToView);
             esalaeyData = eSalaryDataRepos.findByUsername(IdToView);
-
+           
         }
     }
 
@@ -171,4 +178,20 @@ public class SalaryDetailsCtl {
     public void seteSalaryDataRepos(ESalaryDataRepos eSalaryDataRepos) {
         this.eSalaryDataRepos = eSalaryDataRepos;
     }
+
+	public EGeneralDataRepos geteGeneralDataRepos() {
+		return eGeneralDataRepos;
+	}
+
+	public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
+		this.eGeneralDataRepos = eGeneralDataRepos;
+	}
+
+	public String getIdPhoto() {
+		return idPhoto;
+	}
+
+	public void setIdPhoto(String idPhoto) {
+		this.idPhoto = idPhoto;
+	}
 }

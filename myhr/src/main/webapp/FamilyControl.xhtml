@@ -134,19 +134,19 @@ and open the template in the editor.
                                                 <h:outputText value="Actions"/>
                                             </f:facet>
 
-                                            <div id="canc" style="margin : auto;">
+                                           
                                                 <a4j:commandLink   style="color: lightseagreen;"  rendered="#{spouse.approved!= 'Approved'}"
-                                                                   action="#{FamilyDetailsCtl.appSpouse(spouse.spouseId)}" render="tab" oncomplete="#{FamilyDetailsCtl.update()}">                      
+                                                                  action="#{FamilyDetailsCtl.appSpouse(spouse.spouseId)}" render="tab" oncomplete="#{FamilyDetailsCtl.update()}">                      
                                                     <img src="images/1336231149_4.png"/>
                                                 </a4j:commandLink>
-                                            </div>
+                                           
 
-                                            <div id="take" style=" margin : auto;">
+                                           
                                                 <a4j:commandLink   style="color: lightseagreen;"  rendered="#{spouse.approved != 'Disapproved'}"
-                                                                   action="#{FamilyDetailsCtl.DappSpouse(spouse.spouseId)}" render="tab"  oncomplete="#{FamilyDetailsCtl.update()}">                      
+                                                                  action="#{FamilyDetailsCtl.DappSpouse(spouse.spouseId)}" render="tab"  oncomplete="#{FamilyDetailsCtl.update()}">                      
                                                     <img src="images/1336230653_3.png"/>
                                                 </a4j:commandLink>
-                                            </div> 
+                                            
                                         </rich:column>
                                     </rich:dataTable>
 
@@ -193,19 +193,19 @@ and open the template in the editor.
                                                 <h:outputText value="Actions"/>
                                             </f:facet>
 
-                                            <div id="canc" style=" margin : auto;">
+                                           
                                                 <a4j:commandLink   style="color: lightseagreen;"  rendered="#{child.approved != 'Approved'}"
                                                                    action="#{FamilyDetailsCtl.appChild(child.childId)}" render="tabC" oncomplete="#{FamilyDetailsCtl.update()}">                      
                                                     <img src="images/1336231149_4.png"/>
                                                 </a4j:commandLink>
-                                            </div>
+                                            
 
-                                            <div id="take" style=" margin : auto;">
+                                            
                                                 <a4j:commandLink   style="color: lightseagreen;"  rendered="#{child.approved != 'Disapproved'}"
                                                                    action="#{FamilyDetailsCtl.DappChild(child.childId)}" render="tabC" oncomplete="#{FamilyDetailsCtl.update()}">                      
                                                     <img src="images/1336230653_3.png"/>
                                                 </a4j:commandLink>
-                                            </div> 
+                                           
                                         </rich:column>
                                     </rich:dataTable>
 

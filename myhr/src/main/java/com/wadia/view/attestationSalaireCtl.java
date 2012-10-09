@@ -49,10 +49,10 @@ public class attestationSalaireCtl {
     @PostConstruct
     public void init() {
     	
-        pdf = "documents/" + user.getUsername() + "_salary" + ".pdf";
+        pdf = "documents/" + user.getUsername() +"_salary_"+dateProvider.getLastMonth()+".pdf";
         date_embauche = contratMetier.embauche(user.getUsername());
         salaireNet = ""+salarySimplefillMetier.listSalary(user.getUsername()).getMonthlyNetSalary();
-        month = dateProvider.getCurrentMonth();
+        month = dateProvider.getLastMonth();
 
     }
 
@@ -68,7 +68,7 @@ public class attestationSalaireCtl {
         int mount = cal.get(Calendar.MONTH) + 1;
         String lien;
          
-        lien =  pathProvider.path()+"documents/"+ user.getUsername() + "_salary" + ".pdf";
+        lien =  pathProvider.path()+"documents/"+ user.getUsername()+"_salary_"+dateProvider.getLastMonth()+".pdf";
         String now = "" + cal.get(Calendar.DAY_OF_MONTH) + "-" + mount + "-" + cal.get(Calendar.YEAR);
         setDate_embauche(contratMetier.embauche(user.getUsername()));
         if (name != null && eGeneralData.getCin() != null && eGeneralData.getJobeTitle() != null && now != null && lien != null && salaireNet != null) {

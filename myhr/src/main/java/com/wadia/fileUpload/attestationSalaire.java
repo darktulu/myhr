@@ -6,6 +6,8 @@ package com.wadia.fileUpload;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.wadia.local.DateProvider;
+
 import java.io.FileOutputStream;
 
 /**
@@ -13,13 +15,16 @@ import java.io.FileOutputStream;
  * @author toshiba
  */
 public class attestationSalaire {
-    
+   
+
     
  public void generate(String name , String CIN, String job, String date, String today, String documentName, String salaireNet) throws Exception {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, new FileOutputStream(documentName));
         document.open();
-        
+        DateProvider dateProvider = new DateProvider();
+        String month = dateProvider.getLastMonth();
+        System.out.println("cheher "+month);
         /*image settings */
         
         Image image = Image.getInstance("C:/logo-login.png");
@@ -51,7 +56,7 @@ public class attestationSalaire {
         
         Paragraph dates = new Paragraph();
         Font fdate =new Font(Font.FontFamily.TIMES_ROMAN, 14);
-        dates.add(new Chunk("Il est toujours présent dans notre établissement et a perçu pour le mois de Janvier un salaire net de "+salaireNet+".", fdate ));
+        dates.add(new Chunk("Il est toujours présent dans notre établissement et a perçu pour le mois de "+month+" un salaire net de "+salaireNet+".", fdate ));
         dates.setAlignment(Element.ALIGN_LEFT);
         dates.setSpacingBefore(20);
         dates.setLeading(2f, 2f);
@@ -107,4 +112,6 @@ public class attestationSalaire {
         document.close();
 
     }
+
+
 }

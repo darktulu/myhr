@@ -21,7 +21,7 @@ import com.wadia.repos.EWarningDataRepos;
  * 
  * @author ITR2012
  */
-@ManagedBean
+@ManagedBean (name="WarningDataHrCtl")
 @RequestScoped
 public class WarningDataHrCtl {
 
@@ -31,25 +31,21 @@ public class WarningDataHrCtl {
     private String sevirity;
     private String raison;
     private EWarningData eWarningData;
+    private List<String> usernames = new ArrayList();
+   
     @ManagedProperty(value = "#{eWarningDataRepos}")
     private EWarningDataRepos eWarningDataRepos;
-    private List<String> usernames = new ArrayList();
+   
     @ManagedProperty(value = "#{eGeneralDataRepos}")
     private EGeneralDataRepos eGeneralDataRepos;
 
-    public EGeneralDataRepos geteGeneralDataRepos() {
-	return eGeneralDataRepos;
-    }
 
-    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
-	this.eGeneralDataRepos = eGeneralDataRepos;
-    }
 
     public String SaveWarn() {
 	eWarningData = new EWarningData(resurceId, date, warningType, sevirity, raison);
 	eWarningDataRepos.save(eWarningData);
 
-	return "ok";
+	return "Warning?faces-redirect=true";
     }
 
     public List<String> usernameList() {
@@ -166,4 +162,13 @@ public class WarningDataHrCtl {
     public void seteWarningDataRepos(EWarningDataRepos eWarningDataRepos) {
 	this.eWarningDataRepos = eWarningDataRepos;
     }
+    
+    public EGeneralDataRepos geteGeneralDataRepos() {
+	return eGeneralDataRepos;
+    }
+
+    public void seteGeneralDataRepos(EGeneralDataRepos eGeneralDataRepos) {
+	this.eGeneralDataRepos = eGeneralDataRepos;
+    }
+    
 }

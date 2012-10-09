@@ -4,28 +4,43 @@
  */
 package com.wadia.view;
 
+import com.wadia.metier.DirectoryMetier;
 import com.wadia.metier.WaringnfillMetier;
 import com.wadia.metier.WarningHrMetier;
+import com.wadia.service.impl.WarningFill;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  * 
  * @author ITR2012
  */
-@ManagedBean
-@RequestScoped
-public class WarningHrCtl {
-    private List<WarningHrMetier> eWarning = new ArrayList<WarningHrMetier>();
-    private WaringnfillMetier eMetier = new WaringnfillMetier();
+@ManagedBean (name="WarningHrCtl")
+@ViewScoped
+public class WarningHrCtl implements Serializable {
+   
+	private List<WarningHrMetier> eWarning = new ArrayList<WarningHrMetier>();
+   
+
+	
+	 private WarningFill warningFill() {
+	        return SpringJSFUtil.getBean("warningFill");
+	    }
+   
     private int totalWarning;
     private String search;
-
-    public WarningHrCtl() {
-	eWarning = eMetier.listwarning();
+    
+    @PostConstruct
+    public void init() {
+	eWarning = warningFill().listwarning();
 
     }
 
@@ -44,20 +59,7 @@ public class WarningHrCtl {
 	this.eWarning = eWarning;
     }
 
-    /**
-     * @return the eMetier
-     */
-    public WaringnfillMetier geteMetier() {
-	return eMetier;
-    }
 
-    /**
-     * @param eMetier
-     *            the eMetier to set
-     */
-    public void seteMetier(WaringnfillMetier eMetier) {
-	this.eMetier = eMetier;
-    }
 
     /**
      * @return the totalWarning
@@ -84,7 +86,7 @@ public class WarningHrCtl {
 	if (search != null) {
 	    List<WarningHrMetier> warningListSearch = new ArrayList<WarningHrMetier>();
 	    System.out.println("filtering wrnings... " + search);
-	    eWarning = eMetier.listwarning();
+	    eWarning = warningFill().listwarning();
 	    for (WarningHrMetier war : eWarning) {
 		if (war.getName().toLowerCase().contains(search.toLowerCase())
 			|| war.getSurname().toLowerCase().contains(search.toLowerCase())
@@ -94,9 +96,15 @@ public class WarningHrCtl {
 		}
 	    }
 	    System.out.println("pchakh : " + warningListSearch.size());
-	    eWarning = warningListSearch;
+	    eWarning.clear();
+	    eWarning.addAll(warningListSearch);
+	  
 
 	}
     }
+
+	
+
+	
 
 }

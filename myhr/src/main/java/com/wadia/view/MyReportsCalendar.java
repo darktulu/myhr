@@ -15,6 +15,7 @@ import javax.faces.bean.RequestScoped;
 import com.wadia.beans.EGeneralData;
 import com.wadia.beans.ELData;
 import com.wadia.metier.AffectationMetier;
+import com.wadia.metier.DirectoryMetier;
 import com.wadia.metier.TeamCalendarMetier;
 import com.wadia.repos.AffectationRepos;
 
@@ -32,21 +33,43 @@ public class MyReportsCalendar {
     private List<ELData> list = new ArrayList<ELData>();
     private List<String> myReportsUsernames;
     
-    @ManagedProperty(value = "#{affectationMetier}")
-    private AffectationMetier affectationMetier;
-    @ManagedProperty(value = "#{affectationRepos}")
-    private AffectationRepos affectationRepos;
-    @ManagedProperty(value = "#{teamCalendarMetier}")
-    private TeamCalendarMetier teamCalendarMetier;
+
+
+    
+    private AffectationMetier affectationMetier() {
+        return SpringJSFUtil.getBean("affectationMetier");
+    }
+    
+    private AffectationRepos affectationRepos() {
+        return SpringJSFUtil.getBean("affectationRepos");
+    }
+    
+    private TeamCalendarMetier teamCalendarMetier() {
+        return SpringJSFUtil.getBean("teamCalendarMetier");
+    }
     
     @PostConstruct
     public void init() {
 
 	// here we get the list of my reports
-	myReportsUsernames = affectationRepos.MyReportsList(user.getUsername());
-	list  = teamCalendarMetier.MyReports(myReportsUsernames);
+	myReportsUsernames = affectationRepos().MyReportsList(user.getUsername());
+	list  = teamCalendarMetier().MyReports(myReportsUsernames);
 
     }
+    
+    
+    public String ColorProvider(String username, int day){
+    	
+    	String color = "red";
+    	
+    	if(day==1) color= "blue";
+    	if(day==20) color= "Yellew";
+    	
+    	return color;
+    	
+    }
+    
+    
 
     public List<EGeneralData> getListReports() {
 	return listReports;
@@ -65,13 +88,7 @@ public class MyReportsCalendar {
 	this.list = list;
     }
 
-    public AffectationMetier getAffectationMetier() {
-	return affectationMetier;
-    }
 
-    public void setAffectationMetier(AffectationMetier affectationMetier) {
-	this.affectationMetier = affectationMetier;
-    }
 
     public userController getUser() {
 	return user;
@@ -89,20 +106,6 @@ public class MyReportsCalendar {
 	this.myReportsUsernames = myReportsUsernames;
     }
 
-    public AffectationRepos getAffectationRepos() {
-	return affectationRepos;
-    }
 
-    public void setAffectationRepos(AffectationRepos affectationRepos) {
-	this.affectationRepos = affectationRepos;
-    }
-
-    public TeamCalendarMetier getTeamCalendarMetier() {
-        return teamCalendarMetier;
-    }
-
-    public void setTeamCalendarMetier(TeamCalendarMetier teamCalendarMetier) {
-        this.teamCalendarMetier = teamCalendarMetier;
-    }
 
 }

@@ -4,10 +4,15 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<title>MyHR</title>
 	<link rel='stylesheet' id='layout-css' href='./css/layout.css' type='text/css' media='all' />
@@ -17,43 +22,6 @@ and open the template in the editor.
 	<link rel="Stylesheet" href="./css/toolbar-ui.css" type="text/css" />
 	<f:loadBundle basename="com.wadia.properties.labels" var="lbl" />
 	<f:loadBundle basename="com.wadia.properties.messages" var="msg" />
-	<style>
-.barsearch {
-	height: 20px;
-}
-
-.even-row {
-	background-color: #FCFFFE;
-	cursor: pointer;
-}
-
-.odd-row {
-	background-color: #ffffff;
-	cursor: pointer;
-}
-
-.active-row {
-	background-color: #ffdca5;
-}
-
-.top {
-	vertical-align: top;
-}
-
-.default-pointer {
-	background: red;
-}
-
-.buttonImg {
-	margin: 3px 8px 0px 8px;
-	cursor: pointer;
-}
-
-.rf-p-hdr {
-	text-align: center;
-	font-size: 1em !important;
-}
-</style>
 </h:head>
 <h:body style="background: #f1f1f1; ">
 	<div id="container">
@@ -156,8 +124,8 @@ and open the template in the editor.
 
 							</div>
 
-							<rich:panel header="Summary Data" style=" width: 100%;  min-height:160px;">
-
+							<p:panel header="Summary Data" style=" width: 100%;  min-height:160px;">
+                              <img src="#{leavePMcontrol.idphoto}" style="float: left; width: 150px; height: 120px; "/>
 								<table style="margin: auto; min-width: 800px;" id="datatablesG">
 									<tbody>
 										<tr>
@@ -173,127 +141,117 @@ and open the template in the editor.
 
 									</tbody>
 								</table>
-							</rich:panel>
-							<rich:panel header="Requests" style="min-height: 690px;">
-								<rich:dataTable value="#{leavePMcontrol.dataList}" var="leave" id="tab" rows="20"
-									rowClasses="odd-row, even-row" styleClass="stable" style="width: 100%;">
+							</p:panel>
+							
+							<p:panel header="Requests" style="min-height: 690px;">
+								<p:dataTable value="#{leavePMcontrol.dataList}" var="leave" id="tab" rows="20"
+									 styleClass="stable" style="width: 100%;" paginator="true" paginatorPosition="bottom" widgetVar="tab">
 
-									<rich:column style="height : 40px;">
+									<p:column style="height : 40px; width : 150px;">
 										<f:facet name="header">
 											<h:outputText value="Start date" />
 										</f:facet>
 										<h:outputText value="#{leave.leaveStartDate}" />
-									</rich:column>
-									<rich:column>
+									</p:column>
+									
+									<p:column style="height : 40px; width : 150px;">
 										<f:facet name="header">
 											<h:outputText value="End date " />
 										</f:facet>
 										<h:outputText value="#{leave.leaveEndDate}" />
-									</rich:column>
-									<rich:column style="width: 150px">
-										<f:facet name="header">
-											<h:outputText value="Type" />
-										</f:facet>
-										<h:outputText value="#{leave.leaveType}" />
-									</rich:column>
-									<rich:column style="width: 150px">
+									</p:column>
+									
+									
+									<p:column style="width: 150px">
 										<f:facet name="header">
 											<h:outputText value="Days" />
 										</f:facet>
 										<h:outputText value="#{leave.totalDays}" />
-									</rich:column>
-									<rich:column style="width: 150px">
+									</p:column>
+									
+									<p:column style="width: 150px">
 										<f:facet name="header">
 											<h:outputText value="Year" />
 										</f:facet>
 										<h:outputText value="#{leave.date}" />
-									</rich:column>
-									<rich:column style="width:120px;">
+									</p:column>
+									
+									<p:column style="width:120px;">
 										<f:facet name="header">
-											<h:outputText value="status " />
+											<h:outputText value="Status " />
 										</f:facet>
 										<h:outputText value="#{leave.status}" rendered="#{leave.status=='waiting'}"
 											style="color: lightseagreen;" />
-									</rich:column>
-									<rich:column style="width: 300px">
+									</p:column>
+									
+									<p:column style="width: 300px">
 										<f:facet name="header">
-											<h:outputText value="Commantaire" />
+											<h:outputText value="Comment" />
 										</f:facet>
 										<h:outputText value="#{leave.satatusDescription}" />
-									</rich:column>
-									<rich:column style="text-align: center; width:60px">
+									</p:column>
+									
+									<p:column style="text-align: center; width:30px">
 										<f:facet name="header">
-											<h:outputText value="Actions" />
+											<h:outputText value="Accept" />
 										</f:facet>
-
-										<a4j:commandLink oncomplete="#{rich:component('Approuve')}.show()"
-											rendered="#{leave.status=='waiting'}" render="approuveForm">
-											<img src="images/accept.png" />
+										<p:commandLink oncomplete="confirmationApp.show()"
+											update=":formApp" rendered="#{leave.status=='waiting'}" >
+											<img src="images/checkmark.png" />
 											<f:setPropertyActionListener value="#{leave}" target="#{LeaveControlEditCtl.data}" />
-										</a4j:commandLink>
-
-										<a4j:commandLink oncomplete="#{rich:component('Disaprouve')}.show()"
-											rendered="#{leave.status=='waiting'}" render="disaprouveForm">
-											<img src="images/delete.png" />
+										</p:commandLink>
+                                  </p:column>
+                                 
+                                  <p:column style=" text-align: center; width: 30px;">
+                                       <f:facet name="header">
+											<h:outputText value="Reject" />
+										</f:facet>
+										<p:commandLink oncomplete="confirmationDApp.show()"
+											rendered="#{leave.status=='waiting'}" update=":formDApp" >
+											<img src="images/cross.png" />
 											<f:setPropertyActionListener value="#{leave}" target="#{LeaveControlEditCtl.data}" />
-										</a4j:commandLink>
-									</rich:column>
+										</p:commandLink>
+									</p:column>
 
-									<f:facet name="footer">
-										<rich:dataScroller />
-									</f:facet>
-								</rich:dataTable>
-							</rich:panel>
+									</p:dataTable>
+							</p:panel>
 						</div>
 					</td>
 				</tr>
 			</tbody>
-			<rich:jQuery selector=".stable tr" event="mouseover" query="jQuery(this).addClass('active-row')" />
-			<rich:jQuery selector=".stable tr" event="mouseout"
-				query="jQuery(this).removeClass('active-row')" />
 		</table>
 	</h:form>
+   
+   <h:form id="formApp">
+			<p:confirmDialog widgetVar="confirmationApp"
+				message="Are you sure you want to approve this Leave ?">
 
-	<rich:popupPanel id="Approuve" width="350" height="120">
-		<h:form id="approuveForm">
-			<f:facet name="header">
-                    Approuve Leave
-                </f:facet>
-			<b></b>
-			<br />
-                Are you sure you want to approve this Leave for <h:outputText
-				value="#{LeaveControlEditCtl.data.resurceId}" /> ?
-                <br />
-			<br />
-			<h:panelGrid columns="2" width="50%">
-				<a4j:commandButton value="Cancel" onclick="#{rich:component('Approuve')}.hide()" />
-				<h:commandButton value="Approve" action="#{LeaveControlEditCtl.approuvePM}" />
-			</h:panelGrid>
-		</h:form>
-	</rich:popupPanel>
+				<p:commandButton id="confirmDel" value="Approve"
+					action="#{LeaveControlEditCtl.approuvePM}"
+					styleClass="btn"  icon="ui-icon-disk" oncomplete="confirmationApp.hide()" >
+				</p:commandButton>
 
-	<rich:popupPanel id="Disaprouve" width="350" height="200">
-		<h:form id="disaprouveForm">
-			<f:facet name="header">
-                    Approuve Leave
-                </f:facet>
-			<b></b>
-			<br />
-			
-                Are you sure you want to disapprouve this Leave for <h:outputText
-				value="#{LeaveControlEditCtl.data.resurceId}" /> ?
-                <br />
-			<br />
-			<h:outputText value="Please add a description for this status" style="color : red;"></h:outputText>
-			<br />
-			<br />
-			<h:inputTextarea value="#{LeaveControlEditCtl.description}" style="width:100%;" />
-			<h:panelGrid columns="2" width="50%" style="float: right;">
-				<a4j:commandButton value="Cancel" onclick="#{rich:component('Disaprouve')}.hide()" />
-				<h:commandButton value="Disapprove" action="#{LeaveControlEditCtl.disapprouvePM}" />
-			</h:panelGrid>
-		</h:form>
-	</rich:popupPanel>
+				<p:commandButton id="declineDel" value="Cancel"
+					onclick="confirmationApp.hide()" type="button" styleClass="btn" />
+			</p:confirmDialog>
+   </h:form>
+   
+   <h:form id="formDApp">
+			<p:confirmDialog widgetVar="confirmationDApp"
+				message="Are you sure you want to Disapprove this Leave ? Please add a comment before the action ">
+                
+                <p:inputTextarea rows="6" cols="33" value="#{LeaveControlEditCtl.description}" style="width : 100%;" /> 
+				
+				<p:commandButton id="confirmDapp" value="Disapprouve"
+					action="#{LeaveControlEditCtl.disapprouvePM}"
+					styleClass="btn"  icon="ui-icon-disk" oncomplete="confirmationDApp.hide()" >
+				</p:commandButton>
+               
+				<p:commandButton id="declineDapp" value="Cancel"
+					onclick="confirmationDApp.hide()" type="button" styleClass="btn" />
+			</p:confirmDialog>
+   </h:form>
+   
 
 
 </h:body>

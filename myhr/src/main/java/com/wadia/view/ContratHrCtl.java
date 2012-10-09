@@ -8,6 +8,9 @@ package com.wadia.view;
 import com.wadia.local.fabrique;
 import com.wadia.metier.ContrathrMetier;
 import com.wadia.metier.ContrathrfillMetier;
+import com.wadia.metier.DirectoryMetier;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,28 +19,31 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Wadi3
  */
 @ManagedBean (name="ContratHrCtl")
-@RequestScoped
-public class ContratHrCtl {
+@ViewScoped
+public class ContratHrCtl implements Serializable {
    
     private List<ContrathrMetier> listContr = new ArrayList<ContrathrMetier>();
    
-    @ManagedProperty (value="#{contrathrfillMetier}")
-    private ContrathrfillMetier contrathrfillMetier;
+    
+    private ContrathrfillMetier contrathrfillMetier() {
+        return SpringJSFUtil.getBean("contrathrfillMetier");
+    }
     
     private String search;
     
     
     @PostConstruct
     public void init(){
-         listContr = contrathrfillMetier.listContr();
-         contrathrfillMetier.updateStatus(listContr);
-         listContr = contrathrfillMetier.listContr();
+         listContr = contrathrfillMetier().listContr();
+         contrathrfillMetier().updateStatus(listContr);
+         listContr = contrathrfillMetier().listContr();
     }
 
     /**
@@ -66,7 +72,7 @@ public class ContratHrCtl {
             fabrique fab = new fabrique();        
             HashSet<ContrathrMetier> contratListSearch = new HashSet<ContrathrMetier>();
             //System.out.println("filtering employs... " + search);
-            listContr = contrathrfillMetier.listContr();
+            listContr = contrathrfillMetier().listContr();
             for (ContrathrMetier contrat : listContr) {
                 
                 if (contrat.getName().toLowerCase().contains(search.toLowerCase())
@@ -92,17 +98,13 @@ public class ContratHrCtl {
             
             }
              //System.out.println("pchakh : " + contratListSearch.size());
-             listContr = fab.toArray(contratListSearch);
+             listContr.clear();
+             listContr.addAll(fab.toArray(contratListSearch));
+             
              //System.out.println("pchakh 2 : " + listContr.size());
         }
     }
 
-    public ContrathrfillMetier getContrathrfillMetier() {
-        return contrathrfillMetier;
-    }
 
-    public void setContrathrfillMetier(ContrathrfillMetier contrathrfillMetier) {
-        this.contrathrfillMetier = contrathrfillMetier;
-    }
     }
 

@@ -13,7 +13,7 @@ import com.wadia.repos.EInsurranceDataRepos;
 
 /**
  *
- * @author toshiba
+ * @author wadi3
  */
 @ManagedBean (name="InssuranceStatusCtl")
 @RequestScoped
@@ -51,10 +51,12 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
+        
+       
     
     }
     
-    public void sendToInssurance(){
+    public String sendToInssurance(){
     
         if(data.getMatricule()!=null){
         
@@ -62,10 +64,10 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
-    
+        return "inssuranceHr?faces-redirect=true";
     }
     
-    public void inprogress(){
+    public String inprogress(){
     
         if(data.getMatricule()!=null){
         
@@ -73,10 +75,10 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
-    
+        return "inssuranceHr?faces-redirect=true";
     }
     
-    public void accepted(){
+    public String accepted(){
     
         if(data.getMatricule()!=null){
         
@@ -84,10 +86,10 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
-    
+        return "inssuranceHr?faces-redirect=true";
     }
     
-    public void refused(){
+    public String refused(){
     
         if(data.getMatricule()!=null){
         
@@ -96,7 +98,7 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
-    
+        return "inssuranceHr?faces-redirect=true";
     }
     
      public void reedit(){
@@ -108,10 +110,10 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
-    
+       
     }
     
-      public void acknowlege(){
+      public String acknowlege(){
     
         if(data.getMatricule()!=null){
         
@@ -119,7 +121,7 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(data);
         
         }
-    
+        return "inssuranceHr?faces-redirect=true";
     }
     
     public void pr(){
@@ -130,7 +132,7 @@ public class InssuranceStatusCtl {
             eInsurranceDataRepos.save(datas);
         
         }
-    
+       
     }
 
     public EInsurranceData getData() {

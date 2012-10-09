@@ -31,7 +31,7 @@ public class DirectoryMetier {
     @Inject
     private AffectationMetier affectationMetier;
 
-    @Cacheable("listDirect")
+    
     public List<Directory> findAll() {
 
         List<EGeneralData> listeEG = new ArrayList<EGeneralData>();

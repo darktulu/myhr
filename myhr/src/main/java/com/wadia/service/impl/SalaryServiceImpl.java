@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.cache.annotation.Cacheable;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -103,9 +103,7 @@ public class SalaryServiceImpl implements SalaryService {
 	return hrMetiers;
     }
 
-    public void calculateIndemnite() {
-
-    }
+    
 
     public float getTotalAllowance(String username) {
 	float totalAllowance = 0;

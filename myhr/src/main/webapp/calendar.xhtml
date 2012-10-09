@@ -8,6 +8,7 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
@@ -29,8 +30,8 @@ and open the template in the editor.
             <table style=" max-width: 1700px; margin: auto;">
                 <tbody>
                     <tr><td>
-                            <div id="left" style="width: 200px; min-height: 710px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
-                                <h:panelGrid columns="2" columnClasses="cols,cols" width="400" style="background: #ffffff;"> 
+                            <div id="left" style="width: 200px; min-height: 990px; background: #f1f1f1;  font:  14px Helvetfontica, Arial, sans-serif; "> 
+                                <h:panelGrid columns="2" columnClasses="cols,cols" width="190" style="background: #ffffff;"> 
                                     <rich:panelMenu style="width:198px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
                                                     groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
                                                     topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" expandSingle="false"> 
@@ -87,46 +88,33 @@ and open the template in the editor.
                                         </h:panelGrid>
                                     </h:panelGrid>
                                 </div>
-                                <rich:panel header="My team calendar" style="min-height: 630px;">
-
-                                    <rich:dataTable value="#{MyReportsCalendar.list}" var="abscence"
-                                                    id="tab" rows="25" rowClasses="odd-row, even-row"
-                                                    styleClass="stable" style="width: 100%;">
-                                        <rich:column style="height : 30px;">
+                                
+                                <p:panel header="My Team Calendar" style="margin-top:2px; min-height: 600px; width : 100%;">
+                                
+                                   <p:dataTable value="#{MyReportsCalendar.list}" var="leave"
+                                                    id="tab" rows="20" style=" width: 100%; margin : auto; text-align: center;" paginator="true" paginatorPosition="bottom">
+                                  
+                                       <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Username" />
+                                                <h:outputText value="MyTeam" />
                                             </f:facet>
-                                            <h:outputText value="#{abscence.resurceId}" />
-                                        </rich:column>
-                                        <rich:column>
+                                            <h:outputText value="#{leave.resurceId}" />
+                                        </p:column>   
+                                    
+                                        <p:columns value="#{CalendarCtl.list}" var="col">
                                             <f:facet name="header">
-                                                <h:outputText value="Year" />
+                                                <h:outputText value="#{col}" />
                                             </f:facet>
-                                            <h:outputText value="#{abscence.date}" />
-                                        </rich:column>
-                                        <rich:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Start date " />
-                                            </f:facet>
-                                            <h:outputText value="#{abscence.leaveStartDate}" />
-                                        </rich:column>
-                                        <rich:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="end Date" />
-                                            </f:facet>
-                                            <h:outputText value="#{abscence.leaveEndDate}" />
-                                        </rich:column>
-
-
-
-                                        <f:facet name="footer">
-                                            <rich:dataScroller/>
-                                        </f:facet>
-                                    </rich:dataTable>
-
-
-                                </rich:panel>
-
+                                            
+                                            <f:subview id="Abs" rendered="#{MyReportsCalendar.ColorProvider(leave.resurceId,col)=='red'}">
+                                              <div  style="background : red;" />
+                                            </f:subview>
+                                            <h:outputText rendered="#{MyReportsCalendar.ColorProvider(leave.resurceId,col)=='blue'}" style="background : blue;" />
+                                            <h:outputText rendered="#{MyReportsCalendar.ColorProvider(leave.resurceId,col)=='Yellew'}" style="background : yellew;" />
+                                        </p:columns>                                         
+                                  
+                                  </p:dataTable>                  
+                               </p:panel>   
                             </div>
                         </td>
                     </tr>

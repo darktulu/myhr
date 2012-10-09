@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
+import com.wadia.fileUpload.attestationSalaire;
 import com.wadia.local.Recipients;
 import com.wadia.metier.OrgFillMetier;
 import com.wadia.metier.OrgShowList;
@@ -23,17 +24,12 @@ import com.wadia.service.SendMail;
 public class UsersReposTest {
 
     
-    private SendMail sendMail; 	
+    private attestationSalaire att; 	
    
     @Test
-    public void test() {
+    public void test() throws Exception {
     
-    List<Recipients> list = new ArrayList<Recipients>();
-    Recipients rep = new Recipients();
-    rep.setMail("o.GAMRANE@3gcon-int.com");
-    rep.setType("To");
-    list.add(rep);
-    sendMail.sendMailHTML(list, "test", "Hello world");
+    att.generate("toto", "toto", "toto", "toto", "toto", "toto", "toto");
     	
 	
     }

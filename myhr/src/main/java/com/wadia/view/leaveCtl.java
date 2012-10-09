@@ -16,6 +16,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.wadia.beans.EGeneralData;
 import com.wadia.beans.ELData;
 import com.wadia.beans.Soldleave;
@@ -45,6 +47,8 @@ public class leaveCtl {
     private Integer idToEdit;
     private static ELData leaveToEdit = new ELData();
     
+    @ManagedProperty(value = "#{mailForm}")
+    private MailForm mailForm;
     
     @ManagedProperty(value = "#{soldleaveMetier}")
     private SoldleaveMetier soldleaveMetier;
@@ -88,9 +92,36 @@ public class leaveCtl {
 	/* Here we create sold to save */
 	
 	    sold = soldleaveRepos.findByUsernameAndYear(user.getUsername(), yearC);
-	sold.setPlanned(sold.getPlanned() + days);
-	soldleaveRepos.save(sold);
-	returValue = "leaves?faces-redirect=true";
+	    sold.setPlanned(sold.getPlanned() + days);
+	    soldleaveRepos.save(sold);
+	    returValue = "leaves?faces-redirect=true";
+	    
+	    /* Sending Mail */
+	    
+	    Recipients manager = new Recipients();
+	    manager.setMail(affectationMetier.findMyManager(user.getUsername()).getInfo());
+	    manager.setType("To");
+		mailList.add(manager); // ADD MANAGER
+		
+		Recipients HrManager = new Recipients();
+		HrManager.setMail(affectationMetier.findMyHrManager(user.getUsername()).getInfo());
+		HrManager.setType("Cc");
+		mailList.add(HrManager);//ADD HR
+		
+		Recipients Me = new Recipients();
+		Me.setMail(affectationMetier.findMe(user.getUsername()).getInfo());
+		Me.setType("Cc");
+		mailList.add(Me);// ADD ME
+	    
+		if (sold != null) {
+
+		    EGeneralData generalData = new EGeneralData();
+		    generalData = eGeneralDataRepos.findOne(user.getUsername()); 
+		    mailForm.RequestLeave(mailList, affectationMetier.findMyManager(user.getUsername()).getFullName(),generalData.getName()+" "+generalData.getSurname(), year, start, end, days, motif);
+		    
+		 	
+		    }
+	    
 	}else {
 		
 		FacesContext.getCurrentInstance().addMessage(
@@ -357,6 +388,14 @@ public class leaveCtl {
     public void seteLDataRepos(ELDataRepos eLDataRepos) {
         this.eLDataRepos = eLDataRepos;
     }
+
+	public MailForm getMailForm() {
+		return mailForm;
+	}
+
+	public void setMailForm(MailForm mailForm) {
+		this.mailForm = mailForm;
+	}
 
 
 }

@@ -28,8 +28,10 @@ public class leavePMcontrol {
     private static String name;
     private static String surname;
     private static String username;
+    private static String idphoto;
     private static ELData data = new ELData();
     private static List<ELData> dataList = new ArrayList<ELData>();
+   
     @ManagedProperty(value = "#{myTeamMetier}")
     private  myTeamMetier myTeamMetier; 
     @ManagedProperty(value = "#{eGeneralDataRepos}")
@@ -53,7 +55,7 @@ public class leavePMcontrol {
 	    name = eg.getName();
 	    surname = eg.getSurname();
 	    username = eg.getResurceId();
-	   
+	    idphoto = eg.getIdPhoto();
 	   
 	    dataList = myTeamMetier.myTeamLeavesWaiting(userToApprove);
 
@@ -132,5 +134,13 @@ public class leavePMcontrol {
     public void setToEdit(String toEdit) {
         this.toEdit = toEdit;
     }
+
+	public String getIdphoto() {
+		return idphoto;
+	}
+
+	public void setIdphoto(String idphoto) {
+		this.idphoto = idphoto;
+	}
 
 }

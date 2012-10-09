@@ -17,14 +17,12 @@ import com.wadia.metier.AffectationMetier;
 public class AffectationReposTest {
 
     @Inject 
-    private AffectationRepos affectationRepos;
-    @Inject
-    private AffectationMetier affectationMetier;
+    private SoldleaveRepos soldleaveRepos;
     
     @Test
     public void test() {
 	
-	System.out.println(affectationMetier.getbyusername("m.bougri").getLob().getName());
+	System.out.println("sold "+soldleaveRepos.findByUsernameAndYear("o.gamrane", 2012).getSold());
     }
 
 }
