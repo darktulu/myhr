@@ -35,13 +35,13 @@ public class TeamCalendarMetier {
     private AffectationMetier affectationMetier;
     @Inject
     private AffectationRepos affectationRepos;
+    @Inject
+    private EGeneralDataRepos eGeneralDataRepos;
    
     private List<ELData> eLdatas;
     private List<EGeneralData> egen;
-    @Inject
-    private EGeneralDataRepos eGeneralDataRepos;
     private String Username;
-    Calendar rightNow = Calendar.getInstance();
+            Calendar rightNow = Calendar.getInstance();
 
    public List<ELData> myTeamLeaves(String username){
 	List<ELData> eLdatas = new ArrayList<ELData>();
@@ -92,5 +92,31 @@ public class TeamCalendarMetier {
 
 	return toretrun;
     }
+    
+    
+    /************************************************** new work here *****************************************************************/
+    
+    
+    public boolean isTakeneg(String username, Integer day, Integer Month, Integer year){
+    	
+    	
+    	return true;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

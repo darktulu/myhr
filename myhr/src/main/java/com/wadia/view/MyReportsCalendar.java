@@ -28,14 +28,6 @@ import com.wadia.repos.AffectationRepos;
 public class MyReportsCalendar {
 
    
-    private List<EGeneralData> listReports = new ArrayList<EGeneralData>();
-    private userController user = new userController();
-    private List<ELData> list = new ArrayList<ELData>();
-    private List<String> myReportsUsernames;
-    
-
-
-    
     private AffectationMetier affectationMetier() {
         return SpringJSFUtil.getBean("affectationMetier");
     }
@@ -47,6 +39,18 @@ public class MyReportsCalendar {
     private TeamCalendarMetier teamCalendarMetier() {
         return SpringJSFUtil.getBean("teamCalendarMetier");
     }
+	
+	
+	private List<EGeneralData> listReports = new ArrayList<EGeneralData>();
+    private userController user = new userController();
+    private List<ELData> list = new ArrayList<ELData>();
+    private List<String> myReportsUsernames;
+    private Integer Month = 0;
+    private Integer Year = 0;
+    
+
+
+  
     
     @PostConstruct
     public void init() {
@@ -62,8 +66,8 @@ public class MyReportsCalendar {
     	
     	String color = "red";
     	
-    	if(day==1) color= "blue";
-    	if(day==20) color= "Yellew";
+    	if(day==1 && username.equals("k.chakna")) color= "blue";
+    	if(day==20 && username.equals("k.chakna")) color= "Yellew";
     	
     	return color;
     	

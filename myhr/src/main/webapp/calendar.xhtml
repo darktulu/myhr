@@ -91,14 +91,14 @@ and open the template in the editor.
                                 
                                 <p:panel header="My Team Calendar" style="margin-top:2px; min-height: 600px; width : 100%;">
                                 
-                                   <p:dataTable value="#{MyReportsCalendar.list}" var="leave"
+                                   <p:dataTable value="#{MyReportsCalendar.myReportsUsernames}" var="team"
                                                     id="tab" rows="20" style=" width: 100%; margin : auto; text-align: center;" paginator="true" paginatorPosition="bottom">
                                   
                                        <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="MyTeam" />
                                             </f:facet>
-                                            <h:outputText value="#{leave.resurceId}" />
+                                            <h:outputText value="#{team}" />
                                         </p:column>   
                                     
                                         <p:columns value="#{CalendarCtl.list}" var="col">
@@ -106,11 +106,9 @@ and open the template in the editor.
                                                 <h:outputText value="#{col}" />
                                             </f:facet>
                                             
-                                            <f:subview id="Abs" rendered="#{MyReportsCalendar.ColorProvider(leave.resurceId,col)=='red'}">
-                                              <div  style="background : red;" />
-                                            </f:subview>
-                                            <h:outputText rendered="#{MyReportsCalendar.ColorProvider(leave.resurceId,col)=='blue'}" style="background : blue;" />
-                                            <h:outputText rendered="#{MyReportsCalendar.ColorProvider(leave.resurceId,col)=='Yellew'}" style="background : yellew;" />
+
+                                            <h:outputText value="A" rendered="#{MyReportsCalendar.ColorProvider(team,col)=='blue'}" />
+                                            <h:outputText value="L" rendered="#{MyReportsCalendar.ColorProvider(team,col)=='Yellew'}"  />
                                         </p:columns>                                         
                                   
                                   </p:dataTable>                  
