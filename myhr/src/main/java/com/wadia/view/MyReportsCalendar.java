@@ -9,13 +9,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import com.wadia.beans.EGeneralData;
 import com.wadia.beans.ELData;
 import com.wadia.metier.AffectationMetier;
-import com.wadia.metier.DirectoryMetier;
 import com.wadia.metier.TeamCalendarMetier;
 import com.wadia.repos.AffectationRepos;
 

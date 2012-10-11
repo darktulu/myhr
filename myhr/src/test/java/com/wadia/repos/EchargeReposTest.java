@@ -1,5 +1,8 @@
 package com.wadia.repos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -14,6 +17,8 @@ import com.wadia.beans.ESalaryData;
 import com.wadia.beans.Echarge;
 import com.wadia.fileUpload.PDFToImage;
 import com.wadia.fileUpload.PaySlipGenerator;
+import com.wadia.local.Recipients;
+import com.wadia.metier.MailForm;
 import com.wadia.service.EchargeElementService;
 import com.wadia.service.EprimeElementService;
 import com.wadia.service.IndemElementService;
@@ -30,13 +35,18 @@ import com.wadia.view.userController;
 public class EchargeReposTest {
 
 	@Inject
-	private SalaryElementService salaryElementService;
+	private MailForm mailForm;
     
    
     @Test
     public void test() throws Exception {
+    	List<Recipients> toMail = new ArrayList<Recipients>();
+    	Recipients r = new Recipients();
+		r.setMail("o.gamrane@3gcom-int.com");
+		r.setType("To");
+		toMail.add(r);
 		  
-    	 System.out.println("salary "+salaryElementService.findMargeSalary("m.bougri", 1, 2012).getAns());
+    	 mailForm.SalaryAward(toMail, "Gamrane Ouadia", "m.bougri", "9000");
 	
     }
 

@@ -50,15 +50,14 @@ public class LeavesMetier {
 	return (leavessToReturn);
     }
     
-    public List<ELData> findTask(List<EGeneralData> team){
+    public List<ELData> findTask(String username){
     	
     	List<ELData> taskList = new ArrayList<ELData>();
     	
-    	for(EGeneralData employ : team){
-    		
-    		taskList.addAll(eLDataRepos.findWaiting(employ.getResurceId()));
-    	}
-    	return taskList;
+    	
+    		 taskList.addAll(eLDataRepos.findWaiting(username));
+    	    
+    		return taskList;
     }
 
     public List<ELData> findByApprovedPM(String username) {

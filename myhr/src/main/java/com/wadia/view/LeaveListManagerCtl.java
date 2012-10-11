@@ -28,6 +28,8 @@ public class LeaveListManagerCtl {
     
    private userController user = new userController();
    private List<ELData> teamLeaves = new ArrayList<ELData>();
+   private List<ShowTask> showTask = new ArrayList<ShowTask>();
+  
    @ManagedProperty(value="#{affectationMetier}")
    private AffectationMetier affectationMetier;
   
@@ -42,8 +44,22 @@ public class LeaveListManagerCtl {
    public void init(){
    
        team = affectationMetier.getbyManager(user.getUsername());
-       taskList = leavesMetier.findTask(team);
-       tasks = taskList.size();
+       int i = 1;
+       for(EGeneralData usern : team){
+    	   List<ELData> list = new ArrayList<ELData>();
+    	   list = leavesMetier.findTask(usern.getResurceId());
+    	   if(list.size()!=0){
+    		   
+    		   ShowTask task = new ShowTask();
+    		   task.setUsername(usern.getName()+" "+usern.getSurname());
+    		   task.setIdtask(""+i);
+    		   task.setNumber(""+list.size());
+    		   showTask.add(task);
+    		   i++;
+    		   
+    	   }
+       }
+      
                
    }
 
@@ -103,4 +119,50 @@ public class LeaveListManagerCtl {
 		this.taskList = taskList;
 	}
     
+	public class ShowTask{
+		
+		private String idtask;
+		private String number;
+		private String username;
+		public String getIdtask() {
+			return idtask;
+		}
+		public void setIdtask(String idtask) {
+			this.idtask = idtask;
+		}
+		public String getNumber() {
+			return number;
+		}
+		public void setNumber(String number) {
+			this.number = number;
+		}
+		public String getUsername() {
+			return username;
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		
+		
+		
+	}
+
+	public List<ShowTask> getShowTask() {
+		return showTask;
+	}
+
+	public void setShowTask(List<ShowTask> showTask) {
+		this.showTask = showTask;
+	}
+
+
+
+
 }
+
+
+
+
+
+
+

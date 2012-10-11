@@ -18,6 +18,7 @@ import com.wadia.beans.EGeneralData;
 import com.wadia.local.fabrique;
 import com.wadia.local.user;
 import com.wadia.metier.DirectoryMetier;
+import com.wadia.metier.FillUsersMetier;
 import com.wadia.metier.fillMetier;
 import com.wadia.repos.EGeneralDataRepos;
 
@@ -35,8 +36,8 @@ public class EmployListCtl implements Cloneable, Serializable {
         return SpringJSFUtil.getBean("eGeneralDataRepos");
     }
     
-    private fillMetier fillMetier() {
-        return SpringJSFUtil.getBean("fillMetier");
+    private  FillUsersMetier  fillUsersMetier() {
+        return SpringJSFUtil.getBean("fillUsersMetier");
     }
 
     
@@ -55,8 +56,8 @@ public class EmployListCtl implements Cloneable, Serializable {
     }
 
     public void update() {
-
-	fillMetier().fill();
+    System.out.println("here in update");
+    fillUsersMetier().fill();
 
 
     }

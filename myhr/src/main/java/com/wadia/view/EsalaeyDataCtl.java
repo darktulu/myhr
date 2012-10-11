@@ -8,8 +8,14 @@ import com.wadia.beans.EIndemnite;
 import com.wadia.beans.Echarge;
 import com.wadia.beans.EPrime;
 import com.wadia.beans.ESalaryData;
+import com.wadia.local.Recipients;
+import com.wadia.metier.AffectationMetier;
 import com.wadia.metier.DirectoryMetier;
+import com.wadia.metier.MailForm;
 import com.wadia.metier.SalaryMetier;
+import com.wadia.repos.EGeneralDataRepos;
+import com.wadia.repos.ESalaryDataRepos;
+import com.wadia.service.impl.SalaryServiceImpl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,20 +32,33 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name = "EsalaeyDataCtl")
 @ViewScoped
-public class EsalaeyDataCtl implements Serializable{
+public class EsalaeyDataCtl implements Serializable {
 
 	private static String IdToViewSalary;
 	private List<EIndemnite> eIndemnites = new ArrayList<EIndemnite>();
 	private List<EPrime> ePrimes = new ArrayList<EPrime>();
 	private List<Echarge> echarges = new ArrayList<Echarge>();
+	
 
 	private ESalaryData eSalaryData = new ESalaryData();
 
+	private SalaryMetier salaryMetier() {
+		return SpringJSFUtil.getBean("salaryMetier");
+	}
 
-	 
-    private SalaryMetier salaryMetier() {
-        return SpringJSFUtil.getBean("salaryMetier");
-    }
+	private MailForm mailForm() {
+		return SpringJSFUtil.getBean("mailForm");
+	}
+    
+	private EGeneralDataRepos eGeneralDataRepos() {
+		return SpringJSFUtil.getBean("eGeneralDataRepos");
+	}
+	
+	private AffectationMetier affectationMetier() {
+		return SpringJSFUtil.getBean("affectationMetier");
+	}
+
+
 	private int rowId;
 	private int ans;
 	private int mois;
@@ -52,8 +71,15 @@ public class EsalaeyDataCtl implements Serializable{
 		eSalaryData.setMois(mois);
 		eSalaryData.setBaseSalary(baseSalary);
 		eSalaryData.setDescription(description);
+		
+		
+	    List<Recipients> mailList = new ArrayList<Recipients>();
+
 		if (eSalaryData != null) {
+
 			eSalaryData.setResurceId(IdToViewSalary);
+			// TODO
+           
 		}
 
 		for (EIndemnite eIndemnite : eIndemnites) {
@@ -66,6 +92,26 @@ public class EsalaeyDataCtl implements Serializable{
 			echarge.setResourceId(IdToViewSalary);
 		}
 		salaryMetier().saveSalary(eSalaryData, eIndemnites, ePrimes, echarges);
+		
+		if (eSalaryData != null) {			
+			
+
+			
+			Recipients HrManager = new Recipients();
+			HrManager.setMail(affectationMetier().findMyHrManager(IdToViewSalary).getInfo());
+			HrManager.setType("Cc");
+			mailList.add(HrManager);//ADD HR
+			
+			Recipients Me = new Recipients();
+			Me.setMail(affectationMetier().findMe(IdToViewSalary).getInfo());
+			Me.setType("To");
+			mailList.add(Me);// ADD ME
+			
+			String fullname = eGeneralDataRepos().findOne(IdToViewSalary).getName()+" "+eGeneralDataRepos().findOne(IdToViewSalary).getSurname();
+			
+		    mailForm().SalaryAward(mailList, fullname, IdToViewSalary, ""+eSalaryData.getBaseSalary());
+		}
+
 		return "SalaryHr?faces-redirect=true";
 	}
 
