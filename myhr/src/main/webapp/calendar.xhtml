@@ -30,7 +30,8 @@ and open the template in the editor.
 function nodes(){$(".taken").parent().parent().css("background-color","green");
 $(".absenceJ").parent().parent().css("background-color","yellow");
 $(".absenceNJ").parent().parent().css("background-color","red");
-$(".planned").parent().parent().css("background-color","purple");}
+$(".planned").parent().parent().css("background-color","purple");
+$(".ongoing").parent().parent().css("background-color","blue");}
 </script>
 
 </h:head>
@@ -231,13 +232,17 @@ $(".planned").parent().parent().css("background-color","purple");}
 										<f:subview rendered="#{MyReportsCalendar.ColorProvider(team,col)=='P'}">
 											<div class="planned"/>	    	
 										</f:subview>
+										
+										<f:subview rendered="#{MyReportsCalendar.ColorProvider(team,col)=='O'}">
+											<div class="ongoing"/>	    	
+										</f:subview>
 																														
 																			
 									</p:columns>
 
 								</p:dataTable>
 								
-								<p:panelGrid columns="8">
+								<p:panelGrid columns="10">
 								
 								<div style="width : 25px; height : 25px; background-color: green;"/>
 								<h:outputText value="Vacation Days Taken"/>
@@ -250,6 +255,9 @@ $(".planned").parent().parent().css("background-color","purple");}
 								
 								<div style="width : 25px; height : 25px; background-color: red;"/>
 								<h:outputText value="Non Justified Abscence"/>
+								
+								<div style="width : 25px; height : 25px; background-color: blue;"/>
+								<h:outputText value="Ongoing vacation"/>
 								
 								
 								</p:panelGrid>

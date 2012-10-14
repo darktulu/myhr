@@ -98,7 +98,7 @@ public class MyReportsCalendar implements Serializable {
     	if(myReportClendarService().isNonJustifiedAbsence(username,date2)) type = "ANJ"; //TODO
     	if(myReportClendarService().isPlanned(username, date2)) type = "P"; //TODO
     	if(myReportClendarService().isTaken(username, date2)) type = "T"; //TODO
-    	//if(myReportClendarService().isOngoing(username)) type = "O"; //TODO
+    	if(myReportClendarService().isOngoing(username,date2)) type = "O"; //TODO
     	
     	
     	return type;

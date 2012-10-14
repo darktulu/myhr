@@ -154,29 +154,33 @@ public class MyReportClendarService  {
 	  return numberDays;
   }
   
-  public boolean isOngoing(String username) throws ParseException{
+  public boolean isOngoing(String username, Date dateColm) throws ParseException{
 		
 		List<ELData> list = new ArrayList<ELData>();
 		list = eLDataRepos.findByUsername(username);
 		
 		    Calendar calendar = new GregorianCalendar();
 	        //calendar.set(Year, Month, day);
-	        calendar.getInstance();
+	        
 	        
 	        Date date = calendar.getTime();
 	       
 	        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 	        String dateF = format.format(date);
 	        Date date2 = format.parse(dateF);
-		
+		    System.out.println("DATE2 "+date2);
 		
 		boolean var = false;
 		
 		for(ELData leave : list){
 		  if(leave.getStatus().equals("waiting") || leave.getStatus().equals("Approved By HR") || leave.getStatus().equals("Approved By PM"))	
-			if((date.compareTo(leave.getLeaveStartDate())>=0) && ( date.compareTo(leave.getLeaveEndDate())<=0)){
+			if((date2.compareTo(leave.getLeaveStartDate())>=0) && ( date2.compareTo(leave.getLeaveEndDate())<=0)){
+				
+				if((dateColm.compareTo(leave.getLeaveStartDate())>=0) && ( dateColm.compareTo(leave.getLeaveEndDate())<=0)){
 				
 				var = true;
+				
+				}
 				
 			}
 			
