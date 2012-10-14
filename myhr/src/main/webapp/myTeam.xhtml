@@ -182,7 +182,7 @@ and open the template in the editor.
 								<p style="color: #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px;">Tasks :</p>
 								<h:panelGrid columns="1" style="margin-top: 4px; margin-left: 4px; font: 12px Helvetica, Arial, sans-serif;">									
 
-                                  <a4j:repeat value="#{LeaveListManagerCtl.showTask}" var="task" rows="1" id="repeat">
+                                  <a4j:repeat value="#{LeaveListManagerCtl.showTask}" var="task" rows="4" id="repeat" >
        								 <p>#{task.idtask} : You have <b style="color : blue"> #{task.number} </b> requests from #{task.username} </p>
                                   </a4j:repeat>    
 								</h:panelGrid>

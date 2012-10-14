@@ -1,6 +1,9 @@
 package com.wadia.repos;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,6 +27,7 @@ import com.wadia.service.EprimeElementService;
 import com.wadia.service.IndemElementService;
 import com.wadia.service.SalaryElementService;
 import com.wadia.service.SalaryPerDateService;
+import com.wadia.service.impl.MyReportClendarService;
 import com.wadia.view.PaySlipCtl;
 import com.wadia.view.userController;
 
@@ -35,18 +39,17 @@ import com.wadia.view.userController;
 public class EchargeReposTest {
 
 	@Inject
-	private MailForm mailForm;
+	private MyReportClendarService myReportClendarService;
     
    
     @Test
     public void test() throws Exception {
-    	List<Recipients> toMail = new ArrayList<Recipients>();
-    	Recipients r = new Recipients();
-		r.setMail("o.gamrane@3gcom-int.com");
-		r.setType("To");
-		toMail.add(r);
-		  
-    	 mailForm.SalaryAward(toMail, "Gamrane Ouadia", "m.bougri", "9000");
+    	Calendar calendar = new GregorianCalendar();
+        calendar.set(2012, 4, 23);
+        Date date = calendar.getTime();
+
+		System.out.println("may "+Calendar.MAY);  
+    	//System.out.println("here is the value : "+myReportClendarService.isAbsence("m.rahali", date));
 	
     }
 

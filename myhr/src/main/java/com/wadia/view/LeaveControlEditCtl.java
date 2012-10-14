@@ -61,22 +61,22 @@ public class LeaveControlEditCtl implements Serializable {
         /* Sending Mail */
 	    
 	    Recipients manager = new Recipients();
-	    manager.setMail(affectationMetier().findMyManager(user.getUsername()).getInfo());
+	    manager.setMail(affectationMetier().findMyManager(data.getResurceId()).getInfo());
 	    manager.setType("Cc");
 		mailList.add(manager); // ADD MANAGER
 		
 		Recipients HrManager = new Recipients();
-		HrManager.setMail(affectationMetier().findMyHrManager(user.getUsername()).getInfo());
+		HrManager.setMail(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
 		HrManager.setType("Cc");
 		mailList.add(HrManager);//ADD HR
 		
 		Recipients Me = new Recipients();
-		Me.setMail(affectationMetier().findMe(user.getUsername()).getInfo());
+		Me.setMail(affectationMetier().findMe(data.getResurceId()).getInfo());
 		Me.setType("To");
 		mailList.add(Me);// ADD ME
 	    
 		EGeneralData generalData = new EGeneralData();
-		generalData = eGeneralDataRepos().findOne(user.getUsername()); 
+		generalData = eGeneralDataRepos().findOne(data.getResurceId()); 
 		mailForm().leaveApprouved(mailList,generalData.getName()+" "+generalData.getSurname(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(),"HR Manager");
 		    
 		 	
@@ -94,22 +94,22 @@ public class LeaveControlEditCtl implements Serializable {
         /* Sending Mail */
 	    
 	    Recipients manager = new Recipients();
-	    manager.setMail(affectationMetier().findMyManager(user.getUsername()).getInfo());
+	    manager.setMail(affectationMetier().findMyManager(data.getResurceId()).getInfo());
 	    manager.setType("Cc");
 		mailList.add(manager); // ADD MANAGER
 		
 		Recipients HrManager = new Recipients();
-		HrManager.setMail(affectationMetier().findMyHrManager(user.getUsername()).getInfo());
+		HrManager.setMail(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
 		HrManager.setType("Cc");
 		mailList.add(HrManager);//ADD HR
 		
 		Recipients Me = new Recipients();
-		Me.setMail(affectationMetier().findMe(user.getUsername()).getInfo());
+		Me.setMail(affectationMetier().findMe(data.getResurceId()).getInfo());
 		Me.setType("To");
 		mailList.add(Me);// ADD ME
 	    
 		EGeneralData generalData = new EGeneralData();
-		generalData = eGeneralDataRepos().findOne(user.getUsername()); 
+		generalData = eGeneralDataRepos().findOne(data.getResurceId()); 
 		mailForm().leaveApprouved(mailList,generalData.getName()+" "+generalData.getSurname(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(),"Project Manager");
         return "myTeam?faces-redirect=true";
     }
@@ -137,17 +137,17 @@ public class LeaveControlEditCtl implements Serializable {
         /* Sending Mail */
 	    
 	    Recipients manager = new Recipients();
-	    manager.setMail(affectationMetier().findMyManager(user.getUsername()).getInfo());
+	    manager.setMail(affectationMetier().findMyManager(data.getResurceId()).getInfo());
 	    manager.setType("Cc");
 		mailList.add(manager); // ADD MANAGER
 		
 		Recipients HrManager = new Recipients();
-		HrManager.setMail(affectationMetier().findMyHrManager(user.getUsername()).getInfo());
+		HrManager.setMail(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
 		HrManager.setType("Cc");
 		mailList.add(HrManager);//ADD HR
 		
 		Recipients Me = new Recipients();
-		Me.setMail(affectationMetier().findMe(user.getUsername()).getInfo());
+		Me.setMail(affectationMetier().findMe(data.getResurceId()).getInfo());
 		Me.setType("To");
 		mailList.add(Me);// ADD ME
 	    
@@ -170,22 +170,22 @@ public class LeaveControlEditCtl implements Serializable {
         /* Sending Mail */
 	    
 	    Recipients manager = new Recipients();
-	    manager.setMail(affectationMetier().findMyManager(user.getUsername()).getInfo());
+	    manager.setMail(affectationMetier().findMyManager(data.getResurceId()).getInfo());
 	    manager.setType("Cc");
 		mailList.add(manager); // ADD MANAGER
 		
 		Recipients HrManager = new Recipients();
-		HrManager.setMail(affectationMetier().findMyHrManager(user.getUsername()).getInfo());
+		HrManager.setMail(affectationMetier().findMyHrManager(data.getResurceId()).getInfo());
 		HrManager.setType("Cc");
 		mailList.add(HrManager);//ADD HR
 		
 		Recipients Me = new Recipients();
-		Me.setMail(affectationMetier().findMe(user.getUsername()).getInfo());
+		Me.setMail(affectationMetier().findMe(data.getResurceId()).getInfo());
 		Me.setType("To");
 		mailList.add(Me);// ADD ME
 	    
 		EGeneralData generalData = new EGeneralData();
-		generalData = eGeneralDataRepos().findOne(user.getUsername()); 
+		generalData = eGeneralDataRepos().findOne(data.getResurceId()); 
 		mailForm().leaveDesapprouved(mailList,generalData.getName()+" "+generalData.getSurname(), data.getDate(), data.getLeaveStartDate(), data.getLeaveEndDate(), data.getTotalDays(), data.getSatatusDescription(),"Line Manager");
 
         return "myTeam?faces-redirect=true";
